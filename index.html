@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TruWheels</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>TruWheels</h1>
+
+    <p class="subtitle">
+      Analyze used cars before buying
+    </p>
+
+    <div class="form-box">
+
+      <select id="carBrand">
+
+  <option value="">
+    Select Brand
+  </option>
+
+  <option value="Maruti">
+    Maruti
+  </option>
+
+  <option value="Hyundai">
+    Hyundai
+  </option>
+
+  <option value="Tata">
+    Tata
+  </option>
+
+  <option value="Mahindra">
+    Mahindra
+  </option>
+
+  <option value="Honda">
+    Honda
+  </option>
+
+  <option value="Kia">
+    Kia
+  </option>
+
+  <option value="Volkswagen">
+    Volkswagen
+  </option>
+
+  <option value="Skoda">
+    Skoda
+  </option>
+
+  <option value="Renault">
+    Renault
+  </option>
+
+  <option value="MG">
+    MG
+  </option>
+
+  <option value="Ford">
+    Ford
+  </option>
+
+  <option value="Toyota">
+    Toyota
+  </option>
+
+</select>
+
+      <select id="carModel">
+       <option value="">
+         Select Model
+            </option>
+       </select>
+
+<select id="engineType">
+  <option value="">
+    Select Engine Type
+  </option>
+
+  <option value="Petrol">
+    Petrol
+  </option>
+
+  <option value="Diesel">
+    Diesel
+  </option>
+
+  <option value="CNG">
+    CNG
+  </option>
+</select>
+
+<select id="transmission">
+
+  <option value="">
+    Select Transmission
+  </option>
+
+  <option value="Manual">
+    Manual
+  </option>
+
+  <option value="Automatic">
+    Automatic
+  </option>
+
+</select>
+
+      <input
+        type="number"
+        id="year"
+        placeholder="Manufacturing Year"
+      >
+
+      <input
+        type="number"
+        id="km"
+        placeholder="Kilometers Driven"
+      >
+
+      <input
+        type="number"
+        id="owners"
+        placeholder="Number of Owners"
+      >
+
+      <div class="service-section">
+
+      <div class="service-header">
+
+        <span>
+          Detailed Service Analysis (Optional)
+        </span>
+
+        <span id="service-arrow">
+          ▼
+        </span>
+
+      </div>
+
+
+      <div class="service-content">
+
+        <select id="serviceHistory">
+
+          <option value="">
+            Service History
+          </option>
+
+          <option value="Full">
+            Full Service History
+          </option>
+
+          <option value="Partial">
+            Partial Service History
+          </option>
+
+          <option value="None">
+            No Service Records
+          </option>
+
+        </select>
+
+
+        <select id="serviceType">
+
+          <option value="">
+            Service Type
+          </option>
+
+          <option value="Authorized">
+            Authorized Service Center
+          </option>
+
+          <option value="Mixed">
+            Mixed Service History
+          </option>
+
+          <option value="Local">
+            Local Garage Maintained
+          </option>
+
+        </select>
+
+
+        <select id="accidentHistory">
+
+          <option value="">
+            Accident History
+          </option>
+
+          <option value="None">
+            No Accident History
+          </option>
+
+          <option value="Minor">
+            Minor Repairs
+          </option>
+
+          <option value="Major">
+            Major Structural Repair
+          </option>
+
+        </select>
+
+
+        <select id="maintenanceDiscipline">
+
+          <option value="">
+            Maintenance Discipline
+          </option>
+
+          <option value="Excellent">
+            Always Serviced On Time
+          </option>
+
+          <option value="Average">
+            Occasionally Delayed
+          </option>
+
+          <option value="Poor">
+            Poorly Maintained
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+      <input
+        type="number"
+        id="price"
+        placeholder="Asking Price"
+      >
+
+      <button onclick="analyzeCar()">
+        Analyze Car
+      </button>
+
+    </div>
+
+    <div id="result-box">
+
+      <h2>Analysis Report</h2>
+
+      <div class="report-section">
+
+      <h3>Vehicle Health</h3>
+
+      <p id="health-score">
+        Health Score:
+      </p>
+
+      <p id="risk-level">
+        Risk Level:
+      </p>
+
+      <p id="price-status">
+        Price Status:
+      </p>
+
+    </div>
+
+
+    <div class="report-section">
+
+      <h3>Ownership Insights</h3>
+
+      <div class="insight-card">
+
+      <span class="insight-title">
+        Driving Character
+      </span>
+
+      <p id="ownership-feel"></p>
+
+    </div>
+
+
+    <div class="insight-card">
+
+      <span class="insight-title">
+        Aging Experience
+      </span>
+
+      <p id="long-term-behavior"></p>
+
+    </div>
+
+
+    <div class="insight-card">
+
+      <span class="insight-title">
+        Ownership Confidence
+      </span>
+
+  <p id="market-trust"></p>
+
+</div>
+
+      
+    </div>
+
+
+    <div class="report-section">
+
+      <h3>Maintenance Insights</h3>
+
+      <p id="maintenance-level">
+        Maintenance:
+      </p>
+
+      <div id="maintenance-issues"></div>
+
+    </div>
+
+    <div class="report-section">
+
+      <h3>Service Intelligence</h3>
+
+      <div id="service-advisories"></div>
+
+    </div>
+      
+
+    </div>
+
+  </div>
+
+  <script src="data/carDatabase.js"></script>
+  <script src="data/maintenanceGuide.js"></script>
+  <script type="module" src="script.js"></script>
+  <script src="ui/serviceToggle.js"></script>
+
+</body>
+
+</html>

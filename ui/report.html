@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TruWheels Report</title>
+
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <div class="back-home">
+        <a href="../index.html">
+            ← Back to Home
+        </a>
+    </div>
+   
+    <div class="hero">
+    <div class="hero-left">
+
+        <h1 id="car-name"></h1>
+        <p id="vehicle-details"></p>
+
+        <img
+        id="car-image"
+        src="../images/cars/honda-city.png"
+        alt="Honda City"
+        >
+    </div>
+
+    <div class="hero-right">
+
+    <h3 class="score-title">
+        HEALTH SCORE
+    </h3>
+
+    <div class="gauge">
+        <svg
+        width="260"
+        height="160"
+        viewBox="0 0 260 160"
+        >
+
+        <!-- RED -->
+        <path
+            d="M30 130 A100 100 0 0 1 85 45"
+            stroke="#ef4444"
+            stroke-width="16"
+            fill="none"
+        />
+
+        <!-- YELLOW -->
+        <path
+            d="M85 45 A100 100 0 0 1 175 45"
+            stroke="#facc15"
+            stroke-width="16"
+            fill="none"
+        />
+
+        <!-- GREEN -->
+        <path
+            d="M175 45 A100 100 0 0 1 230 130"
+            stroke="#22c55e"
+            stroke-width="16"
+            fill="none"
+        />
+
+        <line
+        id="gauge-needle"
+        x1="130"
+        y1="130"
+        x2="175"
+        y2="90"
+        stroke="white"
+        stroke-width="5"
+        stroke-linecap="round"
+        style="
+        transform-origin:130px 130px;
+        "
+        />
+
+        <circle
+        cx="130"
+        cy="130"
+        r="10"
+        fill="#d1d5db"
+        />
+        </svg>
+
+        <div class="score-display">
+        <div id="health-score"></div>
+        <span>/100</span>
+
+        </div>
+    </div>
+
+    <p id="score-status">
+        Good Condition
+    </p>
+
+       </div>
+
+        </div>
+
+        <section class="verdict-card">
+
+        <div class="verdict-left">
+
+            <div class="shield-icon">
+            🛡️
+            </div>
+
+            <div class="verdict-content">
+
+            <h4>FINAL VERDICT</h4>
+
+            <h2>BUY AFTER INSPECTION</h2>
+
+            <p>
+                This vehicle appears healthy overall.
+                A pre-purchase inspection is recommended
+                before making a final decision.
+            </p>
+
+            </div>
+
+        </div>
+
+        <div class="verdict-right">
+
+            <p>✅ Service history available</p>
+            <p>✅ Ownership pattern appears normal</p>
+            <p>✅ No major accident records found</p>
+            <p>⚠ Suspension inspection recommended</p>
+
+        </div>
+
+        </section>
+
+        <section class="findings-section">
+
+        <h3>KEY FINDINGS</h3>
+
+        <div class="findings-grid">
+
+            <div
+            class="finding-card"
+            onclick="openModal('service')"
+            >
+            <div class="finding-icon">🔧</div>
+
+            <h4>Service History</h4>
+            <p id="service-card-text">
+                Service information.
+            </p>
+
+            <span class="arrow">→</span>
+            </div>
+
+            <div
+            class="finding-card"
+            onclick="openModal('ownership')"
+            >
+            <div class="finding-icon">🟢</div>
+
+            <h4>Ownership</h4>
+
+            <p id="ownership-card-text">
+                Ownership pattern.
+            </p>
+
+            <span class="arrow">→</span>
+            </div>
+
+            <div
+            class="finding-card"
+            onclick="openModal('maintenance')"
+            >
+            <div class="finding-icon">⚙️</div>
+
+            <h4>Maintenance</h4>
+            <p id="maintenance-card-text">
+                Maintenance analysis.
+            </p>
+
+            <span class="arrow">→</span>
+            </div>
+
+            <div
+            class="finding-card"
+            onclick="openModal('price')"
+            >
+            <div class="finding-icon">📈</div>
+
+            <h4>Price Analysis</h4>
+
+            <p>
+                Appears fairly
+                priced.
+            </p>
+
+            <span class="arrow">→</span>
+            </div>
+
+        </div>
+
+        </section>
+
+        <div id="info-modal" class="modal">
+        <div class="modal-content">
+
+            <span
+            class="close-modal"
+            onclick="closeModal()"
+            >
+            ×
+            </span>
+
+            <h2 id="modal-title"></h2>
+            <div id="modal-body"></div>
+        </div>
+        </div>
+
+    <script>
+
+        const carName =
+        localStorage.getItem("carName");
+
+        const healthScore =
+        localStorage.getItem("healthScore");
+
+        const year =
+        localStorage.getItem("year");
+
+        const engineType =
+        localStorage.getItem("engineType");
+
+        const km =
+        localStorage.getItem("km");
+
+        const transmission =
+        localStorage.getItem("transmission");
+
+        const owners =
+        localStorage.getItem("owners");
+
+        const expectedOwners =
+        localStorage.getItem("expectedOwners");
+
+        const vehicleAge =
+        localStorage.getItem("vehicleAge");
+
+        console.log("Owners:", owners);
+        console.log("Expected Owners:", expectedOwners);
+        console.log("Vehicle Age:", vehicleAge);
+
+        const serviceAdvisories =
+        JSON.parse(
+        localStorage.getItem(
+        "serviceAdvisories"
+        ) || "[]"
+        );
+
+        const maintenanceIssues =
+        JSON.parse(
+        localStorage.getItem(
+        "maintenanceIssues"
+        ) || "[]"
+        );
+        console.log(
+"Maintenance Issues From Storage:",
+localStorage.getItem("maintenanceIssues")
+);
+
+console.log(
+"Parsed Maintenance Issues:",
+maintenanceIssues
+);
+
+        const serviceDataProvided =
+        localStorage.getItem(
+        "serviceDataProvided"
+        );
+
+        const serviceHistory =
+        localStorage.getItem(
+        "serviceHistory"
+        );
+
+        const serviceType =
+        localStorage.getItem(
+        "serviceType"
+        );
+
+        const accidentHistory =
+        localStorage.getItem(
+        "accidentHistory"
+        );
+
+        const maintenanceDiscipline =
+        localStorage.getItem(
+        "maintenanceDiscipline"
+        );
+
+        let serviceRecords = "Not Verified";
+        let maintenanceIndicator =
+        "Not Available";
+        let serviceConfidence =
+        "Low";
+        let serviceCardText =
+        "Service information not provided.";
+        let serviceVerdictDynamic =
+        "Service-related information was not provided by the seller. This does not affect Health Score, Ownership Analysis, Maintenance Intelligence, or Price Analysis. Only service-specific insights remain unverified.";
+
+        if(serviceDataProvided === "true"){
+            serviceRecords = "Provided";
+
+            maintenanceIndicator =
+            "Available";
+
+            serviceConfidence =
+            "Medium";
+
+            if(
+            serviceHistory === "Full" &&
+            serviceType === "Authorized" &&
+            accidentHistory === "None" &&
+            maintenanceDiscipline === "Excellent"
+            ){
+                serviceCardText =
+                "Strong service profile reported.";
+            }
+
+            else if(
+            accidentHistory === "Major" ||
+            maintenanceDiscipline === "Poor"
+            ){
+                serviceCardText =
+                "Service history raises concerns.";
+            }
+
+            else{
+                serviceCardText =
+                "Service disclosures available.";
+            }
+
+            serviceVerdictDynamic =
+            "Service information has been provided and has been included in TruWheels service intelligence analysis.";
+        }
+
+        let ownershipConfidence = "";
+        let ownershipRisk = "";
+        let usagePattern = "";
+        let ownershipCardText = "";
+        let maintenanceStage = "";
+        let maintenanceSignal = "";
+        let maintenanceVerdict = "";
+        let maintenanceCardText = "";
+
+        const ownershipGap =
+        owners - expectedOwners;
+
+        if (ownershipGap <= 0) {
+            ownershipConfidence = "High";
+            ownershipRisk = "Low Concern";
+            usagePattern = "Ownership pattern matches vehicle age";
+            ownershipCardText = "Ownership pattern appears normal.";
+        }
+
+        else if (ownershipGap === 1) {
+            ownershipConfidence = "Medium";
+            ownershipRisk = "Moderate Concern";
+            usagePattern = "Slightly higher ownership turnover";
+            ownershipCardText = "Slightly above expected ownership count.";
+        }
+
+        else {
+            ownershipConfidence = "Low";
+            ownershipRisk = "High Concern";
+            usagePattern = "Frequent ownership changes detected";
+            ownershipCardText = "Frequent ownership changes detected.";
+        }
+
+        if (km <= 30000) {
+
+            maintenanceStage =
+            "Early Ownership Zone";
+
+            maintenanceSignal =
+            "Routine Maintenance Expected";
+
+            maintenanceCardText =
+            "Routine maintenance expected.";
+
+            maintenanceVerdict =
+            "The reported mileage falls within the early ownership phase. Regular servicing and fluid checks should generally be sufficient.";
+        }
+
+        else if (km <= 60000) {
+
+            maintenanceStage =
+            "Active Wear Zone";
+
+            maintenanceSignal =
+            "Preventive Maintenance Recommended";
+
+            maintenanceCardText =
+            "Preventive maintenance may be required.";
+
+            maintenanceVerdict =
+            "The vehicle is entering a stage where wear items such as brakes, tyres and battery health deserve closer attention.";
+        }
+
+        else if (km <= 90000) {
+
+            maintenanceStage =
+            "Mid-Life Ownership Zone";
+
+            maintenanceSignal =
+            "Moderate Attention Recommended";
+
+            maintenanceCardText =
+            "Mid-life wear items may require attention.";
+
+            maintenanceVerdict =
+            "Based on the reported mileage, wear-related maintenance items may begin requiring replacement or inspection.";
+        }
+
+        else if (km <= 120000) {
+
+            maintenanceStage =
+            "Advanced Wear Zone";
+
+            maintenanceSignal =
+            "High Attention Recommended";
+
+            maintenanceCardText =
+            "Multiple maintenance items deserve inspection.";
+
+            maintenanceVerdict =
+            "The vehicle has entered a higher maintenance stage where multiple wear components should be evaluated carefully.";
+        }
+
+        else {
+
+            maintenanceStage =
+            "Major Maintenance Zone";
+
+            maintenanceSignal =
+            "Major Maintenance Risk";
+
+            maintenanceCardText =
+            "Major maintenance risk zone.";
+
+            maintenanceVerdict =
+            "The reported mileage places the vehicle in a major maintenance category where costly repairs become increasingly common.";
+        }
+
+        
+    //OWNERSHIP VRDICT
+
+        let ownershipVerdict = "";
+        if (ownershipGap <= 0) {
+            ownershipVerdict =
+            `For this ${vehicleAge}-year-old vehicle, ${owners} owner(s) is within the expected ownership range. This suggests a stable ownership pattern.`;
+        }
+
+        else if (ownershipGap === 1) {
+            ownershipVerdict =
+            `Ownership count is slightly above what is normally expected for a ${vehicleAge}-year-old vehicle. Additional verification is recommended.`;
+        }
+
+        else {
+            ownershipVerdict =
+            `Ownership transfers are significantly higher than expected for a ${vehicleAge}-year-old vehicle. Buyer caution and detailed inspection are advised.`;
+        }
+
+        document.getElementById("car-name").innerText =
+        carName.toUpperCase();
+
+        document.getElementById("vehicle-details").innerText =
+        year + " • " +
+        engineType + " • " +
+        km + " km • " +
+        owners + " Owners • " +
+        transmission;
+
+        document.getElementById(
+        "ownership-card-text"
+        ).innerText =
+        ownershipCardText;
+
+        document.getElementById(
+        "maintenance-card-text"
+        ).innerText =
+        maintenanceCardText;
+
+        document.getElementById(
+        "service-card-text"
+        ).innerText =
+        serviceCardText;
+
+        const scoreElement =
+        document.getElementById("health-score");
+
+        const needle =
+        document.getElementById("gauge-needle");
+
+        const finalScore =
+        parseFloat(healthScore);
+
+        let currentScore = 0;
+
+        const interval =
+        setInterval(() => {
+
+            currentScore += 1;
+            if(currentScore >= finalScore){
+                currentScore = finalScore;
+                clearInterval(interval);
+            }
+
+            scoreElement.innerText =
+            currentScore.toFixed(1);
+
+            const angle =
+            -139 + (currentScore / 100) * 210;
+
+            needle.style.transform =
+            `rotate(${angle}deg)`;
+
+        },20);
+
+        function openModal(type){
+
+            const modal =
+            document.getElementById("info-modal");
+
+            const title =
+            document.getElementById("modal-title");
+
+            const body =
+            document.getElementById("modal-body");
+
+            if(type==="service"){
+
+            title.innerText =
+            "Service Intelligence";
+
+            let advisoryHTML = "";
+            for(let advisory of serviceAdvisories){
+                advisoryHTML +=
+                "• " + advisory + "<br>";
+            }
+
+            if(advisoryHTML === ""){
+                advisoryHTML =
+                "No service-related disclosures were provided by the seller.<br><br>" +
+                "Health Score, Ownership Analysis, Maintenance Intelligence and Price Analysis remain unaffected.";
+            }
+
+           body.innerHTML =
+            `
+            <strong>Service Records : </strong> ${serviceRecords}<br>
+            <strong>Service History : </strong> ${serviceHistory || "Not Provided"}<br>
+            <strong>Service Type : </strong> ${serviceType || "Not Provided"}<br>
+            <strong>Accident History : </strong> ${accidentHistory || "Not Provided"}<br>
+            <strong>Maintenance Discipline : </strong> ${maintenanceDiscipline || "Not Provided"}<br><br>
+
+            <strong>Maintenance Signal : </strong> ${maintenanceIndicator}<br>
+            <strong>Confidence Level : </strong> ${serviceConfidence}<br><br>
+
+            <strong>TruWheels Intelligence</strong><br>
+            ${advisoryHTML}</br>
+
+            <strong>TruWheels Verdict</strong><br>
+            ${serviceVerdictDynamic}
+
+            `;
+        }
+
+           if(type==="ownership"){
+
+            title.innerText =
+            "Ownership Insights";
+
+            body.innerHTML =
+            `
+            <strong>Vehicle Age : </strong> ${vehicleAge} Years<br>
+            <strong>Actual Owners : </strong> ${owners}<br>
+            <strong>Expected Owners : </strong> ${expectedOwners}<br>
+            <strong>Ownership Confidence : </strong> ${ownershipConfidence}</br></br>
+
+            
+            <strong>Expected Usage Pattern</strong><br>
+            ${usagePattern}<br><br>
+            <strong>Ownership Risk : </strong> ${ownershipRisk}<br></br>
+           
+            
+
+            <strong>TruWheels Verdict</strong><br>
+            ${ownershipVerdict}
+            `;
+        }
+
+            if(type==="maintenance"){
+
+            title.innerText =
+            "Maintenance Intelligence";
+
+            let maintenanceHTML = "";
+            for(let issue of maintenanceIssues){
+                maintenanceHTML +=
+                "• " + issue + "<br>";
+            }
+
+            body.innerHTML =
+            `
+            <strong>Current Mileage : </strong>
+            ${km} km<br>
+
+            <strong>Maintenance Stage : </strong>
+            ${maintenanceStage}<br><br>
+
+            <strong>Critical Inspection Areas</strong><br>
+            ${maintenanceHTML}<br>
+
+            <strong>Maintenance Signal : </strong>
+            ${maintenanceSignal}<br><br>
+
+            <strong>TruWheels Verdict</strong><br>
+            ${maintenanceVerdict}
+            `;
+        }
+
+            if(type==="price"){
+
+                title.innerText =
+                "Price Analysis";
+
+                body.innerHTML =
+                `
+                Vehicle appears fairly priced.<br><br>
+
+                Market position remains reasonable.
+                `;
+            }
+
+            modal.style.display =
+            "block";
+            }
+
+            function closeModal(){
+
+            document.getElementById(
+            "info-modal"
+            ).style.display =
+            "none";
+            }
+        
+
+                    
+    </script>
+
+</body>
+
+</html>
