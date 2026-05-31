@@ -1,6 +1,10 @@
 import { analyzeServiceIntelligence }
 from "./intelligence/serviceIntelligence.js";
 
+import { analyzePriceIntelligence }
+from "./intelligence/priceIntelligence.js";
+
+
 const brandDropdown =
 document.getElementById("carBrand");
 
@@ -351,196 +355,72 @@ brandDropdown.addEventListener("change", function () {
     risk = "Avoid";
   }
 
-  // PRICE LOGIC
- let priceStatus = "";
+  // PRICE INTELLIGENCE
 
+  let priceResult = null;
   let yearPriceData = null;
 
-  if (carData.priceData) {
-  yearPriceData =
-    carData.priceData[year];
-   }
-
-  console.log(yearPriceData);
-
-  if (!yearPriceData) {
-
-    priceStatus =
-      "Price data not available";
+  if(carData.priceData){
+    yearPriceData =
+    carData.priceData[String(year)];
   }
-  else {
-    if (price > yearPriceData.max) {
 
-    priceStatus =
-      "Priced Above Market";
-  }
-  else if (price < yearPriceData.min) {
-    priceStatus =
-      "Looks Like a Great Deal";
-  }
-  else {
-    priceStatus =
-      "Looks Fairly Priced";
-  }
-}
+  if(yearPriceData){
 
-// OWNERSHIP FEEL LOGIC
+    priceResult =
+    analyzePriceIntelligence({
+      askingPrice: price,
+      marketAvg: yearPriceData.avg,
+      marketMin: yearPriceData.min,
+      marketMax: yearPriceData.max,
+      healthScore: score
+    });
 
-let ownershipFeel = "";
+    localStorage.setItem(
+      "marketPosition",
+      priceResult.marketPosition
+    );
 
-  if (
-  carData.engineCharacter ===
-  "Graceful Reliable"
-  ) {
+    localStorage.setItem(
+      "priceGapPercent",
+      priceResult.priceGapPercent.toFixed(1)
+    );
 
-  ownershipFeel =
-  "Smooth, reliable and known for predictable long-term ownership.";
+    localStorage.setItem(
+      "priceObservation",
+      priceResult.observation
+    );
+
+    localStorage.setItem(
+      "priceRecommendation",
+      priceResult.recommendation
+    );
 
   }
 
-  else if (
-  carData.engineCharacter ===
-  "Enthusiast Pocket Rocket"
-  ) {
+  else{
 
-  ownershipFeel =
-  "Fun-to-drive enthusiast car with strong highway character.";
+    localStorage.setItem(
+      "marketPosition",
+      "Market Intelligence Coming Soon"
+    );
 
-  }
+    localStorage.setItem(
+      "priceGapPercent",
+      ""
+    );
 
-  else if (
-  carData.engineCharacter ===
-  "Legendary Workhorse"
-  ) {
+    localStorage.setItem(
+      "priceObservation",
+      "Pricing data is currently unavailable for this vehicle."
+    );
 
-  ownershipFeel =
-  "Highly trusted for long-distance usage and heavy running.";
-
-  }
-
-  else {
-
-  ownershipFeel =
-  "Balanced ownership personality with decent long-term usability.";
+    localStorage.setItem(
+      "priceRecommendation",
+      "TruWheels will support market analysis for this vehicle in a future database update."
+    );
 
   }
-
-
-
-  let longTermBehavior = "";
-
-  if (
-  carData.agingBehavior ===
-  "Built Tough"
-  ) {
-
-  longTermBehavior =
-  "Known to handle aging and high mileage confidently.";
-
-  }
-
-  else if (
-  carData.agingBehavior ===
-  "Graceful"
-  ) {
-
-  longTermBehavior =
-  "Ages gracefully with predictable maintenance needs.";
-
-  }
-
-  else if (
-  carData.agingBehavior ===
-  "Sensitive"
-  ) {
-
-  longTermBehavior =
-  "May become maintenance-sensitive as the car gets older.";
-
-  }
-
-  else if (
-  carData.agingBehavior ===
-  "Complex"
-  ) {
-
-  longTermBehavior =
-  "Can become expensive to maintain with age.";
-
-  }
-
-  else {
-
-  longTermBehavior =
-  "Shows average long-term aging behavior.";
-
-  }
-
-
-
-  let marketTrust = "";
-
-  if (carData.engineConfidence >= 9) {
-
-  marketTrust =
-  "Widely trusted by long-term owners and enthusiasts.";
-
-  }
-
-  else if (carData.engineConfidence >= 7) {
-
-  marketTrust =
-  "Generally considered dependable for used-car ownership.";
-
-  }
-
-  else if (carData.engineConfidence >= 5) {
-
-  marketTrust =
-  "Ownership experience depends heavily on maintenance history.";
-
-  }
-
-  else {
-
-  marketTrust =
-  "Requires careful inspection before considering ownership.";
-
-  }
-  
-  // DISPLAY RESULTS
-  document.getElementById("health-score").innerText =
-    "Health Score: " + score.toFixed(1) + "/100";
-
-  document.getElementById("risk-level").innerText =
-    "Risk Level: " + risk;
-
-  document.getElementById("price-status").innerText =
-    "Price Status: " + priceStatus;
-
-  document.getElementById("maintenance-level").innerText =
-    "Maintenance: " + carData.maintenance;
-  
-  document.getElementById("ownership-feel").innerText =
-   ownershipFeel;
-
-  document.getElementById("long-term-behavior").innerText =
-   longTermBehavior;
-
-  document.getElementById("market-trust").innerText =
-   marketTrust;  
-
-  // DISPLAY MAINTENANCE ISSUES
-  let issuesHTML = "";
-
-    for (let issue of maintenanceIssues) {
-
-  issuesHTML +=
-    "<p>\u26A0 " + issue + "</p>";
-    }
-
-  document.getElementById("maintenance-issues").innerHTML =
-   issuesHTML;
 
    const serviceResult=analyzeServiceIntelligence({
 
@@ -562,8 +442,6 @@ let ownershipFeel = "";
     document.getElementById("serviceType").value ||
     document.getElementById("accidentHistory").value ||
     document.getElementById("maintenanceDiscipline").value;
-
-    console.log(serviceResult);
 
     let advisoryHTML="";
 
@@ -589,9 +467,6 @@ let ownershipFeel = "";
             "<p>⚠ " + advisory + "</p>";
         }
     }
-
-    document.getElementById("service-advisories").innerHTML =
-    advisoryHTML;
 
     localStorage.setItem(
       "carName",

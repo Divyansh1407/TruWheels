@@ -2,10 +2,9 @@
 <html>
 
 <head>
-  <title>TruWheels Report</title>
+  <title>TruWheels - Vehicle Report</title>
 
   <link rel="stylesheet" href="../style.css">
-</head>
 
 <body>
 
@@ -193,10 +192,8 @@
             <div class="finding-icon">📈</div>
 
             <h4>Price Analysis</h4>
-
-            <p>
-                Appears fairly
-                priced.
+            <p id="price-card-text">
+                Price analysis.
             </p>
 
             <span class="arrow">→</span>
@@ -250,9 +247,17 @@
         const vehicleAge =
         localStorage.getItem("vehicleAge");
 
-        console.log("Owners:", owners);
-        console.log("Expected Owners:", expectedOwners);
-        console.log("Vehicle Age:", vehicleAge);
+        const marketPosition =
+        localStorage.getItem("marketPosition");
+
+        const priceGapPercent =
+        localStorage.getItem("priceGapPercent");
+
+        const priceObservation =
+        localStorage.getItem("priceObservation");
+
+        const priceRecommendation =
+        localStorage.getItem("priceRecommendation");
 
         const serviceAdvisories =
         JSON.parse(
@@ -266,16 +271,7 @@
         localStorage.getItem(
         "maintenanceIssues"
         ) || "[]"
-        );
-        console.log(
-"Maintenance Issues From Storage:",
-localStorage.getItem("maintenanceIssues")
-);
-
-console.log(
-"Parsed Maintenance Issues:",
-maintenanceIssues
-);
+        ); 
 
         const serviceDataProvided =
         localStorage.getItem(
@@ -496,6 +492,11 @@ maintenanceIssues
         maintenanceCardText;
 
         document.getElementById(
+        "price-card-text"
+        ).innerText =
+        marketPosition;
+
+        document.getElementById(
         "service-card-text"
         ).innerText =
         serviceCardText;
@@ -635,16 +636,28 @@ maintenanceIssues
 
             if(type==="price"){
 
-                title.innerText =
-                "Price Analysis";
+            title.innerText =
+            "Price Analysis";
 
-                body.innerHTML =
-                `
-                Vehicle appears fairly priced.<br><br>
+            body.innerHTML =
+            `
+            <strong>Market Position : </strong>
+            ${marketPosition}<br>
 
-                Market position remains reasonable.
-                `;
-            }
+            <strong>Price Difference : </strong>
+            ${
+            priceGapPercent > 0
+            ? `${Math.abs(priceGapPercent)}% Higher Than Market Average`
+            : `${Math.abs(priceGapPercent)}% Lower Than Market Average`
+            }<br><br>
+
+            <strong>Observation</strong><br>
+            ${priceObservation}<br><br>
+
+            <strong>TruWheels Recommendation</strong><br>
+            ${priceRecommendation}
+            `;
+        }
 
             modal.style.display =
             "block";

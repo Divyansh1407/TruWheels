@@ -467,13 +467,25 @@ button:hover {
 .close-modal{
   position:absolute;
   right:25px;
-  top:15px;
-  font-size:32px;
+  top:20px;
+  font-size:42px;
+  font-weight:300;
+  opacity:0.65;
+  transition:0.25s;
   cursor:pointer;
 }
 
+.close-modal:hover{
+  opacity:1;
+}
+
 #modal-title{
-  margin-bottom:25px;
+  margin:0;
+  padding-bottom:25px;
+  font-size:37px;
+  font-weight:690;
+  letter-spacing:-1px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
 }
 
 #modal-body{
@@ -542,4 +554,22 @@ button:hover {
   line-height:1.9;
   font-size:18px;
   padding-left:10px;
+}
+
+.detail-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+
+.label{
+  color:#94a3b8;
+  font-weight:500;
+}
+
+.value{
+  color:white;
+  font-weight:600;
 }
