@@ -166,10 +166,31 @@
 
             <span class="arrow">→</span>
             </div>
+        </div>
+        </section>
 
+        <section class="questions-section">
+
+    <h3>SELLER VERIFICATION QUESTIONS</h3>
+
+    <div class="questions-grid">
+
+        <div class="question-card">
+
+            <h4>PRIORITY VERIFICATIONS</h4>
+            <ul id="high-priority-list"></ul>
         </div>
 
-        </section>
+        <div class="question-card">
+
+            <h4>USEFUL CHECKLIST</h4>
+            <ul id="useful-list"></ul>
+
+        </div>
+    </div>
+</section>
+
+
     </div>
 
         <div id="info-modal" class="modal">
@@ -265,6 +286,20 @@
         const maintenanceDiscipline =
         localStorage.getItem(
         "maintenanceDiscipline"
+        );
+
+        const highPriorityQuestions =
+        JSON.parse(
+        localStorage.getItem(
+        "highPriorityQuestions"
+        ) || "[]"
+        );
+
+        const usefulQuestions =
+        JSON.parse(
+        localStorage.getItem(
+        "usefulQuestions"
+        ) || "[]"
         );
 
         let serviceRecords = "Not Verified";
@@ -470,11 +505,30 @@
         ).innerText =
         serviceCardText;
 
+        const highPriorityList =
+        document.getElementById(
+        "high-priority-list"
+        );
+
+        for(let question of highPriorityQuestions){
+
+            highPriorityList.innerHTML +=
+            `<li>${question}</li>`;
+        }
+
+        const usefulList =
+        document.getElementById(
+        "useful-list"
+        );
+
+        for(let question of usefulQuestions){
+
+            usefulList.innerHTML +=
+            `<li>${question}</li>`;
+        }
+
         const scoreElement =
         document.getElementById("health-score");
-
-        const needle =
-        document.getElementById("gauge-needle");
 
         const finalScore =
         parseFloat(healthScore);
@@ -532,11 +586,6 @@
             scoreElement.innerText =
             currentScore.toFixed(1);
 
-            const angle =
-            -139 + (currentScore / 100) * 210;
-
-            needle.style.transform =
-            `rotate(${angle}deg)`;
 
         },20);
 

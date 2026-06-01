@@ -4,6 +4,9 @@ from "./intelligence/serviceIntelligence.js";
 import { analyzePriceIntelligence }
 from "./intelligence/priceIntelligence.js";
 
+import { generateQuestions }
+from "./intelligence/questionIntelligence.js";
+
 
 const brandDropdown =
 document.getElementById("carBrand");
@@ -443,6 +446,67 @@ brandDropdown.addEventListener("change", function () {
     document.getElementById("accidentHistory").value ||
     document.getElementById("maintenanceDiscipline").value;
 
+    let ownershipConfidence = "High";
+
+    if(owners === expectedOwners + 1){
+      ownershipConfidence = "Medium";
+    }
+    else if(owners > expectedOwners + 1){
+      ownershipConfidence = "Low";
+    }
+
+    let maintenanceStage = "";
+
+    if(km <= 30000){
+      maintenanceStage = "Early Ownership Zone";
+    }
+    else if(km <= 60000){
+      maintenanceStage = "Active Wear Zone";
+    }
+    else if(km <= 90000){
+      maintenanceStage = "Mid-Life Ownership Zone";
+    }
+    else if(km <= 120000){
+      maintenanceStage = "Advanced Wear Zone";
+    }
+    else{
+      maintenanceStage = "Major Maintenance Zone";
+    }
+
+    const questionResult =
+    generateQuestions({
+
+      serviceDataProvided:
+      serviceDataProvided ? "true" : "false",
+
+      ownershipConfidence,
+
+      maintenanceStage,
+
+      marketPosition:
+      priceResult
+      ? priceResult.marketPosition
+      : "Market Intelligence Coming Soon",
+
+      accidentHistory:
+      document.getElementById("accidentHistory").value
+
+    });
+
+    localStorage.setItem(
+      "highPriorityQuestions",
+      JSON.stringify(
+        questionResult.highPriority
+      )
+    );
+
+    localStorage.setItem(
+      "usefulQuestions",
+      JSON.stringify(
+        questionResult.useful
+      )
+    );
+
     let advisoryHTML="";
 
     if(serviceResult.advisories.length===0){
@@ -559,7 +623,7 @@ brandDropdown.addEventListener("change", function () {
     maintenanceIssues
     )
     );
-
-    window.location.href = "ui/report.html";
+    
+   window.location.href = "ui/report.html";
 
 }
