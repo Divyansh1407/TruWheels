@@ -5,15 +5,34 @@
   <title>TruWheels - Vehicle Report</title>
 
   <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 
 <body>
 
-    <div class="back-home">
-        <a href="../index.html">
-            ← Back to Home
+
+    <header class="top-header">
+        <div class="brand">
+
+            <img
+            src="../images/branding/logo.png"
+            alt="TruWheels"
+            class="logo">
+
+            <div class="brand-text">
+                <h2><span class="tru">Tru</span><span class="wheels">Wheels</span></h2>
+            </div>
+
+        </div>
+
+        <a href="../index.html" class="header-link">
+            ← Back to Dashboard
         </a>
-    </div>
+    </header>
+
+    <div class="report-container">
+    <div class="hero-wrapper">
    
+    <div class="hero-wrapper">
     <div class="hero">
     <div class="hero-left">
 
@@ -34,58 +53,8 @@
     </h3>
 
     <div class="gauge">
-        <svg
-        width="260"
-        height="160"
-        viewBox="0 0 260 160"
-        >
 
-        <!-- RED -->
-        <path
-            d="M30 130 A100 100 0 0 1 85 45"
-            stroke="#ef4444"
-            stroke-width="16"
-            fill="none"
-        />
-
-        <!-- YELLOW -->
-        <path
-            d="M85 45 A100 100 0 0 1 175 45"
-            stroke="#facc15"
-            stroke-width="16"
-            fill="none"
-        />
-
-        <!-- GREEN -->
-        <path
-            d="M175 45 A100 100 0 0 1 230 130"
-            stroke="#22c55e"
-            stroke-width="16"
-            fill="none"
-        />
-
-        <line
-        id="gauge-needle"
-        x1="130"
-        y1="130"
-        x2="175"
-        y2="90"
-        stroke="white"
-        stroke-width="5"
-        stroke-linecap="round"
-        style="
-        transform-origin:130px 130px;
-        "
-        />
-
-        <circle
-        cx="130"
-        cy="130"
-        r="10"
-        fill="#d1d5db"
-        />
-        </svg>
-
+        <div id="healthGauge"></div>
         <div class="score-display">
         <div id="health-score"></div>
         <span>/100</span>
@@ -98,11 +67,10 @@
     </p>
 
        </div>
-
+        </div>
         </div>
 
-        <section class="verdict-card">
-
+    <section class="verdict-card">
         <div class="verdict-left">
 
             <div class="shield-icon">
@@ -202,6 +170,7 @@
         </div>
 
         </section>
+    </div>
 
         <div id="info-modal" class="modal">
         <div class="modal-content">
@@ -510,6 +479,45 @@
         const finalScore =
         parseFloat(healthScore);
 
+        const scoreStatus =
+        document.getElementById("score-status");
+
+        if(finalScore >= 72){
+
+            scoreStatus.innerText =
+            "Excellent Condition";
+
+            scoreStatus.style.color =
+            "#22c55e";
+
+            scoreStatus.style.textShadow =
+            "0 0 6px rgba(34,197,94,0.25)";
+        }
+
+        else if(finalScore >= 50){
+
+            scoreStatus.innerText =
+            "Fair Condition";
+
+            scoreStatus.style.color =
+            "#facc15";
+
+            scoreStatus.style.textShadow =
+            "0 0 6px rgba(250,204,21,0.25)";
+        }
+
+        else{
+
+            scoreStatus.innerText =
+            "Risky Condition";
+
+            scoreStatus.style.color =
+            "#ef4444";
+
+            scoreStatus.style.textShadow =
+            "0 0 6px rgba(239,68,68,0.25)";
+        }
+
         let currentScore = 0;
 
         const interval =
@@ -549,35 +557,49 @@
             "Service Intelligence";
 
             let advisoryHTML = "";
+            
             for(let advisory of serviceAdvisories){
-                advisoryHTML +=
-                "• " + advisory + "<br>";
-            }
-
+            advisoryHTML +=
+            "• " + advisory + "<br>";
+        }
             if(advisoryHTML === ""){
                 advisoryHTML =
                 "No service-related disclosures were provided by the seller.<br><br>" +
                 "Health Score, Ownership Analysis, Maintenance Intelligence and Price Analysis remain unaffected.";
             }
 
-           body.innerHTML =
-            `
-            <strong>Service Records : </strong> ${serviceRecords}<br>
-            <strong>Service History : </strong> ${serviceHistory || "Not Provided"}<br>
-            <strong>Service Type : </strong> ${serviceType || "Not Provided"}<br>
-            <strong>Accident History : </strong> ${accidentHistory || "Not Provided"}<br>
-            <strong>Maintenance Discipline : </strong> ${maintenanceDiscipline || "Not Provided"}<br><br>
+            if(serviceDataProvided === "true")
+            {
+                body.innerHTML =
+                `
+                <strong>Service Records : </strong> ${serviceRecords}<br>
+                <strong>Service History : </strong> ${serviceHistory}<br>
+                <strong>Service Type : </strong> ${serviceType}<br>
+                <strong>Accident History : </strong> ${accidentHistory}<br>
+                <strong>Maintenance Discipline : </strong> ${maintenanceDiscipline}<br><br>
 
-            <strong>Maintenance Signal : </strong> ${maintenanceIndicator}<br>
-            <strong>Confidence Level : </strong> ${serviceConfidence}<br><br>
+                <strong>Maintenance Signal : </strong> ${maintenanceIndicator}<br>
+                <strong>Confidence Level : </strong> ${serviceConfidence}<br><br>
 
-            <strong>TruWheels Intelligence</strong><br>
-            ${advisoryHTML}</br>
+                <strong>TruWheels Intelligence</strong><br>
+                ${advisoryHTML}<br><br>
 
-            <strong>TruWheels Verdict</strong><br>
-            ${serviceVerdictDynamic}
+                <strong>TruWheels Verdict</strong><br>
+                ${serviceVerdictDynamic}
+                `;
+            }
+            else
+            {
+                body.innerHTML =
+                `
+                <strong>TruWheels Intelligence</strong><br><br>
 
-            `;
+                No service-related disclosures were provided by the seller.<br><br>
+
+                Health Score, Ownership Analysis, Maintenance Intelligence and Price Analysis remain unaffected.
+                `;
+}
+
         }
 
            if(type==="ownership"){
@@ -670,7 +692,70 @@
             ).style.display =
             "none";
             }
-        
+
+
+     const gaugeContainer =
+        document.getElementById("healthGauge");
+
+        const gaugeChart =
+        echarts.init(gaugeContainer);
+
+        gaugeChart.setOption({
+
+            series:[{
+
+                type:"gauge",
+
+                min:0,
+                max:100,
+
+                startAngle:210,
+                endAngle:-30,
+
+                radius:"95%",
+
+                axisLine:{
+                    lineStyle:{
+                        width:20,
+                        color:[
+                            [0.50,"#ef4444"],
+                            [0.72,"#facc15"],
+                            [1,"#22c55e"]
+                        ]
+                    }
+                },
+
+                pointer:{
+                    length:"65%",
+                    width:6
+                },
+
+                anchor:{
+                    show:true,
+                    size:18
+                },
+
+                splitLine:{
+                    distance:1,
+                    length:7,
+                    lineStyle:{
+                        color:"#ffffff"
+                    }
+                },
+
+                axisLabel:{
+                   show:false
+                },
+
+                detail:{
+                    show:false
+                },
+
+                data:[{
+                    value:parseFloat(healthScore)
+                }]
+            }]
+    });   
 
                     
     </script>
