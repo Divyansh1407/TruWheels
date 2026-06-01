@@ -556,50 +556,238 @@
             title.innerText =
             "Service Intelligence";
 
+            let serviceStatus = "";
+            let statusClass = "";
+
+            if(serviceDataProvided !== "true"){
+
+                serviceStatus =
+                "Service Records Unavailable";
+
+                statusClass =
+                "status-neutral";
+            }
+
+            else if(
+                serviceHistory === "Full" &&
+                serviceType === "Authorized" &&
+                accidentHistory === "None" &&
+                maintenanceDiscipline === "Excellent"
+            ){
+
+                serviceStatus =
+                "Strong Service Profile";
+
+                statusClass =
+                "status-positive";
+
+                serviceConfidence =
+                "High";
+            }
+
+            else if(
+                accidentHistory === "Major" ||
+                maintenanceDiscipline === "Poor"
+            ){
+
+                serviceStatus =
+                "Potential Service Concerns";
+
+                statusClass =
+                "status-negative";
+
+                serviceConfidence =
+                "Low";
+            }
+
+            else{
+
+                serviceStatus =
+                "Service Disclosures Available";
+
+                statusClass =
+                "status-warning";
+
+                serviceConfidence =
+                "Medium";
+            }
+
             let advisoryHTML = "";
-            
+
             for(let advisory of serviceAdvisories){
-            advisoryHTML +=
-            "• " + advisory + "<br>";
-        }
-            if(advisoryHTML === ""){
-                advisoryHTML =
-                "No service-related disclosures were provided by the seller.<br><br>" +
-                "Health Score, Ownership Analysis, Maintenance Intelligence and Price Analysis remain unaffected.";
-            }
 
-            if(serviceDataProvided === "true")
-            {
-                body.innerHTML =
-                `
-                <strong>Service Records : </strong> ${serviceRecords}<br>
-                <strong>Service History : </strong> ${serviceHistory}<br>
-                <strong>Service Type : </strong> ${serviceType}<br>
-                <strong>Accident History : </strong> ${accidentHistory}<br>
-                <strong>Maintenance Discipline : </strong> ${maintenanceDiscipline}<br><br>
-
-                <strong>Maintenance Signal : </strong> ${maintenanceIndicator}<br>
-                <strong>Confidence Level : </strong> ${serviceConfidence}<br><br>
-
-                <strong>TruWheels Intelligence</strong><br>
-                ${advisoryHTML}<br><br>
-
-                <strong>TruWheels Verdict</strong><br>
-                ${serviceVerdictDynamic}
+                advisoryHTML += `
+                <div class="insight-item">
+                    ${advisory}
+                </div>
                 `;
             }
-            else
-            {
-                body.innerHTML =
-                `
-                <strong>TruWheels Intelligence</strong><br><br>
 
-                No service-related disclosures were provided by the seller.<br><br>
+            if(serviceDataProvided === "true"){
 
-                Health Score, Ownership Analysis, Maintenance Intelligence and Price Analysis remain unaffected.
+                body.innerHTML = `
+                <div class="tw-popup service-popup">
+
+                    <div class="status-banner ${statusClass}">
+                        ${serviceStatus}
+                    </div>
+
+                    <div class="metric-grid">
+
+                        <div class="metric-card">
+                            <span class="metric-label">
+                                History
+                            </span>
+
+                            <div class="metric-value">
+                                ${serviceHistory}
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <span class="metric-label">
+                                Type
+                            </span>
+
+                            <div class="metric-value">
+                                ${serviceType}
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <span class="metric-label">
+                                Accident
+                            </span>
+
+                            <div class="metric-value">
+                                ${accidentHistory}
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <span class="metric-label">
+                                Discipline
+                            </span>
+
+                            <div class="metric-value">
+                                ${maintenanceDiscipline}
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <span class="metric-label">
+                                Confidence
+                            </span>
+
+                            <div class="metric-value">
+                                ${serviceConfidence}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="insight-card">
+
+                        <h4>
+                            TruWheels Insight
+                        </h4>
+
+                        ${advisoryHTML}
+
+                    </div>
+
+                    <div class="verdict-card-popup">
+
+                        <h4>
+                            TruWheels Verdict
+                        </h4>
+
+                        <p>
+                            ${serviceVerdictDynamic}
+                        </p>
+
+                    </div>
+
+                </div>
                 `;
-}
+            }
 
+            else{
+
+                body.innerHTML = `
+                <div class="tw-popup service-popup">
+
+                    <div class="status-banner status-neutral">
+                        Service Records Unavailable
+                    </div>
+
+                    <div class="metric-grid">
+
+                        <div class="metric-card">
+                            <span class="metric-label">
+                                Data Status
+                            </span>
+
+                            <div class="metric-value">
+                                Unavailable
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <span class="metric-label">
+                                Analysis Impact
+                            </span>
+
+                            <div class="metric-value">
+                                Limited
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <span class="metric-label">
+                                Confidence
+                            </span>
+
+                            <div class="metric-value">
+                                Limited
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="insight-card">
+
+                        <h4>
+                            TruWheels Insight
+                        </h4>
+
+                        <p>
+                            No service-related disclosures were provided by the seller.
+                        </p>
+
+                        <p>
+                            Health Score, Ownership Analysis,
+                            Maintenance Intelligence and Price Analysis
+                            remain unaffected.
+                        </p>
+
+                    </div>
+
+                    <div class="verdict-card-popup">
+
+                        <h4>
+                            TruWheels Recommendation
+                        </h4>
+
+                        <p>
+                            Request service invoices, maintenance records and supporting documentation during physical inspection.
+                        </p>
+
+                    </div>
+
+                </div>
+                `;
+            }
         }
 
            if(type==="ownership"){
@@ -607,52 +795,223 @@
             title.innerText =
             "Ownership Insights";
 
-            body.innerHTML =
-            `
-            <strong>Vehicle Age : </strong> ${vehicleAge} Years<br>
-            <strong>Actual Owners : </strong> ${owners}<br>
-            <strong>Expected Owners : </strong> ${expectedOwners}<br>
-            <strong>Ownership Confidence : </strong> ${ownershipConfidence}</br></br>
+            let confidenceClass = "";
+            if(ownershipConfidence === "High"){
+                confidenceClass = "metric-positive";
+            }
+            else if(ownershipConfidence === "Medium"){
+                confidenceClass = "metric-warning";
+            }
+            else{
+                confidenceClass = "metric-negative";
+            }
 
-            
-            <strong>Expected Usage Pattern</strong><br>
-            ${usagePattern}<br><br>
-            <strong>Ownership Risk : </strong> ${ownershipRisk}<br></br>
-           
-            
+            body.innerHTML = `
+            <div class="tw-popup ownership-popup">
 
-            <strong>TruWheels Verdict</strong><br>
-            ${ownershipVerdict}
+                <div class="popup-subtitle">
+                    Lifecycle Ownership Analysis
+                </div>
+
+                <div class="metric-grid">
+
+                    <div class="metric-card">
+                        <span class="metric-label">
+                            Vehicle Age
+                        </span>
+
+                        <div class="metric-value">
+                            ${vehicleAge}
+                        </div>
+
+                        <span class="metric-unit">
+                            Years
+                        </span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-label">
+                            Actual Owners
+                        </span>
+
+                        <div class="metric-value">
+                            ${owners}
+                        </div>
+
+                        <span class="metric-unit">
+                            Owners
+                        </span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-label">
+                            Expected Owners
+                        </span>
+
+                        <div class="metric-value">
+                            ${expectedOwners}
+                        </div>
+
+                        <span class="metric-unit">
+                            Owners
+                        </span>
+                    </div>
+
+                    <div class="metric-card ${confidenceClass}">
+                        <span class="metric-label">
+                            Confidence
+                        </span>
+
+                        <div class="metric-value confidence">
+                            ${ownershipConfidence}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="insight-card">
+
+                    <h4>
+                        Ownership Pattern
+                    </h4>
+
+                    <p>
+                        ${usagePattern}
+                    </p>
+
+                </div>
+
+                <div class="verdict-card-popup">
+
+                    <h4>
+                        TruWheels Verdict
+                    </h4>
+
+                    <p>
+                        ${ownershipVerdict}
+                    </p>
+
+                </div>
+
+            </div>
             `;
         }
 
-            if(type==="maintenance"){
-
+        if(type==="maintenance"){
             title.innerText =
             "Maintenance Intelligence";
 
-            let maintenanceHTML = "";
+            let inspectionTags = "";
+
             for(let issue of maintenanceIssues){
-                maintenanceHTML +=
-                "• " + issue + "<br>";
+
+                inspectionTags += `
+                <div class="inspection-chip">
+                    ${issue}
+                </div>
+                `;
             }
 
-            body.innerHTML =
-            `
-            <strong>Current Mileage : </strong>
-            ${km} km<br>
+            let signalClass = "";
 
-            <strong>Maintenance Stage : </strong>
-            ${maintenanceStage}<br><br>
+            if(
+            maintenanceSignal ===
+            "Routine Maintenance Expected"
+            ){
+                signalClass = "metric-positive";
+            }
 
-            <strong>Critical Inspection Areas</strong><br>
-            ${maintenanceHTML}<br>
+            else if(
+            maintenanceSignal ===
+            "Preventive Maintenance Recommended"
+            ){
+                signalClass = "metric-warning";
+            }
 
-            <strong>Maintenance Signal : </strong>
-            ${maintenanceSignal}<br><br>
+            else if(
+            maintenanceSignal ===
+            "Moderate Attention Recommended"
+            ){
+                signalClass = "metric-orange";
+            }
 
-            <strong>TruWheels Verdict</strong><br>
-            ${maintenanceVerdict}
+            else if(
+            maintenanceSignal ===
+            "High Attention Recommended"
+            ){
+                signalClass = "metric-orange";
+            }
+
+            else{
+                signalClass = "metric-negative";
+            }
+
+            body.innerHTML = `
+            <div class="tw-popup maintenance-popup">
+
+                <div class="popup-subtitle">
+                    Vehicle Maintenance Assessment
+                </div>
+
+                <div class="metric-grid">
+
+                    <div class="metric-card">
+                        <span class="metric-label">
+                            Current Mileage
+                        </span>
+
+                        <div class="metric-value">
+                            ${km}
+                        </div>
+
+                        <span class="metric-unit">
+                            km
+                        </span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-label">
+                            Maintenance Stage
+                        </span>
+
+                        <div class="metric-value">
+                            ${maintenanceStage}
+                        </div>
+                    </div>
+
+                    <div class="metric-card ${signalClass}">
+                    <span class="metric-label">
+                        Maintenance Signal
+                    </span>
+
+                    <div class="metric-value">
+                        ${maintenanceSignal}
+                    </div>
+                </div>
+                </div>
+
+                <div class="insight-card">
+
+                    <h4>
+                        Critical Inspection Areas
+                    </h4>
+
+                    <div class="inspection-chip-container">
+                        ${inspectionTags}
+                    </div>
+                </div>
+
+                <div class="verdict-card-popup">
+
+                    <h4>
+                        TruWheels Assessment
+                    </h4>
+
+                    <p>
+                        ${maintenanceVerdict}
+                    </p>
+                </div>
+            </div>
             `;
         }
 
@@ -661,23 +1020,90 @@
             title.innerText =
             "Price Analysis";
 
-            body.innerHTML =
-            `
-            <strong>Market Position : </strong>
-            ${marketPosition}<br>
+            let marketClass = "";
+            if(
+            marketPosition === "Excellent Buy" ||
+            marketPosition === "Good Buy"
+            ){
+                marketClass = "metric-positive";
+            }
 
-            <strong>Price Difference : </strong>
-            ${
-            priceGapPercent > 0
-            ? `${Math.abs(priceGapPercent)}% Higher Than Market Average`
-            : `${Math.abs(priceGapPercent)}% Lower Than Market Average`
-            }<br><br>
+            else if(
+            marketPosition === "Fair Deal"
+            ){
+                marketClass = "metric-primary";
+            }
 
-            <strong>Observation</strong><br>
-            ${priceObservation}<br><br>
+            else if(
+            marketPosition === "Slight Premium"
+            ){
+                marketClass = "metric-warning";
+            }
 
-            <strong>TruWheels Recommendation</strong><br>
-            ${priceRecommendation}
+            else{
+                marketClass = "metric-negative";
+            }
+
+           body.innerHTML = `
+            <div class="tw-popup price-popup">
+
+                <div class="popup-subtitle">
+                    Market Value Assessment
+                </div>
+
+                <div class="metric-grid">
+
+                    <div class="metric-card ${marketClass}">
+                        <span class="metric-label">
+                            Market Position
+                        </span>
+
+                        <div class="metric-value">
+                            ${marketPosition}
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                    <span class="metric-label">
+                        Price Difference
+                    </span>
+
+                    <div class="metric-value">
+                        ${
+                        priceGapPercent > 0
+                        ? `${Math.abs(priceGapPercent)}% Higher Than Market Average`
+                        : `${Math.abs(priceGapPercent)}% Lower Than Market Average`
+                        }
+                    </div>
+                </div>
+                </div>
+                   
+
+                <div class="insight-card">
+
+                    <h4>
+                        Market Observation
+                    </h4>
+
+                    <p>
+                        ${priceObservation}
+                    </p>
+
+                </div>
+
+                <div class="verdict-card-popup">
+
+                    <h4>
+                        TruWheels Recommendation
+                    </h4>
+
+                    <p>
+                        ${priceRecommendation}
+                    </p>
+
+                </div>
+
+            </div>
             `;
         }
 

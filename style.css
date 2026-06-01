@@ -472,12 +472,21 @@ button:hover {
 }
 
 .modal-content{
-  width:700px;
+  width:760px;
   max-width:90%;
   margin:40px auto;
-  background:#081224;
+
+  background:rgba(8,18,36,0.88);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
   border:1px solid rgba(255,255,255,0.1);
   border-radius:20px;
+
+  box-shadow:
+  0 25px 80px rgba(0,0,0,0.45),
+  0 0 0 1px rgba(255,255,255,0.03);
+
   padding:30px;
   color:white;
   position:relative;
@@ -730,4 +739,179 @@ button:hover {
     font-size:15px;
     font-weight:650;
     color:white;
+}
+
+/* =========================
+   TRUWHEELS POPUP SYSTEM
+========================= */
+
+.tw-popup{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.popup-subtitle{
+  color:#94a3b8;
+  font-size:14px;
+  letter-spacing:0.8px;
+  margin-top:-8px;
+}
+
+.metric-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:12px;
+}
+
+.metric-card{
+  background:rgba(255,255,255,0.035);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);
+  border-radius:14px;
+  padding:16px;
+}
+
+.metric-label{
+  display:block;
+  color:#94a3b8;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:10px;
+}
+
+.metric-value{
+  color:white;
+  font-size:18px;
+  font-weight:650;
+  line-height:1.4;
+}
+
+.metric-unit{
+  display:block;
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:12px;
+}
+
+.insight-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:16px;
+  padding:20px;
+}
+
+.insight-card h4{
+  margin:0 0 14px;
+  color:white;
+  font-size:17px;
+}
+
+.insight-card p{
+  margin:0;
+  color:#cbd5e1;
+  line-height:1.8;
+}
+
+.verdict-card-popup{
+  background:rgba(37,99,235,0.08);
+  border:1px solid rgba(59,130,246,0.18);
+  border-radius:16px;
+  padding:20px;
+}
+
+.verdict-card-popup h4{
+  margin:0 0 14px;
+  color:#60a5fa;
+  font-size:17px;
+}
+
+.verdict-card-popup p{
+  margin:0;
+  color:#e5e7eb;
+  line-height:1.8;
+}
+
+/* =========================
+   MAINTENANCE CHIPS
+========================= */
+
+.inspection-chip-container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
+}
+
+.inspection-chip{
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  color:#e5e7eb;
+  font-size:13px;
+}
+
+.status-banner{
+  padding:14px 18px;
+  border-radius:14px;
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:0.5px;
+}
+
+.status-positive{
+  background:rgba(34,197,94,0.12);
+  border:1px solid rgba(34,197,94,0.25);
+  color:#4ade80;
+}
+
+.status-warning{
+  background:rgba(250,204,21,0.10);
+  border:1px solid rgba(250,204,21,0.20);
+  color:#facc15;
+}
+
+.status-negative{
+  background:rgba(239,68,68,0.10);
+  border:1px solid rgba(239,68,68,0.20);
+  color:#f87171;
+}
+
+.status-neutral{
+  background:rgba(148,163,184,0.10);
+  border:1px solid rgba(148,163,184,0.20);
+  color:#cbd5e1;
+}
+
+.insight-item{
+  margin-bottom:10px;
+  color:#e5e7eb;
+  line-height:1.7;
+}
+
+.metric-positive{
+  background:rgba(34,197,94,0.08);
+  border:1px solid rgba(34,197,94,0.20);
+}
+
+.metric-warning{
+  background:rgba(250,204,21,0.08);
+  border:1px solid rgba(250,204,21,0.20);
+}
+
+.metric-orange{
+  background:rgba(249,115,22,0.08);
+  border:1px solid rgba(249,115,22,0.20);
+}
+
+.metric-negative{
+  background:rgba(239,68,68,0.08);
+  border:1px solid rgba(239,68,68,0.20);
+}
+
+.metric-primary{
+  background:rgba(59,130,246,0.08);
+  border:1px solid rgba(59,130,246,0.20);
 }
