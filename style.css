@@ -372,15 +372,23 @@ button:hover {
 }
 
 .verdict-content h4{
-  color:#94a3b8;
+  color:#a8b3c7;
   font-size:14px;
   letter-spacing:1px;
+  text-transform:uppercase;
   margin-bottom:6px;
+  font-weight:700;
 }
 
 .verdict-content h2{
-  color:#22c55e;
-  font-size:32px;
+  font-size:34px;
+  line height:1.1;
+  font-weight:650;
+  letter-spacing:-1px;
+
+  text-shadow:
+  0 1px 0 rgba(255,255,255,0.12),
+  0 2px 12px rgba(255,255,255,0.03);
   margin-bottom:10px;
 }
 
@@ -394,14 +402,18 @@ button:hover {
 .verdict-right{
   flex:1;
 
-  border-left:1px solid rgba(255,255,255,0.12);
+  border-left:1px solid rgba(255,255,255,0.08);
 
   padding-left:30px;
 }
 
 .verdict-right p{
   margin-bottom:10px;
-  color:#e5e7eb;
+  color:#d7e0ea;
+}
+
+.verdict-right p::before{
+    color:#5ee38a;
 }
 
 .findings-section{

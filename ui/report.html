@@ -81,25 +81,21 @@
 
             <h4>FINAL VERDICT</h4>
 
-            <h2>BUY AFTER INSPECTION</h2>
+            <h2 id="final-verdict-title">
+                BUY AFTER INSPECTION
+            </h2>
 
-            <p>
+            <p id="final-verdict-description">
                 This vehicle appears healthy overall.
                 A pre-purchase inspection is recommended
                 before making a final decision.
             </p>
-
             </div>
-
         </div>
 
-        <div class="verdict-right">
-
-            <p>✅ Service history available</p>
-            <p>✅ Ownership pattern appears normal</p>
-            <p>✅ No major accident records found</p>
-            <p>⚠ Suspension inspection recommended</p>
-
+        <div
+        id="final-verdict-findings"
+        class="verdict-right">
         </div>
 
         </section>
@@ -475,6 +471,109 @@
             `Ownership transfers are significantly higher than expected for a ${vehicleAge}-year-old vehicle. Buyer caution and detailed inspection are advised.`;
         }
 
+        const finalScore =
+        parseFloat(healthScore);
+
+        let finalVerdictTitle = "";
+        let finalVerdictDescription = "";
+        let finalVerdictFindings = [];
+
+        if(finalScore >= 79.5){
+
+            finalVerdictTitle =
+            "RECOMMENDED PURCHASE";
+
+            finalVerdictDescription =
+            "Vehicle indicators appear strong across major TruWheels intelligence checks.";
+
+        }
+        else if(finalScore >= 65){
+
+            finalVerdictTitle =
+            "BUY AFTER INSPECTION";
+
+            finalVerdictDescription =
+            "Vehicle appears healthy overall. A physical inspection is recommended before purchase.";
+
+        }
+        else if(finalScore >= 50){
+
+            finalVerdictTitle =
+            "CAUTION ADVISED";
+
+            finalVerdictDescription =
+            "Several vehicle indicators deserve closer inspection before making a purchase decision.";
+
+        }
+        else{
+
+            finalVerdictTitle =
+            "AVOID";
+
+            finalVerdictDescription =
+            "Multiple risk indicators have been detected. Proceed only after extensive verification.";
+
+        }
+
+        if(serviceDataProvided === "true"){
+
+            finalVerdictFindings.push(
+            "✅ Verified service disclosures available"
+            );
+
+        }
+        else{
+
+            finalVerdictFindings.push(
+            "⚠ Service history not provided"
+            );
+
+        }
+
+        if(ownershipConfidence === "High"){
+
+            finalVerdictFindings.push(
+            "✅ Ownership pattern appears normal"
+            );
+
+        }
+        else{
+
+            finalVerdictFindings.push(
+            "⚠ Ownership requires verification"
+            );
+
+        }
+
+        if(
+        maintenanceSignal ===
+        "Routine Maintenance Expected"
+        ){
+
+            finalVerdictFindings.push(
+            "✅ No major maintenance concerns"
+            );
+
+        }
+        else{
+
+            finalVerdictFindings.push(
+            "⚠ Preventive maintenance recommended"
+            );
+
+        }
+
+        if(
+        marketPosition ===
+        "Overpriced"
+        ){
+
+            finalVerdictFindings.push(
+            "⚠ Asking price exceeds market benchmark"
+            );
+
+        }
+
         document.getElementById("car-name").innerText =
         carName.toUpperCase();
 
@@ -505,6 +604,49 @@
         ).innerText =
         serviceCardText;
 
+        document.getElementById(
+        "final-verdict-title"
+        ).innerText =
+        finalVerdictTitle;
+
+        const verdictTitle =
+        document.getElementById(
+        "final-verdict-title"
+        );
+
+        if(finalScore >= 80){
+            verdictTitle.style.color =
+            "#22c55e";
+        }
+        else if(finalScore >= 65){
+            verdictTitle.style.color =
+            "#60a5fa";
+        }
+        else if(finalScore >= 50){
+            verdictTitle.style.color =
+            "#facc15";
+        }
+        else{
+            verdictTitle.style.color =
+            "#ef4444";
+        }
+
+        document.getElementById(
+        "final-verdict-description"
+        ).innerText =
+        finalVerdictDescription;
+
+        const verdictContainer =
+        document.getElementById(
+        "final-verdict-findings"
+        );
+
+        for(let item of finalVerdictFindings){
+
+            verdictContainer.innerHTML +=
+            `<p>${item}</p>`;
+        }
+
         const highPriorityList =
         document.getElementById(
         "high-priority-list"
@@ -529,9 +671,6 @@
 
         const scoreElement =
         document.getElementById("health-score");
-
-        const finalScore =
-        parseFloat(healthScore);
 
         const scoreStatus =
         document.getElementById("score-status");
