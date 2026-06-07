@@ -41,8 +41,8 @@
 
         <img
         id="car-image"
-        src="../images/cars/honda-city.png"
-        alt="Honda City"
+        src=""
+        alt="Vehicle Image"
         >
     </div>
 
@@ -208,6 +208,18 @@
 
         const carName =
         localStorage.getItem("carName");
+
+        const brand =
+        localStorage.getItem("brand");
+
+        const carImage =
+        document.getElementById("car-image");
+
+        const imageName =
+        carName.toLowerCase().replace(/\s+/g, "-");
+
+        carImage.src =
+        `../images/cars/${brand}/${imageName}.png`;
 
         const healthScore =
         localStorage.getItem("healthScore");

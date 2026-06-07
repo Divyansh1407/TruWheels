@@ -46,6 +46,88 @@ const carDatabase = {
         cityConfidence: 9,
         turboRisk: 2,
         agingBehavior: "Reliable",
+
+        priceData: {
+
+        2012: {
+          avg: 150000,
+          min: 135000,
+          max: 165000
+        },
+
+        2013: {
+          avg: 205000,
+          min: 184000,
+          max: 226000
+        },
+
+        2014: {
+          avg: 255000,
+          min: 230000,
+          max: 280000
+        },
+
+        2015: {
+          avg: 288000,
+          min: 259000,
+          max: 317000
+        },
+
+        2016: {
+          avg: 320000,
+          min: 288000,
+          max: 352000
+        },
+
+        2017: {
+          avg: 340000,
+          min: 306000,
+          max: 374000
+        },
+
+        2018: {
+          avg: 400000,
+          min: 360000,
+          max: 440000
+        },
+
+        2019: {
+          avg: 430000,
+          min: 387000,
+          max: 473000
+        },
+
+        2020: {
+          avg: 460000,
+          min: 414000,
+          max: 506000
+        },
+
+        2021: {
+          avg: 490000,
+          min: 441000,
+          max: 539000
+        },
+
+        2022: {
+          avg: 530000,
+          min: 477000,
+          max: 583000
+        },
+
+        2023: {
+          avg: 550000,
+          min: 495000,
+          max: 605000
+        },
+
+        2024: {
+          avg: 610000,
+          min: 549000,
+          max: 671000
+        }
+
+      }
       },
 
       Dzire: {
@@ -146,7 +228,7 @@ const carDatabase = {
 
   Hyundai: {
 
-    brandReliability: 8,
+    brandReliability: 8.5,
 
     cars: {
 
@@ -213,18 +295,100 @@ const carDatabase = {
       },
 
       Verna: {
-        reliability: 7,
+        reliability: 8.2,
         maintenance: "Medium",
         kmTolerance: 1.0,
         automaticType: "CVT",
         petrolCharacter:"Refined Enthusiast",
         dieselCharacter:"Fast Cruiser",
         engineCharacter:"Enthusiast Sedan",
-        engineConfidence:7,
+        engineConfidence:8.1,
         highwayConfidence:8,
-        cityConfidence:7,
-        turboRisk:5,
-        agingBehavior:"Modern",
+        cityConfidence:7.9,
+        turboRisk:1,
+        agingBehavior:"Graceful",
+
+        priceData: {
+
+        2012: {
+          avg: 135000,
+          min: 122000,
+          max: 148000
+        },
+
+        2013: {
+          avg: 224000,
+          min: 202000,
+          max: 246000
+        },
+
+        2014: {
+          avg: 270000,
+          min: 243000,
+          max: 297000
+        },
+
+        2015: {
+          avg: 345000,
+          min: 310000,
+          max: 379000
+        },
+
+        2016: {
+          avg: 384000,
+          min: 346000,
+          max: 422000
+        },
+
+        2017: {
+          avg: 449000,
+          min: 404000,
+          max: 493000
+        },
+
+        2018: {
+          avg: 510000,
+          min: 459000,
+          max: 561000
+        },
+
+        2019: {
+          avg: 583000,
+          min: 525000,
+          max: 641000
+        },
+
+        2020: {
+          avg: 710000,
+          min: 639000,
+          max: 781000
+        },
+
+        2021: {
+          avg: 810000,
+          min: 729000,
+          max: 891000
+        },
+
+        2022: {
+          avg: 900000,
+          min: 810000,
+          max: 990000
+        },
+
+        2023: {
+          avg: 1000000,
+          min: 900000,
+          max: 1100000
+        },
+
+        2024: {
+          avg: 1124000,
+          min: 1012000,
+          max: 1236000
+        }
+
+      }
       },
 
       Venue: {
@@ -1045,3 +1209,5 @@ const carDatabase = {
   }
 
 };
+
+module.exports = carDatabase;

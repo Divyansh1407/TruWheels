@@ -538,6 +538,11 @@ brandDropdown.addEventListener("change", function () {
     );
 
     localStorage.setItem(
+      "brand",
+      brand
+    );
+
+    localStorage.setItem(
       "healthScore",
       score.toFixed(1)
     );
