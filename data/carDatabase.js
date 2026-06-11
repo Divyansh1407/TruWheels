@@ -418,7 +418,55 @@ const carDatabase = {
         highwayConfidence:8,
         cityConfidence:8,
         turboRisk:5,
-        agingBehavior:"Modern",
+        agingBehavior:"Graceful",
+
+        priceData: {
+        2016: {
+          avg: 510000,
+          min: 440000,
+          max: 580000
+        },
+        2017: {
+          avg: 550000,
+          min: 470000,
+          max: 630000
+        },
+        2018: {
+          avg: 627000,
+          min: 540000,
+          max: 715000
+        },
+        2019: {
+          avg: 725000,
+          min: 635000,
+          max: 835000
+        },
+        2020: {
+          avg: 865000,
+          min: 775000,
+          max: 985000
+        },
+        2021: {
+          avg: 965000,
+          min: 865000,
+          max: 1085000
+        },
+        2022: {
+          avg: 1010000,
+          min: 910000,
+          max: 1110000
+        },
+        2023: {
+          avg: 1125000,
+          min: 980000,
+          max: 1260000
+        },
+        2024: {
+          avg: 1230000,
+          min: 1110000,
+          max: 1360000
+        }
+      }
 
       }
 
@@ -507,7 +555,64 @@ const carDatabase = {
         cityConfidence:8,
         turboRisk:6,
         agingBehavior:"Moderate",
-      },
+
+       priceData : {
+        2017: {
+          avg: 410000,
+          min: 350000,
+          max: 470000
+        },
+
+        2018: {
+          avg: 460000,
+          min: 410000,
+          max: 510000
+        },
+
+        2019: {
+          avg: 510000,
+          min: 460000,
+          max: 560000
+        },
+
+        2020: {
+          avg: 580000,
+          min: 520000,
+          max: 640000
+        },
+
+        2021: {
+          avg: 660000,
+          min: 590000,
+          max: 730000
+        },
+
+        2022: {
+          avg: 740000,
+          min: 665000,
+          max: 815000
+        },
+
+        2023: {
+          avg: 830000,
+          min: 745000,
+          max: 915000
+        },
+
+        2024: {
+          avg: 930000,
+          min: 835000,
+          max: 1025000
+        },
+
+        2025: {
+          avg: 1030000,
+          min: 925000,
+          max: 1135000
+        }
+      }
+    },
+      
 
       Harrier: {
         reliability: 8,
@@ -852,19 +957,53 @@ const carDatabase = {
       },
 
       Seltos: {
-        reliability: 7,
+        reliability: 7.9,
         maintenance: "Medium",
         kmTolerance: 1.0,
         automaticType: "DCT",
         petrolCharacter:"Premium Urban SUV",
         dieselCharacter:"Highway Premium SUV",
         engineCharacter:"Premium Urban SUV",
-        engineConfidence:7,
+        engineConfidence:8,
         highwayConfidence:8,
         cityConfidence:8,
-        turboRisk:6,
-        agingBehavior:"Modern",
-      },
+        turboRisk:8,
+        agingBehavior:"Graceful",
+
+        priceData: {
+        2019: {
+          avg: 820000,
+          min: 730000,
+          max: 910000
+        },
+        2020: {
+          avg: 850000,
+          min: 760000,
+          max: 940000
+        },
+        2021: {
+          avg: 925000,
+          min: 835000,
+          max: 1015000
+        },
+        2022: {
+          avg: 1010000,
+          min: 910000,
+          max: 1110000
+        },
+        2023: {
+          avg: 1110000,
+          min: 1010000,
+          max: 1290000
+        },
+        2024: {
+          avg: 1190000,
+          min: 1080000,
+          max: 1370000
+        },
+      }
+        
+},
 
       Carens: {
         reliability: 7,

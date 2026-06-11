@@ -93,7 +93,6 @@ brandDropdown.addEventListener("change", function () {
   let carData =
     carDatabase[brand].cars[model];
 
-  // START SCORE
   let score = 100;
 
   // BRAND RELIABILITY EFFECT
