@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TruWheels PDF</title>
+    <link rel="stylesheet" href="pdfReport.css">
+</head>
+
+<body>
+
+<div class="pdf-page page-1">
+
+   <div class="pdf-header">
+
+        <h1>TruWheels</h1>
+        <p>Vehicle Assessment Report</p>
+    </div>
+
+    <div class="hero-section">
+
+        <div class="left-column">
+            <h2 id="pdfCarName"></h2>
+            <p id="pdfVehicleDetails"></p>
+            <img
+
+            id="pdfVehicleImage"
+            class="vehicle-image"
+            src=""
+            alt="Vehicle">
+        </div>
+        <div class="right-column">
+            <h3>HEALTH SCORE</h3>
+            <div
+            id="pdfHealthScore"
+            class="score">
+            </div>
+
+            <p
+            id="pdfHealthStatus">
+            </p>
+        </div>
+    </div>
+    <div class="verdict-card">
+    <h3>FINAL VERDICT</h3>
+    <h2 id="pdfVerdict"></h2>
+    <p id="pdfVerdictDescription"></p>
+
+    <div class="verdict-points">
+        <p id="verdictPoint1"></p>
+        <p id="verdictPoint2"></p>
+        <p id="verdictPoint3"></p>
+        <p id="verdictPoint4"></p>
+    </div>
+
+</div>
+
+    <div class="findings-section">
+
+        <h3>KEY FINDINGS</h3>
+
+        <div class="findings-grid">
+
+            <div class="finding-card">
+                <h4>Ownership</h4>
+                <p id="pdfOwnership">
+                </p>
+            </div>
+
+            <div class="finding-card">
+                <h4>Maintenance</h4>
+                <p id="pdfMaintenance">
+                </p>
+            </div>
+
+            <div class="finding-card">
+                <h4>Price Analysis</h4>
+                <p id="pdfPrice">
+                </p>
+
+            </div>
+
+            <div class="finding-card">
+                <h4>Service History</h4>
+                <p id="pdfService">
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="pdf-page page-2">
+
+    <div class="page-title">
+        <h2>VEHICLE HEALTH & INSIGHTS</h2>
+    </div>
+
+    <div class="insights-grid">
+
+        <div class="insight-card">
+            <h3>Vehicle Health</h3>
+            <p id="page2Health"></p>
+        </div>
+
+        <div class="insight-card">
+            <h3>Ownership Insights</h3>
+            <p id="page2Ownership"></p>
+        </div>
+
+        <div class="insight-card">
+            <h3>Maintenance Insights</h3>
+            <p id="page2Maintenance"></p>
+        </div>
+
+        <div class="insight-card">
+            <h3>Service Intelligence</h3>
+            <p id="page2Service"></p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="pdf-page page-3">
+
+    <h2>Additional Information</h2>
+
+    <div class="info-card">
+        <h3>Vehicle Overview</h3>
+        <p id="page3Overview"></p>
+    </div>
+
+    <div class="info-card">
+        <h3>Price Analysis</h3>
+        <p id="page3Price"></p>
+    </div>
+
+    <div class="info-card">
+        <h3>Questions To Ask Seller</h3>
+
+        <ul>
+            <li id="question1"></li>
+            <li id="question2"></li>
+            <li id="question3"></li>
+            <li id="question4"></li>
+        </ul>
+
+    </div>
+
+</div>
+
+<script src="pdfGenerator.js"></script>
+
+</body>
+
+</html>

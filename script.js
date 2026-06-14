@@ -164,7 +164,7 @@ brandDropdown.addEventListener("change", function () {
   // OWNERSHIP LOGIC
 
   let expectedOwners =
-  Math.max(1, Math.ceil(age / 5));
+  Math.max(1, Math.ceil(age / 6));
 
   // ownership within expectation
   if (owners <= expectedOwners) {

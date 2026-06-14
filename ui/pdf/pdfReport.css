@@ -1,0 +1,175 @@
+body{
+background:#dcdcdc;
+margin:0;
+padding:20px;
+font-family:Arial, sans-serif;
+}
+
+.pdf-page{
+width:794px;
+min-height:1123px;
+background:white;
+margin:auto;
+padding:50px;
+box-sizing:border-box;
+}
+
+.pdf-header{
+text-align:center;
+border-bottom:2px solid #e5e7eb;
+padding-bottom:25px;
+margin-bottom:40px;
+}
+
+.pdf-header h1{
+margin:0;
+font-size:40px;
+color:#2563eb;
+}
+
+.pdf-header p{
+margin-top:8px;
+color:#666;
+}
+
+.hero-section{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:30px;
+}
+
+.left-column{
+width:60%;
+text-align:center;
+}
+
+.left-column h2{
+font-size:52px;
+margin-bottom:10px;
+}
+
+.left-column p{
+color:#666;
+font-size:18px;
+}
+
+.vehicle-image{
+width:100%;
+max-width:420px;
+}
+
+.right-column{
+width:35%;
+background:#f8fafc;
+border:1px solid #e5e7eb;
+border-radius:20px;
+padding:30px;
+text-align:center;
+}
+
+.right-column h3{
+margin-top:0;
+color:#555;
+}
+
+.score{
+font-size:64px;
+font-weight:700;
+color:#111827;
+}
+
+#pdfHealthStatus{
+font-size:18px;
+color:#22c55e;
+font-weight:600;
+}
+
+.verdict-card{
+margin-top:30px;
+padding:25px;
+border:1px solid #d1d5db;
+border-radius:16px;
+background:white;
+}
+
+.verdict-card h2{
+    color:#16a34a;
+    margin:10px 0;
+    font-size:34px;
+}
+
+.verdict-card h3{
+    color:#374151;
+    letter-spacing:1px;
+}
+
+.findings-section{
+margin-top:40px;
+}
+
+.finding-card h4{
+margin-top:0;
+}
+
+.page-2,
+.page-3{
+    margin-top:40px;
+}
+
+.info-card{
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+    background:white;
+}
+
+.info-card h3{
+    margin-top:0;
+    color:#2563eb;
+}
+
+.verdict-points{
+    margin-top:20px;
+}
+
+.verdict-points p{
+    margin:10px 0;
+    font-size:15px;
+}
+
+.page-title{
+    margin-bottom:30px;
+}
+
+.page-title h2{
+    font-size:28px;
+    color:#111827;
+}
+
+.insight-card h3{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.report-section{
+margin-bottom:35px;
+padding-bottom:25px;
+border-bottom:1px solid #e5e7eb;
+}
+
+.report-section:last-child{
+border-bottom:none;
+}
+
+.report-section h3{
+font-size:22px;
+margin-bottom:12px;
+color:#111827;
+}
+
+.report-section p{
+line-height:1.7;
+color:#374151;
+}

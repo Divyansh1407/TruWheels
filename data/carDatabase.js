@@ -180,7 +180,7 @@ const carDatabase = {
       Brezza: {
         reliability: 8,
         maintenance: "Low",
-        kmTolerance: 1.0,
+        kmTolerance: 1.1,
         automaticType: "Torque Converter",
         petrolCharacter:"Dependable SUV",
         dieselCharacter:"Compact Torque SUV",
@@ -188,8 +188,64 @@ const carDatabase = {
         engineConfidence: 8,
         highwayConfidence: 8,
         cityConfidence: 8,
-        turboRisk: 3,
+        turboRisk: 1.5,
         agingBehavior: "Reliable",
+
+        priceData: {
+        "2016": {
+          avg: 400000,
+          min: 360000,
+          max: 450000
+        },
+
+        "2017": {
+          avg: 440000,
+          min: 400000,
+          max: 480000
+        },
+
+        "2018": {
+          avg: 500000,
+          min: 450000,
+          max: 550000
+        },
+
+        "2019": {
+          avg: 550000,
+          min: 500000,
+          max: 610000
+        },
+
+        "2020": {
+          avg: 610000,
+          min: 550000,
+          max: 670000
+        },
+
+        "2021": {
+          avg: 650000,
+          min: 590000,
+          max: 720000
+        },
+
+        "2022": {
+          avg: 780000,
+          min: 700000,
+          max: 860000
+        },
+
+        "2023": {
+          avg: 850000,
+          min: 770000,
+          max: 960000
+        },
+
+        "2024": {
+          avg: 920000,
+          min: 830000,
+          max: 1020000
+        }
+      }
       },
 
       Ertiga: {
@@ -713,13 +769,13 @@ const carDatabase = {
       Scorpio: {
         reliability: 8,
         maintenance: "Medium",
-        kmTolerance: 1.0,
+        kmTolerance: 1.17,
         automaticType: "Torque Converter",
         dieselCharacter:"Rugged Legend",
         engineCharacter:"Rugged SUV",
         engineConfidence:8,
-        highwayConfidence:9,
-        cityConfidence:4,
+        highwayConfidence:8,
+        cityConfidence:7,
         turboRisk:3,
         agingBehavior:"Built Tough",
       },
@@ -735,7 +791,7 @@ const carDatabase = {
         engineConfidence:8,
         highwayConfidence:9,
         cityConfidence:6,
-        turboRisk:4,
+        turboRisk:3.5,
         agingBehavior:"Tough",
       },
 
@@ -1313,6 +1369,50 @@ const carDatabase = {
         cityConfidence:7,
         turboRisk:2,
         agingBehavior:"Built Tough",
+
+         priceData: {
+        2016: {
+          avg: 1000000,
+          min: 850000,
+          max: 1250000
+        },
+
+        2017: {
+          avg: 1060000,
+          min: 940000,
+          max: 1280000
+        },
+
+        2018: {
+          avg: 1140000,
+          min: 950000,
+          max: 1360000
+        },
+
+        2019: {
+          avg: 1238000,
+          min: 1080000,
+          max: 1410000
+        },
+
+        2020: {
+          avg: 1335000,
+          min: 1100000,
+          max: 1450000
+        },
+
+        2021: {
+          avg: 1470000,
+          min: 1360000,
+          max: 1640000
+        },
+
+        2022: {
+          avg: 1670000,
+          min: 1500000,
+          max: 1870000
+        }
+      }
       },
 
       Glanza: {
