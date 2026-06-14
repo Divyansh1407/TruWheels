@@ -1003,3 +1003,37 @@ button:hover {
     background:rgba(255,255,255,0.08);
     transform:translateY(-1px);
 }
+
+.page-header{
+    width:90%;
+    margin:30px auto;
+}
+
+.logo{
+    height:70px;
+}
+
+.main-container{
+    width:95%;
+    margin:25px auto;
+    padding:20px 0 50px 0;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:32px;
+}
+
+.container{
+    max-width:700px;
+    margin:0 auto;
+}
+
+.page-header{
+    width:95%;
+    margin:30px auto 25px auto;
+}
+
+.page-title{
+    color:white;
+    text-align:center;
+    margin-bottom:10px;
+    font-size:2rem;
+}

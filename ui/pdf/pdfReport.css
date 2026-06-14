@@ -12,6 +12,9 @@ background:white;
 margin:auto;
 padding:50px;
 box-sizing:border-box;
+
+page-break-after: always;
+break-after: page;
 }
 
 .pdf-header{
@@ -113,8 +116,23 @@ margin-top:0;
 }
 
 .page-2,
-.page-3{
+.page-3,
+.page-4{
     margin-top:40px;
+    page-break-before: always;
+}
+
+.page3-layout{
+display:flex;
+gap:30px;
+}
+
+.page3-left{
+width:60%;
+}
+
+.page3-right{
+width:40%;
 }
 
 .info-card{
@@ -172,4 +190,18 @@ color:#111827;
 .report-section p{
 line-height:1.7;
 color:#374151;
+}
+
+.ownership-boxes{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.mini-box{
+flex:1;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:12px;
 }
