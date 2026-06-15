@@ -48,7 +48,13 @@
       Enter vehicle details to generate a complete TruWheels report.
     </p>
 
-    <div class="form-box">
+    <div class ="info-card">
+
+      <h3 class="section-title">
+        Vehicle Details
+      </h3>
+
+      <div class="form-grid">
 
       <select id="carBrand">
 
@@ -145,6 +151,15 @@
   </option>
 
 </select>
+      </div>
+      </div>
+
+    
+      <div class="info-card">
+    <h3 class="section-title">
+      Vehicle Information
+    </h3>
+    <div class="form-grid">
 
       <input
         type="number"
@@ -164,12 +179,20 @@
         placeholder="Number of Owners"
       >
 
+      <input
+        type="number"
+        id="price"
+        placeholder="Asking Price"
+      >
+      </div>
+      </div>
+
       <div class="service-section">
 
       <div class="service-header">
 
         <span>
-          Detailed Service Analysis (Optional)
+          Service Intelligence (Optional)
         </span>
 
         <span id="service-arrow">
@@ -268,15 +291,14 @@
 
     </div>
 
-      <input
-        type="number"
-        id="price"
-        placeholder="Asking Price"
-      >
-
       <button onclick="analyzeCar()">
-        Analyze Car
+        Generate Report
       </button>
+  </div>
+
+      <p class="security-note">
+        🛡️ 100% Secure • Private • Instant Report
+      </p>
 
     </div>
   </div>

@@ -7,9 +7,9 @@ body {
 }
 
 .container {
-  width: 400px;
-  margin: auto;
-  margin-top: 50px;
+  width: 80%;
+  max-width: 1100px;
+  margin:0 auto;
 }
 
 h1 {
@@ -18,21 +18,30 @@ h1 {
   margin-bottom: 10px;
 }
 
-.subtitle {
-  color: gray;
-  margin-bottom: 30px;
+.subtitle{
+    color:#94a3b8;
+    text-align:center;
+
+    margin-top:10px;
+    margin-bottom:40px;
+
+    font-size:18px;
 }
 
 .form-box {
   background-color: #0b1120;
-  padding: 25px;
-  border-radius: 15px;
+  padding: 30px;
+  border-radius: 20px;
   border: 1px solid #1e293b;
+
+  width:100%;
+  max-width:900px;
 }
 
 input {
   width: 100%;
-  padding: 14px;
+  padding: 16px 20px;
+  height: 55px;
   margin-bottom: 15px;
   border: none;
   border-radius: 10px;
@@ -44,7 +53,8 @@ input {
 
 select {
   width: 100%;
-  padding: 14px;
+  padding: 16px 20px;
+  height: 55px;
   margin-bottom: 15px;
   border: none;
   border-radius: 10px;
@@ -138,12 +148,15 @@ button:hover {
   font-size: 15px;
 }
 
-.service-section {
-  background-color: #111827;
-  border: 1px solid #1e293b;
-  border-radius: 14px;
-  margin-bottom: 15px;
-  overflow: hidden;
+.service-section{
+  background:rgba(11,17,32,0.75);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:20px;
+
+  margin-top:30px;
+  margin-bottom:25px;
 }
 
 .service-header {
@@ -165,7 +178,7 @@ button:hover {
 .service-content{
   max-height:0;
   overflow:hidden;
-  transition:0.4s ease;
+  transition:0.2s ease-in-out; ;
   border-top:1px solid rgba(255,255,255,0.05);
 }
 
@@ -635,7 +648,7 @@ button:hover {
 }
 
 .logo{
-    width:px;
+    width:auto;
     height:90px;
     object-fit:contain;
 
@@ -845,10 +858,6 @@ button:hover {
   line-height:1.8;
 }
 
-/* =========================
-   MAINTENANCE CHIPS
-========================= */
-
 .inspection-chip-container{
   display:flex;
   flex-wrap:wrap;
@@ -1014,15 +1023,14 @@ button:hover {
 }
 
 .main-container{
-    width:95%;
-    margin:25px auto;
-    padding:20px 0 50px 0;
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:32px;
+   max-width:1250px;
+   margin:25px auto;
+   border:1px solid rgba(255,255,255,0.08);
+   border-radius:24px;
 }
 
 .container{
-    max-width:700px;
+    max-width:100%;
     margin:0 auto;
 }
 
@@ -1036,4 +1044,40 @@ button:hover {
     text-align:center;
     margin-bottom:10px;
     font-size:2rem;
+}
+
+.section-title{
+
+    color:#60a5fa;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:30px;
+    margin-bottom:15px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    padding-bottom:8px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.info-card{
+
+    background: #070d1c;
+    
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:27px;
+    margin-bottom:24px;
+}
+
+.security-note{
+    text-align:center;
+    color:#94a3b8;
+    margin-top:18px;
+    font-size:14px;
 }
