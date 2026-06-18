@@ -3,7 +3,7 @@
 
 <head>
   <title>TruWheels</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -191,105 +191,60 @@
 
       <div class="service-header">
 
-        <span>
-          Service Intelligence (Optional)
-        </span>
+      <div class="service-text">
 
-        <span id="service-arrow">
-          ▼
-        </span>
+          <h4>
+           SERVICE INTELLIGENCE (OPTIONAL)
+          </h4>
+
+          <p>
+           Add service details if you have them for more accurate insights
+          </p>
 
       </div>
 
+          <span id="service-arrow">
+              ▼
+          </span>
+
+      </div>
 
       <div class="service-content">
 
-        <select id="serviceHistory">
+      <div class="service-grid">
 
-          <option value="">
-            Service History
-          </option>
+          <select id="serviceHistory">
+              <option value="">Service History</option>
+              <option value="Full">Full Service History</option>
+              <option value="Partial">Partial Service History</option>
+              <option value="None">No Service Records</option>
+          </select>
 
-          <option value="Full">
-            Full Service History
-          </option>
+          <select id="serviceType">
+              <option value="">Service Type</option>
+              <option value="Authorized">Authorized Service Center</option>
+              <option value="Mixed">Mixed Service History</option>
+              <option value="Local">Local Garage Maintained</option>
+          </select>
 
-          <option value="Partial">
-            Partial Service History
-          </option>
+          <select id="accidentHistory">
+              <option value="">Accident History</option>
+              <option value="None">No Accident History</option>
+              <option value="Minor">Minor Repairs</option>
+              <option value="Major">Major Structural Repair</option>
+          </select>
 
-          <option value="None">
-            No Service Records
-          </option>
+          <select id="maintenanceDiscipline">
+              <option value="">Maintenance Discipline</option>
+              <option value="Excellent">Always Serviced On Time</option>
+              <option value="Average">Occasionally Delayed</option>
+              <option value="Poor">Poorly Maintained</option>
+          </select>
 
-        </select>
-
-
-        <select id="serviceType">
-
-          <option value="">
-            Service Type
-          </option>
-
-          <option value="Authorized">
-            Authorized Service Center
-          </option>
-
-          <option value="Mixed">
-            Mixed Service History
-          </option>
-
-          <option value="Local">
-            Local Garage Maintained
-          </option>
-
-        </select>
-
-
-        <select id="accidentHistory">
-
-          <option value="">
-            Accident History
-          </option>
-
-          <option value="None">
-            No Accident History
-          </option>
-
-          <option value="Minor">
-            Minor Repairs
-          </option>
-
-          <option value="Major">
-            Major Structural Repair
-          </option>
-
-        </select>
-
-
-        <select id="maintenanceDiscipline">
-
-          <option value="">
-            Maintenance Discipline
-          </option>
-
-          <option value="Excellent">
-            Always Serviced On Time
-          </option>
-
-          <option value="Average">
-            Occasionally Delayed
-          </option>
-
-          <option value="Poor">
-            Poorly Maintained
-          </option>
-
-        </select>
-
-      </div>
+       </div>
 
     </div>
+
 
       <button onclick="analyzeCar()">
         Generate Report

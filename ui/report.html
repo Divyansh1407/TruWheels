@@ -478,6 +478,21 @@
             "The reported mileage places the vehicle in a major maintenance category where costly repairs become increasingly common.";
         }
 
+        localStorage.setItem(
+        "maintenanceStage",
+        maintenanceStage
+        );
+
+        localStorage.setItem(
+        "maintenanceSignal",
+        maintenanceSignal
+        );
+
+        localStorage.setItem(
+        "maintenanceVerdict",
+        maintenanceVerdict
+        );
+
         
     //OWNERSHIP VRDICT
 
@@ -599,6 +614,22 @@
             );
 
         }
+
+        localStorage.setItem(
+        "finalVerdictTitle",
+        finalVerdictTitle
+        );
+
+        localStorage.setItem(
+        "finalVerdictDescription",
+        finalVerdictDescription
+        );
+
+        localStorage.setItem(
+        "finalVerdictFindings",
+        JSON.stringify(
+        finalVerdictFindings
+        ));
 
         document.getElementById("car-name").innerText =
         carName.toUpperCase();

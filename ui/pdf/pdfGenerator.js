@@ -19,6 +19,47 @@ localStorage.getItem("owners");
 const transmission =
 localStorage.getItem("transmission");
 
+const currentDate =
+new Date();
+
+const formattedDate =
+currentDate.toLocaleDateString(
+"en-IN",
+{
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+}
+);
+
+document.querySelectorAll(
+"#generatedDate"
+).forEach(date => {
+
+    date.innerText =
+    formattedDate;
+
+});
+
+const reportId =
+`TW-${
+currentDate.getFullYear()
+}${
+String(currentDate.getMonth() + 1).padStart(2, "0")
+}${
+String(currentDate.getDate()).padStart(2, "0")
+}-001`;
+
+document.querySelectorAll(
+"#reportId"
+).forEach(id => {
+
+    id.innerText =
+    reportId;
+
+});
+
+
 document.getElementById(
 "pdfCarName"
 ).innerText =
@@ -84,52 +125,56 @@ status;
 document.getElementById(
 "pdfVerdict"
 ).innerText =
-"RECOMMENDED PURCHASE";
+localStorage.getItem(
+"finalVerdictTitle"
+);
 
 document.getElementById(
 "pdfVerdictDescription"
 ).innerText =
-"Vehicle indicators appear strong across major TruWheels intelligence checks.";
+localStorage.getItem(
+"finalVerdictDescription"
+);
+
+const findings =
+JSON.parse(
+localStorage.getItem(
+"finalVerdictFindings"
+) || "[]"
+);
 
 document.getElementById(
 "verdictPoint1"
 ).innerText =
-"✔ Ownership pattern appears normal";
+findings[0] || "";
 
 document.getElementById(
 "verdictPoint2"
 ).innerText =
-"⚠ Service history not provided";
+findings[1] || "";
 
 document.getElementById(
 "verdictPoint3"
 ).innerText =
-"✔ Price analysis available";
+findings[2] || "";
 
 document.getElementById(
 "verdictPoint4"
 ).innerText =
-"✔ No major ownership concerns";
-
-document.getElementById(
-"pdfOwnership"
-).innerText =
-`${owners} Owner(s) reported.`;
-
-document.getElementById(
-"pdfMaintenance"
-).innerText =
-status;
+findings[3] || "";
 
 document.getElementById(
 "pdfPrice"
 ).innerText =
-"Price analysis available.";
+localStorage.getItem(
+"priceObservation"
+);
 
-document.getElementById(
-"pdfService"
-).innerText =
-"Service records evaluated.";
+const serviceProvided =
+localStorage.getItem(
+"serviceDataProvided"
+);
+
 
 document.getElementById(
 "page2Health"
@@ -158,31 +203,35 @@ document.getElementById(
 Request maintenance invoices and service documentation before purchase.`;
 
 document.getElementById(
-"page3Overview"
+"page2Price"
 ).innerText =
-`${carName} | ${year} | ${engineType} | ${transmission}`;
+localStorage.getItem(
+"priceRecommendation"
+);
 
-document.getElementById(
-"page3Price"
-).innerText =
-"Price analysis available in TruWheels intelligence engine.";
+const questions =
+JSON.parse(
+localStorage.getItem(
+"highPriorityQuestions"
+) || "[]"
+);
 
 document.getElementById(
 "question1"
 ).innerText =
-"Can you share service invoices?";
+questions[0] || "";
 
 document.getElementById(
 "question2"
 ).innerText =
-"Has the engine undergone major repairs?";
+questions[1] || "";
 
 document.getElementById(
 "question3"
 ).innerText =
-"Any pending repairs or known issues?";
+questions[2] || "";
 
 document.getElementById(
 "question4"
 ).innerText =
-"Why are you selling the vehicle?";
+questions[3] || "";

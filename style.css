@@ -41,7 +41,7 @@ h1 {
 input {
   width: 100%;
   padding: 16px 20px;
-  height: 55px;
+  height: 50px;
   margin-bottom: 15px;
   border: none;
   border-radius: 10px;
@@ -54,7 +54,7 @@ input {
 select {
   width: 100%;
   padding: 16px 20px;
-  height: 55px;
+  height: 50px;
   margin-bottom: 15px;
   border: none;
   border-radius: 10px;
@@ -184,8 +184,7 @@ button:hover {
 
 .service-content.show-service{
   max-height:500px;
-  padding-top:15px;
-  margin-top:15px;
+  padding : 20px 27px 27px;
 }
 
 .service-content select{
@@ -1049,7 +1048,7 @@ button:hover {
 .section-title{
 
     color:#60a5fa;
-    font-size:14px;
+    font-size:16px;
     font-weight:600;
     letter-spacing:1px;
     text-transform:uppercase;
@@ -1071,7 +1070,7 @@ button:hover {
     
     border:1px solid rgba(255,255,255,0.08);
     border-radius:24px;
-    padding:27px;
+    padding:23px 27px;
     margin-bottom:24px;
 }
 
@@ -1081,3 +1080,42 @@ button:hover {
     margin-top:18px;
     font-size:14px;
 }
+
+.service-text h4{
+    margin:0;
+    color:#4d95ff;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.service-text p{
+    margin-top:6px;
+    color:#8a94a6;
+    font-size:14px;
+}
+
+.service-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 27px;
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.service-content{
+    max-height:0;
+    overflow:hidden;
+    transition:all 0.3s ease;
+}
+
+.service-content.show-service{
+    max-height:250px;
+    padding:27px;
+}
+
