@@ -179,35 +179,68 @@ localStorage.getItem(
 document.getElementById(
 "page2Health"
 ).innerText =
-`Health Score: ${healthScore}/100
+`✓ Health Score: ${healthScore}/100
+✓ ${status}
+✓ Suitable for daily usage`;
 
-The vehicle shows strong overall condition based on available ownership and maintenance indicators.`;
+const expectedOwners =
+localStorage.getItem(
+"expectedOwners"
+);
 
 document.getElementById(
 "page2Ownership"
 ).innerText =
-`${owners} Owner(s) reported.
+`✓ ${owners} Owner(s) Reported
+✓ Expected Ownership: ${expectedOwners}
+✓ No unusual transfer pattern detected`;
 
-Ownership history appears normal and does not indicate unusual transfer activity.`;
+const maintenanceIssues =
+JSON.parse(
+localStorage.getItem(
+"maintenanceIssues"
+) || "[]"
+);
 
 document.getElementById(
 "page2Maintenance"
 ).innerText =
-`Routine maintenance verification is recommended based on vehicle age and usage profile.`;
+`⚠ ${maintenanceIssues[0] || "Verify routine maintenance"}
+⚠ ${maintenanceIssues[1] || "Inspect wear components"}
+✓ Maintenance review recommended`;
+
+if(serviceProvided === "true"){
 
 document.getElementById(
 "page2Service"
 ).innerText =
-`No service records were provided.
+`✓ Service information provided
+✓ Additional ownership intelligence available
+✓ Verify supporting maintenance records`;
 
-Request maintenance invoices and service documentation before purchase.`;
+}
+else{
+
+document.getElementById(
+"page2Service"
+).innerText =
+`⚠ Service records unavailable
+✓ Ask for maintenance invoices
+⚠ Verify last major service`;
+
+}
+
+const marketPosition =
+localStorage.getItem(
+"marketPosition"
+);
 
 document.getElementById(
 "page2Price"
 ).innerText =
-localStorage.getItem(
-"priceRecommendation"
-);
+`✓ ${marketPosition}
+✓ Compare similar listings
+✓ Negotiation recommended`;
 
 const questions =
 JSON.parse(
