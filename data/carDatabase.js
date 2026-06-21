@@ -320,33 +320,98 @@ const carDatabase = {
       },
 
       i20: {
-        reliability: 7,
+        reliability: 8,
         maintenance: "Medium",
         kmTolerance: 1.0,
         automaticType: "DCT",
         petrolCharacter:"Premium Urban",
         dieselCharacter:"Efficient Premium Hatch",
         engineCharacter:"Premium Urban",
-        engineConfidence:7,
-        highwayConfidence:7,
+        engineConfidence:7.9,
+        highwayConfidence:7.5,
         cityConfidence:9,
-        turboRisk:4,
+        turboRisk:1,
         agingBehavior:"Modern",
-      },
 
-      "Elite i20": {
-        reliability: 7,
-        maintenance: "Medium",
-        kmTolerance: 1.0,
-        automaticType: "CVT",
-        petrolCharacter:"Refined Urban Hatch",
-        dieselCharacter:"Premium Mileage Hatch",
-        engineCharacter:"Refined Cruiser",
-        engineConfidence:7,
-        highwayConfidence:7,
-        cityConfidence:9,
-        turboRisk:3,
-        agingBehavior:"Smooth",
+        priceData: {
+        2012: {
+            avg: 150000,
+            min: 100000,
+            max: 190000
+        },
+
+        2013: {
+            avg: 210000,
+            min: 170000,
+            max: 250000
+        },
+
+        2014: {
+            avg: 233000,
+            min: 185000,
+            max: 275000
+        },
+
+        2015: {
+            avg: 280000,
+            min: 230000,
+            max: 340000
+        },
+
+        2016: {
+            avg: 330000,
+            min: 280000,
+            max: 400000
+        },
+
+        2017: {
+            avg: 370000,
+            min: 300000,
+            max: 440000
+        },
+
+        2018: {
+            avg: 430000,
+            min: 378000,
+            max: 490000
+        },
+
+        2019: {
+            avg: 465000,
+            min: 419000,
+            max: 512000
+        },
+
+        2020: {
+            avg: 500000,
+            min: 450000,
+            max: 550000
+        },
+
+        2021: {
+            avg: 575000,
+            min: 518000,
+            max: 633000
+        },
+
+        2022: {
+            avg: 620000,
+            min: 530000,
+            max: 695000
+        },
+
+        2023: {
+            avg: 700000,
+            min: 630000,
+            max: 820000
+        },
+
+        2024: {
+            avg: 760000,
+            min: 690000,
+            max: 900000
+        }
+      }
 
       },
 
