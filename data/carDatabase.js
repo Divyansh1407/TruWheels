@@ -1101,11 +1101,43 @@ const carDatabase = {
         petrolCharacter:"Feature-Rich Turbo",
         dieselCharacter:"Compact Premium Cruiser",
         engineCharacter:"Feature-Rich Turbo",
-        engineConfidence:7,
-        highwayConfidence:7,
+        engineConfidence:7.7,
+        highwayConfidence:7.4,
         cityConfidence:9,
-        turboRisk:6,
+        turboRisk:2.3,
         agingBehavior:"Modern",
+
+        priceData: {
+          2020: {
+              avg: 670000,
+              min: 600000,
+              max: 770000
+          },
+
+          2021: {
+              avg: 700000,
+              min: 630000,
+              max: 800000
+          },
+
+          2022: {
+              avg: 800000,
+              min: 720000,
+              max: 900000
+          },
+
+          2023: {
+              avg: 900000,
+              min: 810000,
+              max: 1000000
+          },
+
+          2024: {
+              avg: 1000000,
+              min: 900000,
+              max: 1080000
+          }
+        }
 
       },
 
