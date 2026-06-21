@@ -646,6 +646,38 @@ const carDatabase = {
         cityConfidence:8,
         turboRisk:4,
         agingBehavior:"Modern",
+
+        priceData: {
+          2020: {
+              avg: 430000,
+              min: 360000,
+              max: 510000
+          },
+
+          2021: {
+              avg: 470000,
+              min: 390000,
+              max: 550000
+          },
+
+          2022: {
+              avg: 530000,
+              min: 450000,
+              max: 620000
+          },
+
+          2023: {
+              avg: 620000,
+              min: 520000,
+              max: 720000
+          },
+
+          2024: {
+              avg: 720000,
+              min: 620000,
+              max: 850000
+          }
+      }
       },
 
       Punch: {
