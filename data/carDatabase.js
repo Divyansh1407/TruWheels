@@ -513,18 +513,58 @@ const carDatabase = {
       },
 
       Venue: {
-        reliability: 7,
+        reliability: 8,
         maintenance: "Medium",
         kmTolerance: 1.0,
         automaticType: "DCT",
         petrolCharacter:"Turbo Urban SUV",
         dieselCharacter:"Compact Highway SUV",
         engineCharacter:"Compact Turbo Urban",
-        engineConfidence:7,
-        highwayConfidence:7,
+        engineConfidence:8,
+        highwayConfidence:7.8,
         cityConfidence:9,
-        turboRisk:6,
+        turboRisk:2,
         agingBehavior:"Moderate",
+
+        priceData: {
+
+            2019: {
+                avg: 570000,
+                min: 510000,
+                max: 640000
+            },
+
+            2020: {
+                avg: 630000,
+                min: 570000,
+                max: 675000
+            },
+
+            2021: {
+                avg: 660000,
+                min: 600000,
+                max: 725000
+            },
+
+            2022: {
+                avg: 740000,
+                min: 665000,
+                max: 820000
+            },
+
+            2023: {
+                avg: 800000,
+                min: 720000,
+                max: 900000
+            },
+
+            2024: {
+                avg: 875000,
+                min: 790000,
+                max: 995000
+            }
+
+        }
       },
 
       Creta: {
