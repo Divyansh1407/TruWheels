@@ -130,6 +130,36 @@ const carDatabase = {
       }
       },
 
+      Fronx: {
+          reliability: 8.5,
+          maintenance: "Low",
+          kmTolerance: 1.0,
+          automaticType: "AMT",
+          petrolCharacter: "Stylish Urban Cruiser",
+          turboCharacter: "Balanced Turbo Performer",
+          engineCharacter: "Stylish Urban Cruiser",
+          engineConfidence: 8.5,
+          highwayConfidence: 7.5,
+          cityConfidence: 9,
+          turboRisk: 2,
+          agingBehavior: "Reliable",
+
+          priceData: {
+              2023: {
+                  avg: 760000,
+                  min: 680000,
+                  max: 860000
+              },
+
+              2024: {
+                  avg: 800000,
+                  min: 720000,
+                  max: 940000
+              }
+          }
+
+      },
+
       Dzire: {
         reliability: 8,
         maintenance: "Low",
