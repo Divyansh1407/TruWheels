@@ -733,6 +733,32 @@ const carDatabase = {
         cityConfidence:8,
         turboRisk:2,
         agingBehavior:"Tough",
+
+        priceData: {
+            2021: {
+                avg: 465000,
+                min: 420000,
+                max: 510000
+            },
+
+            2022: {
+                avg: 520000,
+                min: 470000,
+                max: 600000
+            },
+
+            2023: {
+                avg: 560000,
+                min: 500000,
+                max: 665000
+            },
+
+            2024: {
+                avg: 620000,
+                min: 550000,
+                max: 700000
+            }
+        }
       },
 
       Nexon: {
