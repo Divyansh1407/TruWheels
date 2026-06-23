@@ -1,7 +1,7 @@
 const guideContainer =
 document.querySelector(".guide-container");
 
-inspectionGuideData.forEach(section => {
+inspectionGuideData.forEach((section,index) => {
 
     let checkpointHTML = "";
 
@@ -35,7 +35,7 @@ inspectionGuideData.forEach(section => {
         `;
     });
 
-    guideContainer.innerHTML += `
+   guideContainer.innerHTML += `
 
         <section class="inspection-section">
 
@@ -46,14 +46,27 @@ inspectionGuideData.forEach(section => {
                     ${section.category}
                 </h2>
 
-                <span>
-                    ${section.checkpoints.length}
-                    Checkpoints
-                </span>
+                <div class="section-info">
+
+                    <span>
+                        ${section.checkpoints.length}
+                        Checkpoints
+                    </span>
+
+                    <span class="section-toggle">
+                        ${index === 0 ? "−" : "+"}
+                    </span>
+
+                </div>
 
             </div>
 
-            ${checkpointHTML}
+            <div class="section-content
+             ${index === 0 ? "active" : ""}">
+
+                ${checkpointHTML}
+
+            </div>
 
         </section>
 
@@ -66,5 +79,27 @@ document.addEventListener("click", function(e){
     if(!header) return;
     const card = header.parentElement;
     card.classList.toggle("active");
+
+});
+
+document.addEventListener("click", function(e){
+
+    const sectionHeader =
+    e.target.closest(".section-header");
+
+    if(!sectionHeader) return;
+
+    const content =
+    sectionHeader.nextElementSibling;
+
+    const toggle =
+    sectionHeader.querySelector(".section-toggle");
+
+    content.classList.toggle("active");
+
+    toggle.textContent =
+        content.classList.contains("active")
+        ? "−"
+        : "+";
 
 });
