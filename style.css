@@ -1039,25 +1039,39 @@ button:hover {
 }
 
 .page-title{
-    color:white;
     text-align:center;
-    margin-bottom:10px;
-    font-size:2rem;
+    margin-bottom:14px;
+
+    font-size:3rem;
+    font-weight:710;
+    line-height:1;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #e2e8f0 40%,
+        #93c5fd 100%
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 0 20px rgba(59,130,246,0.10);
 }
+
 
 .section-title{
-
-    color:#60a5fa;
-    font-size:16px;
-    font-weight:600;
-    letter-spacing:1px;
+    color:#dbeafe;
+    font-size:17.5px;
+    font-weight:700;
+    letter-spacing:1.5px;
     text-transform:uppercase;
     margin-top:30px;
-    margin-bottom:15px;
+    margin-bottom:18px;
     border-bottom:1px solid rgba(255,255,255,0.08);
-    padding-bottom:8px;
+    padding-bottom:12px;
 }
-
 .form-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -1083,7 +1097,7 @@ button:hover {
 
 .service-text h4{
     margin:0;
-    color:#4d95ff;
+    color:#dbeafe;
     font-size:16px;
     font-weight:700;
     letter-spacing:1px;
@@ -1370,8 +1384,9 @@ button:hover {
 .normal-point strong,
 .redflag-point strong{
     display:block;
-    margin-bottom:12px;
+    margin-bottom:-14px;
     font-size:1.1rem;
+    
 }
 
 .content-heading{
