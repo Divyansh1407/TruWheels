@@ -1229,7 +1229,7 @@ button:hover {
 }
 
 .inspection-card:hover{
-    transform:translateY(-4px);
+    transform:translateY(-2px);
     border-color:#3b82f6;
 
     box-shadow:
@@ -1266,7 +1266,9 @@ button:hover {
 
 .point-content{
     display:none;
-    margin-top:20px;
+    margin-top:15px;
+
+    padding:0 24px 24px 24px;
 }
 
 .inspection-card.active .point-content{
@@ -1300,7 +1302,7 @@ button:hover {
 
     cursor:pointer;
 
-    transition:0.3s;
+    transition:0.3s ;
 }
 
 .section-content{
@@ -1314,4 +1316,77 @@ button:hover {
     margin-top:22px;
     padding-top:22px;
     border-top:1px solid rgba(255,255,255,0.05);
+}
+
+.risk-heading{
+    margin-top:25px;
+    margin-bottom:16px;
+    color:#60a5fa;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.normal-point{
+    background:rgba(34,197,94,0.08);
+    border:1px solid rgba(34,197,94,0.20);
+    border-radius:12px;
+    padding:14px 18px;
+    margin-bottom:12px;
+    color:#d1fae5;
+    line-height:1.7;
+}
+
+.redflag-point{
+    background:rgba(239,68,68,0.08);
+    border:1px solid rgba(239,68,68,0.20);
+    border-radius:12px;
+    padding:14px 18px;
+    color:#fecaca;
+    line-height:1.7;
+}
+
+.inspect-point{
+    background:rgba(59,130,246,0.08);
+    border:1px solid rgba(59,130,246,0.20);
+    border-radius:12px;
+    padding:18px 22px;
+    margin-bottom:14px;
+    color:#dbeafe;
+    line-height:1.8;
+}
+
+.importance-point{
+    background:rgba(168,85,247,0.08);
+    border:1px solid rgba(168,85,247,0.20);
+    border-radius:12px;
+    padding:18px 22px;
+    margin-bottom:25px;
+    color:#ede9fe;
+    line-height:1.8;
+}
+
+.normal-point strong,
+.redflag-point strong{
+    display:block;
+    margin-bottom:12px;
+    font-size:1.1rem;
+}
+
+.content-heading{
+    color:#60a5fa;
+    font-size:15.5px;
+    text-transform:uppercase;
+    font-weight:700;
+    letter-spacing: 1.1px;
+    margin:35px 0 18px 0;
+}
+
+.content-text{
+    color:#e5e7eb;
+    font-size:1.1rem;
+    line-height:1.9;
+    margin-bottom:30px;
+    padding-left:10px;
 }

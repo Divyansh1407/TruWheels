@@ -18,15 +18,35 @@ inspectionGuideData.forEach((section,index) => {
 
                 <div class="point-content">
 
-                    <p><strong>What to inspect?</strong></p>
-                    <p>${point.inspect}</p>
+                   <h4 class="content-heading">
+                        WHAT TO INSPECT?
+                    </h4>
 
-                    <p><strong>Why it matters?</strong></p>
-                    <p>${point.importance}</p>
+                    <p class="content-text">
+                        ${point.inspect}
+                    </p>
 
-                    <p><strong>Normal vs Red Flags</strong></p>
-                    <p>⚠️ ${point.normal}</p>
-                    <p>🚨 ${point.redFlag}</p>
+                    <h4 class="content-heading">
+                        WHY IT MATTERS?
+                    </h4>
+
+                    <p class="content-text">
+                        ${point.importance}
+                    </p>
+
+                    <h4 class="risk-heading">
+                        Normal vs Red Flags
+                    </h4>
+
+                    <div class="normal-point">
+                        <strong>✓ Normal:</strong><br>
+                        ${point.normal}
+                    </div>
+
+                    <div class="redflag-point">
+                        <strong>🚨 Red Flag:</strong><br>
+                        ${point.redFlag}
+                    </div>
 
                 </div>
 
