@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TruWheels Inspection Assistant</title>
+
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+
+        <div class="brand">
+
+            <a href="../../index.html" class="back-btn">
+                ←
+            </a>
+
+            <img
+                src="../../images/branding/logo.png"
+                alt="TruWheels"
+                class="logo">
+
+            <div class="brand-text">
+                <h2>
+                    <span class="tru">Tru</span><span class="wheels">Wheels</span>
+                </h2>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="main-container">
+
+        <div class="container inspection-container">
+
+            <div class="guide-header">
+
+                <h1 class="guide-title">
+                    Physical Inspection Assessment
+                </h1>
+
+                <p class="guide-subtitle">
+                    Record physical observations while inspecting a used vehicle and generate a professional TruWheels inspection report.
+                </p>
+
+                <div class="guide-features">
+
+                    <div class="feature-pill">
+                        ✓ 25+ Professional Checkpoints
+                    </div>
+
+                    <div class="feature-pill">
+                        ✓ Beginner Friendly
+                    </div>
+
+                    <div class="feature-pill">
+                        ✓ Instant Vehicle Verdict
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="inspectionContainer"></div>
+
+            <div class="inspection-action-section">
+
+                <button
+                    id="generateInspectionBtn"
+                    class="generate-inspection-btn">
+
+                    Generate Inspection Report
+
+                </button>
+
+                <p class="security-note">
+                    🛡️ 100% Secure • Private • Instant Report
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../../data/inspectionChecklistData.js"></script>
+    <script src="./inspectionReport.js"></script>
+
+</body>
+
+</html>
