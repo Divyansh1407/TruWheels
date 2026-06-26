@@ -13,17 +13,45 @@ inspectionChecklist.forEach(section => {
     section.checkpoints.forEach(point => {
 
         checkpointHTML += `
-            <div class="checkpoint-card">
 
-                <label>
+        <div class="checkpoint-card">
 
-                    <input type="checkbox">
+            <label class="checkpoint-label">
 
-                    ${point}
+                <input
+                type="checkbox"
+                class="checkpoint-checkbox">
 
-                </label>
+                <span class="custom-checkbox"></span>
+
+                <span class="checkpoint-text">
+                ${point.title}
+                </span>
+
+            </label>
+
+            <div class="severity-container">
+
+                <select class="severity-select">
+
+                <option value="">
+                Select Severity
+                </option>
+
+                ${point.severityOptions.map(option => `
+
+                <option value="${option}">
+                ${option}
+                </option>
+
+                `).join("")}
+
+                </select>
 
             </div>
+
+        </div>
+
         `;
     });
 
@@ -53,5 +81,40 @@ inspectionChecklist.forEach(section => {
     `;
 
     container.appendChild(category);
+
+});
+
+document
+.querySelectorAll(".checkpoint-checkbox")
+.forEach(checkbox => {
+
+    checkbox.addEventListener("change", () => {
+
+        const severityContainer =
+
+        checkbox
+        .closest(".checkpoint-card")
+        .querySelector(".severity-container");
+
+
+        if(checkbox.checked){
+
+            severityContainer.classList.add(
+                "show-severity"
+            );
+        }
+
+        else{
+
+            severityContainer.classList.remove(
+                "show-severity"
+            );
+
+            severityContainer.querySelector(
+                ".severity-select"
+            ).selectedIndex = 0;
+        }
+
+    });
 
 });
