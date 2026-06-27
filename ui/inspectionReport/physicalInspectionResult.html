@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TruWheels Physical Inspection Report</title>
+
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="./physicalInspectionResult.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="brand">
+
+        <a href="../../index.html" class="back-btn">
+            ←
+        </a>
+
+        <img src="../../images/branding/logo.png"
+        alt="TruWheels"
+        class="logo">
+
+        <div class="brand-text">
+            <h2>
+                <span class="tru">Tru</span><span class="wheels">Wheels</span>
+            </h2>
+        </div>
+
+    </div>
+
+    <div class="header-actions">
+
+        <button class="download-btn">
+            📄 Download Report
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="report-container">
+
+    <div class="page-content">
+
+        <div class="hero-wrapper">
+
+            <div class="inspection-hero">
+
+                <div class="hero-left">
+
+                    <h1 class="inspection-title">
+                        PHYSICAL INSPECTION REPORT
+                    </h1>
+
+                    <p class="inspection-subtitle">
+                        Comprehensive physical inspection of the vehicle condition
+                    </p>
+
+                    <div class="inspection-meta">
+
+                        <div class="meta-card">
+                            <span>Inspection Date</span>
+                            <strong>27 Jun 2026</strong>
+                        </div>
+
+                        <div class="meta-card">
+                            <span>Total Issues</span>
+                            <strong>6 Issues Found</strong>
+                        </div>
+
+                        <div class="meta-card">
+                            <span>Purchase Confidence</span>
+                            <strong>Moderate Confidence</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="hero-right">
+
+                    <h3 class="score-title">
+                        INSPECTION SCORE
+                    </h3>
+
+                    <div class="gauge">
+
+                        <div id="inspectionGauge"></div>
+
+                        <div class="score-display">
+
+                            <div id="inspection-score">
+                                82
+                            </div>
+
+                            <span>/100</span>
+
+                        </div>
+
+                    </div>
+
+                    <p id="score-status">
+                        BUY AFTER INSPECTION
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="verdict-card">
+
+            <div class="verdict-left">
+
+                <div class="shield-icon">
+                    🛡️
+                </div>
+
+                <div class="verdict-content">
+
+                    <h4>FINAL VERDICT</h4>
+
+                    <h2>
+                        BUY AFTER INSPECTION
+                    </h2>
+
+                    <p>
+                        Vehicle appears mechanically healthy overall.
+                        Further verification of identified concerns is recommended.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="verdict-right">
+
+                <p>✓ No major engine concerns observed.</p>
+
+                <p>⚠ Exterior inconsistencies detected.</p>
+
+                <p>⚠ Test drive verification recommended.</p>
+
+            </div>
+
+        </div>
+
+
+
+        <section class="findings-section">
+
+            <h3>KEY FINDINGS</h3>
+
+            <div class="findings-grid">
+
+                <div class="finding-card">
+                    <div class="finding-icon">🚗</div>
+                    <h4>Exterior Inspection</h4>
+                    <p>Minor cosmetic concerns observed.</p>
+                    <span class="arrow">→</span>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-icon">⚙️</div>
+                    <h4>Engine Bay</h4>
+                    <p>Engine condition requires further verification.</p>
+                    <span class="arrow">→</span>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-icon">🛞</div>
+                    <h4>Tyres & Suspension</h4>
+                    <p>Wear patterns detected during inspection.</p>
+                    <span class="arrow">→</span>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-icon">🪑</div>
+                    <h4>Interior Inspection</h4>
+                    <p>Interior condition appears satisfactory.</p>
+                    <span class="arrow">→</span>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-icon">🛣️</div>
+                    <h4>Test Drive</h4>
+                    <p>Driving behaviour verification recommended.</p>
+                    <span class="arrow">→</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="questions-section">
+
+            <h3>QUESTIONS TO ASK SELLER</h3>
+
+            <div class="questions-grid">
+
+                <div class="question-card">
+
+                    <h4>Priority Verifications</h4>
+
+                    <ul>
+                        <li>Can you share service invoices?</li>
+                        <li>Has the engine ever been repaired?</li>
+                        <li>Has the vehicle been involved in accidents?</li>
+                    </ul>
+
+                </div>
+
+                <div class="question-card">
+
+                    <h4>Recommended Clarifications</h4>
+
+                    <ul>
+                        <li>When were tyres last replaced?</li>
+                        <li>Do both original keys exist?</li>
+                        <li>Can maintenance records be verified?</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+</html>
