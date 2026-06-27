@@ -18,7 +18,7 @@ body{
 }
 
 .hero-wrapper{
-    margin-bottom:30px;
+    margin-bottom:18px;
 }
 
 .inspection-hero{
@@ -30,14 +30,20 @@ body{
 
 .hero-left{
     flex:1;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding-top:10px;
 }
 
 .hero-right{
     width:400px;
-    min-height:420px;
+    min-height:340px;
 
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:24px;
+    border:1px solid rgba(255,255,255,0.10);
+    border-radius:20px;
 
     display:flex;
     flex-direction:column;
@@ -46,9 +52,9 @@ body{
 }
 
 .inspection-title{
-    font-size:4.5rem;
-    line-height:0.95;
-    margin-bottom:20px;
+    font-size:3rem;
+    line-height:1.o5;
+    margin-bottom:15px;
 
     background:linear-gradient(
         90deg,
@@ -64,20 +70,25 @@ body{
 .inspection-subtitle{
     color:#94a3b8;
     font-size:20px;
-    margin-bottom:35px;
+    margin-bottom:22px;
+
+    padding-left:15px;
 }
 
 .inspection-meta{
     display:flex;
-    gap:18px;
+    gap:14px;
     flex-wrap:wrap;
+    max-width:850px;
+
+    padding-left:15px;
 }
 
 .meta-card{
     flex:1;
-    min-width:170px;
+    min-width:190px;
 
-    padding:18px;
+    padding:10px 20px;
 
     background:rgba(255,255,255,0.03);
     border:1px solid rgba(255,255,255,0.06);
@@ -91,30 +102,35 @@ body{
 .meta-card span{
     display:block;
     color:#94a3b8;
-    font-size:12px;
+    font-size:11px;
     text-transform:uppercase;
-    letter-spacing:1px;
-    margin-bottom:10px;
+    letter-spacing:1.5px;
+    margin-bottom:6px;
 }
 
 .meta-card strong{
-    font-size:24px;
+    font-size:20px;
+    line-height:1.3;
 }
 
 .score-title{
-    color:#94a3b8;
     font-size:18px;
-    letter-spacing:1px;
+    color:#94a3b8;
+    margin-bottom:20px;
+    font-weight:600;
 }
 
 .gauge{
     position:relative;
+
     width:340px;
     height:280px;
 
     display:flex;
     justify-content:center;
     align-items:center;
+
+    margin-bottom:0;
 }
 
 #inspectionGauge{
@@ -124,16 +140,19 @@ body{
 
 .score-display{
     position:absolute;
-    bottom:0;
+    bottom:-13px;
 
     display:flex;
     align-items:flex-end;
     gap:3px;
+
+    z-index:2;
 }
 
 #inspection-score{
-    font-size:72px;
-    font-weight:700;
+    font-size:62px;
+    font-weight:bold;
+    color:white;
 }
 
 .score-display span{
@@ -143,16 +162,16 @@ body{
 }
 
 #score-status{
-    color:#22c55e;
-    font-size:28px;
-    font-weight:700;
+    color:#4ade80;
+    font-size:20px;
+    font-weight:600;
+    margin-top:10px;
 }
 
 .verdict-card{
-    max-width:1200px;
-    margin:20px auto;
+    margin:20px 0 35px;
 
-    padding:30px;
+    padding:26px 35px;
 
     display:flex;
     align-items:center;
@@ -165,28 +184,41 @@ body{
 
 .verdict-left{
     flex:1.2;
+
     display:flex;
+    align-items:center;
+
     gap:25px;
 }
 
 .shield-icon{
-    font-size:65px;
+    font-size:72px;
 }
 
 .verdict-content h4{
-    color:#94a3b8;
+    color:#a8b3c7;
+    font-size:14px;
     letter-spacing:1px;
-    margin-bottom:10px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    font-weight:700;
 }
 
 .verdict-content h2{
-    font-size:44px;
-    margin:0 0 15px;
+    font-size:34px;
+    line-height:1.1;
+    font-weight:650;
+    letter-spacing:-1px;
+
+    margin:0 0 12px;
 }
 
 .verdict-content p{
     color:#cbd5e1;
-    line-height:1.8;
+    line-height:1.6;
+    max-width:500px;
+    margin:0;
+    font-size:16px;
 }
 
 .verdict-right{
@@ -199,7 +231,15 @@ body{
 
 .verdict-right p{
     margin-bottom:18px;
-    color:#dbeafe;
+
+    color:#d7e0ea;
+
+    font-size:16px;
+    line-height:1.5;
+}
+
+.verdict-right p:last-child{
+    margin-bottom:0;
 }
 
 .findings-section{
@@ -216,10 +256,8 @@ body{
 
 .findings-grid{
     display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-
-    gap:20px;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:18px;
 }
 
 .finding-card{
