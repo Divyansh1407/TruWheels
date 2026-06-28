@@ -19,7 +19,7 @@
 
     <div class="brand">
 
-        <a href="../../index.html" class="back-btn">
+        <a href="./inspectionReport.html" class="back-btn">
             ←
         </a>
 
@@ -68,17 +68,17 @@
 
                         <div class="meta-card">
                             <span>Inspection Date</span>
-                            <strong>27 Jun 2026</strong>
+                            <strong id="inspectionDate"></strong>
                         </div>
 
                         <div class="meta-card">
                             <span>Total Issues</span>
-                            <strong>6 Issues Found</strong>
+                            <strong id="totalIssues"></strong>
                         </div>
 
                         <div class="meta-card">
-                            <span>Purchase Confidence</span>
-                            <strong>Moderate Confidence</strong>
+                            <span>Total Checkpoints</span>
+                           <strong id="totalCheckpoints"></strong>
                         </div>
 
                     </div>
@@ -98,7 +98,6 @@
                         <div class="score-display">
 
                             <div id="inspection-score">
-                                82
                             </div>
 
                             <span>/100</span>
@@ -108,7 +107,6 @@
                     </div>
 
                     <p id="score-status">
-                        BUY AFTER INSPECTION
                     </p>
 
                 </div>
@@ -131,14 +129,8 @@
 
                     <h4>FINAL VERDICT</h4>
 
-                    <h2>
-                        BUY AFTER INSPECTION
-                    </h2>
-
-                    <p>
-                        Vehicle appears mechanically healthy overall.
-                        Further verification of identified concerns is recommended.
-                    </p>
+                    <h2 id="finalVerdict"></h2>
+                    <p id="finalRecommendation"></p>
 
                 </div>
 
@@ -205,7 +197,7 @@
 
         <section class="questions-section">
 
-            <h3>QUESTIONS TO ASK SELLER</h3>
+            <h3>SELLER VERIFICATION QUESTIONS</h3>
 
             <div class="questions-grid">
 
@@ -240,6 +232,8 @@
     </div>
 
 </div>
+
+<script src="./physicalInspectionResult.js"></script>
 
 </body>
 </html>

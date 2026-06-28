@@ -118,3 +118,76 @@ document
     });
 
 });
+
+document
+.getElementById("generateInspectionBtn")
+.addEventListener("click", () => {
+
+    const totalIssues =
+        document.querySelectorAll(
+            ".checkpoint-checkbox:checked"
+        ).length;
+
+    const totalCheckpoints =
+        document.querySelectorAll(
+            ".checkpoint-checkbox"
+        ).length;
+
+    const selectedIssues = [];
+
+    document
+    .querySelectorAll(".checkpoint-checkbox:checked")
+    .forEach(checkbox => {
+
+        const card = checkbox.closest(".checkpoint-card");
+
+        const issueTitle = card
+            .querySelector(".checkpoint-text")
+            .textContent
+            .trim();
+
+        const severity = card
+            .querySelector(".severity-select")
+            .value;
+
+        selectedIssues.push({
+            issue: issueTitle,
+            severity: severity
+        });
+
+    });
+   
+
+    const inspectionResult =
+    calculateInspectionScore(selectedIssues);
+
+    
+    const inspectionReportData = {
+
+        inspectionDate:
+        new Date().toLocaleDateString(
+            "en-GB",
+            {
+                day:"2-digit",
+                month:"short",
+                year:"numeric"
+            }
+        ),
+
+        totalIssues,
+        totalCheckpoints,
+        score: inspectionResult.score,
+        verdict: inspectionResult.verdict,
+        recommendation:
+        inspectionResult.recommendation
+        
+    };
+
+    localStorage.setItem(
+        "inspectionReportData",
+        JSON.stringify(inspectionReportData)
+    );
+
+    window.location.href =
+    "physicalInspectionResult.html";
+});

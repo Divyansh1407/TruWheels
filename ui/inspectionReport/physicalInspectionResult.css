@@ -18,42 +18,48 @@ body{
 }
 
 .hero-wrapper{
-    margin-bottom:18px;
+    margin-bottom:0;
 }
 
 .inspection-hero{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    gap:40px;
+    align-items:flex-start;
+    gap:25px;
+
+    max-width:1200px;
+    margin:0 auto;
 }
 
 .hero-left{
     flex:1;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    padding-top:10px;
+    text-align:center;
+    margin-top: 40px;
+    margin-bottom:-25px;
+    margin-left: 30px;
 }
 
 .hero-right{
-    width:400px;
-    min-height:340px;
+  width:400px;
+  min-height:340px;
 
-    border:1px solid rgba(255,255,255,0.10);
-    border-radius:20px;
+  border:1px solid rgba(255,255,255,0.1);
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+  border-radius:20px;
+
+  display:flex;
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  margin-top:15px;
+  margin-bottom: 15px;
 }
 
 .inspection-title{
     font-size:3rem;
-    line-height:1.o5;
+    line-height:1.05;
     margin-bottom:15px;
 
     background:linear-gradient(
@@ -70,7 +76,7 @@ body{
 .inspection-subtitle{
     color:#94a3b8;
     font-size:20px;
-    margin-bottom:22px;
+    margin-bottom:18px;
 
     padding-left:15px;
 }
@@ -169,7 +175,7 @@ body{
 }
 
 .verdict-card{
-    margin:20px 0 35px;
+    margin:40px 0 30px;
 
     padding:26px 35px;
 
@@ -180,6 +186,26 @@ body{
 
     border:1px solid rgba(34,197,94,0.18);
     border-radius:24px;
+
+    .verdict-positive{
+    border:1px solid rgba(34,197,94,0.25);
+    background:rgba(34,197,94,0.08);
+    }
+
+    .verdict-warning{
+        border:1px solid rgba(250,204,21,0.25);
+        background:rgba(250,204,21,0.08);
+    }
+
+    .verdict-caution{
+        border:1px solid rgba(249,115,22,0.25);
+        background:rgba(249,115,22,0.08);
+    }
+
+    .verdict-danger{
+        border:1px solid rgba(239,68,68,0.25);
+        background:rgba(239,68,68,0.08);
+    }
 }
 
 .verdict-left{
@@ -262,16 +288,11 @@ body{
 
 .finding-card{
     position:relative;
-
     min-height:0;
-
     padding:28px;
-
     background:rgba(255,255,255,0.02);
-
     border:1px solid rgba(255,255,255,0.08);
-    border-radius:20px;
-
+    border-radius:18px;
     transition:0.3s;
     cursor:pointer;
 }
@@ -335,4 +356,20 @@ body{
     line-height:1.5;
     font-size:17px;
     margin-bottom:12px;
+}
+
+.text-positive{
+    color:#22c55e;
+}
+
+.text-warning{
+    color:#facc15;
+}
+
+.text-caution{
+    color:#f97316;
+}
+
+.text-danger{
+    color:#ef4444;
 }
