@@ -15,11 +15,50 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("totalCheckpoints").textContent =
         `${reportData.totalCheckpoints} Checkpoints`;
 
-    document.getElementById("inspection-score").textContent =
-        reportData.score;
+    const scoreElement =
+    document.getElementById("inspection-score");
+
+    const finalScore =
+    parseFloat(reportData.score);
+
+    let currentScore = 0;
+
+    const interval =
+    setInterval(() => {
+
+        currentScore += 1;
+
+        if(currentScore >= finalScore){
+
+            currentScore = finalScore;
+            clearInterval(interval);
+        }
+
+        scoreElement.textContent =
+        currentScore.toFixed(1);
+
+    },20);
+
+    let scoreStatus = "";
+
+    if(reportData.score >= 85){
+        scoreStatus = "Excellent Condition";
+    }
+
+    else if(reportData.score >= 70){
+        scoreStatus = "Good Condition";
+    }
+
+    else if(reportData.score >= 50){
+        scoreStatus = "Needs Attention";
+    }
+
+    else{
+        scoreStatus = "Poor Condition";
+    }
 
     document.getElementById("score-status").textContent =
-        reportData.verdict;
+    scoreStatus;
     
     document.getElementById("finalVerdict").textContent =
     reportData.verdict;
@@ -139,9 +178,115 @@ document.addEventListener("DOMContentLoaded", () => {
             },
 
             data:[{
-                value:parseFloat(reportData.score)
+                value:0
             }]
+
         }]
+
     });
-    
+
+    setTimeout(() => {
+
+        gaugeChart.setOption({
+
+            series:[{
+                data:[{
+                    value: parseFloat(reportData.score)
+                }]
+            }]
+
+        });
+
+    }, 300);
+
+    const findingsContainer =
+    document.getElementById("dynamicFindings");
+
+    let findingsHTML = "";
+
+    const selectedIssues =
+    reportData.selectedIssues || [];
+
+
+    // Exterior
+
+    if(selectedIssues.some(item =>
+        item.issue.toLowerCase().includes("paint") ||
+        item.issue.toLowerCase().includes("body") ||
+        item.issue.toLowerCase().includes("rust") ||
+        item.issue.toLowerCase().includes("dent")
+    )){
+
+        findingsHTML +=
+        `<p>⚠️ Exterior inconsistencies detected.</p>`;
+    }
+
+    else{
+
+        findingsHTML +=
+        `<p>✅ Exterior condition appears satisfactory.</p>`;
+    }
+
+
+    // Engine
+
+    if(selectedIssues.some(item =>
+        item.issue.toLowerCase().includes("oil") ||
+        item.issue.toLowerCase().includes("coolant") ||
+        item.issue.toLowerCase().includes("vibration") ||
+        item.issue.toLowerCase().includes("smoke")
+    )){
+
+        findingsHTML +=
+        `<p>⚠️ Engine bay concerns require verification.</p>`;
+    }
+
+    else{
+
+        findingsHTML +=
+        `<p>✅ No major engine concerns observed.</p>`;
+    }
+
+
+    // Suspension
+
+    if(selectedIssues.some(item =>
+        item.issue.toLowerCase().includes("tyre") ||
+        item.issue.toLowerCase().includes("suspension") ||
+        item.issue.toLowerCase().includes("steering")
+    )){
+
+        findingsHTML +=
+        `<p>⚠️ Tyre and suspension inspection recommended.</p>`;
+    }
+
+    else{
+
+        findingsHTML +=
+        `<p>✅ Tyres and suspension appear healthy.</p>`;
+    }
+
+
+    // Test Drive
+
+    if(selectedIssues.some(item =>
+        item.issue.toLowerCase().includes("clutch") ||
+        item.issue.toLowerCase().includes("gear") ||
+        item.issue.toLowerCase().includes("brake") ||
+        item.issue.toLowerCase().includes("noise")
+    )){
+
+        findingsHTML +=
+        `<p>⚠️ Test drive verification recommended.</p>`;
+    }
+
+    else{
+
+        findingsHTML +=
+        `<p>✅ Test drive observations appear satisfactory.</p>`;
+    }
+
+    findingsContainer.innerHTML =
+    findingsHTML;
+
 });

@@ -176,10 +176,13 @@ document
 
         totalIssues,
         totalCheckpoints,
+
         score: inspectionResult.score,
         verdict: inspectionResult.verdict,
         recommendation:
-        inspectionResult.recommendation
+        inspectionResult.recommendation,
+
+        selectedIssues
         
     };
 

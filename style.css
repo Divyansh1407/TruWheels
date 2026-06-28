@@ -376,11 +376,11 @@ button:hover {
   display:flex;
   align-items:center;
 
-  gap:20px;
+  gap:25px;
 }
 
 .shield-icon{
-  font-size:70px;
+  font-size:72px;
 }
 
 .verdict-content h4{
@@ -388,12 +388,12 @@ button:hover {
   font-size:14px;
   letter-spacing:1px;
   text-transform:uppercase;
-  margin-bottom:6px;
+  margin-bottom:8px;
   font-weight:700;
 }
 
 .verdict-content h2{
-  font-size:34px;
+  font-size:33px;
   line-height:1.1;
   font-weight:650;
   letter-spacing:-1px;

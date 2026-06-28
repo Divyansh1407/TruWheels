@@ -97,17 +97,145 @@ function calculateInspectionScore(selectedIssues){
 
     };
 
-    let totalDeduction = 0;
+    const categoryWeights = {
+
+    exterior: 20,
+    engine: 30,
+    tyres: 15,
+    interior: 10,
+    testDrive: 25
+
+};
+
+    const severityCategory = {
+
+        // Exterior
+
+        "Single Panel Repaint": "exterior",
+        "Multiple Panels Repainted": "exterior",
+        "Signs of Major Accident Repair": "exterior",
+
+        "Slight Misalignment": "exterior",
+        "Multiple Uneven Panels": "exterior",
+        "Possible Structural Damage": "exterior",
+
+        "Surface Rust": "exterior",
+        "Rust on Multiple Panels": "exterior",
+        "Severe Corrosion / Structural Rust": "exterior",
+
+        "Minor Dent": "exterior",
+        "Multiple Major Dents": "exterior",
+        "Structural Damage Detected": "exterior",
+
+        "Minor Crack / Fogging": "exterior",
+        "One Unit Damaged": "exterior",
+        "Multiple Lights Damaged / Non Functional": "exterior",
+
+        // Engine
+
+        "Minor Oil Seepage": "engine",
+        "Visible Oil Leakage": "engine",
+        "Heavy Leakage / Oil Dripping": "engine",
+
+        "Minor Coolant Seepage": "engine",
+        "Visible Coolant Leakage": "engine",
+        "Major Leakage / Low Coolant Level": "engine",
+
+        "Slight Vibration at Idle": "engine",
+        "Noticeable Vibration While Driving": "engine",
+        "Severe Vibration / Engine Shaking": "engine",
+
+        "Occasional Smoke": "engine",
+        "Continuous White/Black Smoke": "engine",
+        "Dense Blue/Black Smoke": "engine",
+
+        // Tyres
+
+        "Slight Uneven Wear": "tyres",
+        "Noticeable Uneven Wear": "tyres",
+        "Severe / Abnormal Tyre Wear": "tyres",
+
+        "Tyres Near End of Life": "tyres",
+        "Immediate Replacement Recommended": "tyres",
+        "Unsafe Tyres / Bald Tyres": "tyres",
+
+        "Occasional Minor Noise": "tyres",
+        "Frequent Noise Over Bumps": "tyres",
+        "Loud Knocking / Suspension Failure Signs": "tyres",
+
+        "Slight Pulling": "tyres",
+        "Noticeable Pulling During Driving": "tyres",
+        "Severe Pulling / Poor Vehicle Control": "tyres",
+
+        // Interior
+
+        "Single Warning Light Active": "interior",
+        "Multiple Warning Lights Active": "interior",
+        "Critical Warning Lights (Engine/Airbag/ABS)": "interior",
+
+        "Slightly Reduced Cooling": "interior",
+        "Poor Cooling Performance": "interior",
+        "AC Not Working": "interior",
+
+        "Minor Feature Malfunction": "interior",
+        "Multiple Electrical Issues": "interior",
+        "Major Electrical System Failure": "interior",
+
+        // Test Drive
+
+        "Slight Clutch Slip": "testDrive",
+        "Noticeable Clutch Slip": "testDrive",
+        "Severe Slip / Immediate Replacement Required": "testDrive",
+
+        "Occasional Hard Shifts": "testDrive",
+        "Frequent Rough Gear Shifts": "testDrive",
+        "Severe Gearbox Issues / Grinding Noise": "testDrive",
+
+        "Slightly Reduced Braking": "testDrive",
+        "Noticeably Weak Braking": "testDrive",
+        "Unsafe Braking Performance": "testDrive",
+
+        "Frequent Noise During Driving": "testDrive",
+        "Loud Knocking / Major Mechanical Noise": "testDrive"
+
+    };
+
+    let categoryScores = {
+
+    exterior: 20,
+    engine: 30,
+    tyres: 15,
+    interior: 10,
+    testDrive: 25
+
+    };
 
     selectedIssues.forEach(item => {
-        totalDeduction += severityDeductions[item.severity] || 0;
+
+        const deduction =
+            severityDeductions[item.severity] || 0;
+
+        const category =
+            severityCategory[item.severity];
+
+        if(category){
+
+            categoryScores[category] -= deduction;
+
+            if(categoryScores[category] < 0){
+                categoryScores[category] = 0;
+            }
+        }
+
     });
 
-    let score = 100 - totalDeduction;
+    let score =
 
-    if(score < 0){
-        score = 0;
-    }
+        categoryScores.exterior +
+        categoryScores.engine +
+        categoryScores.tyres +
+        categoryScores.interior +
+        categoryScores.testDrive;
 
 
     let verdict;
