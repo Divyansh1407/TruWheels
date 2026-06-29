@@ -289,4 +289,209 @@ document.addEventListener("DOMContentLoaded", () => {
     findingsContainer.innerHTML =
     findingsHTML;
 
+    const modal =
+    document.querySelector(".inspection-modal");
+
+    const closeModalBtn =
+    document.querySelector(".close-modal");
+
+    const modalTitle =
+    document.getElementById("modalTitle");
+
+    const modalSubtitle =
+    document.getElementById("modalSubtitle");
+
+    const modalBody =
+    document.getElementById("modalBody");
+
+    const popupConfig = {
+
+        exterior: {
+            title: "Exterior Inspection",
+            keywords: [
+                "paint",
+                "panel",
+                "rust",
+                "dent",
+                "headlight",
+                "taillight"
+            ]
+        },
+
+        engine: {
+            title: "Engine Bay Inspection",
+            keywords: [
+                "oil",
+                "coolant",
+                "vibration",
+                "smoke"
+            ]
+        },
+
+        suspension: {
+            title: "Tyres & Suspension",
+            keywords: [
+                "tyre",
+                "suspension",
+                "steering"
+            ]
+        },
+
+        interior: {
+            title: "Interior Inspection",
+            keywords: [
+                "dashboard",
+                "warning",
+                "ac",
+                "electrical"
+            ]
+        },
+
+        testDrive: {
+            title: "Test Drive Inspection",
+            keywords: [
+                "clutch",
+                "gear",
+                "brake",
+                "noise"
+            ]
+        }
+
+    };
+
+
+    document
+    .querySelectorAll(".finding-card")
+    .forEach(card => {
+
+        card.addEventListener("click", () => {
+
+            const section =
+            card.dataset.section;
+
+            const config =
+            popupConfig[section];
+
+            modal.classList.remove("hidden");
+
+            modalTitle.textContent =
+            config.title;
+
+            modalSubtitle.textContent =
+            "Detailed Physical Inspection Assessment";
+
+            const relatedIssues =
+            reportData.selectedIssues.filter(issue =>
+
+                config.keywords.some(keyword =>
+
+                    issue.issue
+                    .toLowerCase()
+                    .includes(keyword)
+                )
+            );
+
+            const confidence =
+            relatedIssues.length === 0
+            ? "High"
+            : relatedIssues.length <= 2
+            ? "Medium"
+            : "Low";
+
+            let issueHTML = "";
+
+            if(relatedIssues.length > 0){
+
+                relatedIssues.slice(0,3)
+                .forEach(item => {
+
+                    issueHTML += `
+                        <div class="inspection-pill">
+                            ${item.issue}
+                        </div>
+                    `;
+
+                });
+
+            }
+
+            else{
+
+                issueHTML =
+                `<div class="inspection-pill">
+                    No concerns observed
+                </div>`;
+            }
+
+            modalBody.innerHTML = `
+
+                <div class="popup-metrics">
+
+                    <div class="popup-card">
+                        <span>CHECKPOINTS EVALUATED</span>
+                        <h3>${config.keywords.length}</h3>
+                    </div>
+
+                    <div class="popup-card">
+                        <span>ISSUES DETECTED</span>
+                        <h3>${relatedIssues.length}</h3>
+                    </div>
+
+                    <div class="popup-card">
+                        <span>CONFIDENCE LEVEL</span>
+                        <h3>${confidence}</h3>
+                    </div>
+
+                </div>
+
+                <div class="popup-section">
+
+                    <h3>Critical Inspection Areas</h3>
+
+                    <div class="popup-pill-container">
+                        ${issueHTML}
+                    </div>
+
+                </div>
+
+                <div class="popup-assessment">
+
+                    <h3>TruWheels Assessment</h3>
+
+                    <p>
+
+                    ${
+                        relatedIssues.length === 0
+
+                        ?
+
+                        "No major concerns were observed during inspection. This area appears satisfactory based on the available observations."
+
+                        :
+
+                        `Multiple observations were recorded during inspection. Additional verification is recommended before final purchase.`
+                    }
+
+                    </p>
+
+                </div>
+
+            `;
+
+        });
+
+    });
+
+
+    closeModalBtn.addEventListener(
+        "click",
+        () => {
+
+            modal.classList.add(
+                "hidden"
+            );
+
+        }
+    );
+
 });

@@ -41,7 +41,7 @@ body{
 
 .hero-right{
     width:400px;
-    min-height:340px;
+    min-height:350px;
 
     border:1px solid rgba(255,255,255,0.1);
     border-radius:20px;
@@ -380,4 +380,178 @@ body{
 
 .text-danger{
     color:#ef4444;
+}
+
+.inspection-modal{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.8);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:1000;
+}
+
+.hidden{
+    display:none;
+}
+
+.inspection-modal-content{
+
+    width:760px;
+    max-width:90%;
+
+    max-height:85vh;
+    overflow-y:auto;
+
+    margin:40px auto;
+
+    background:rgba(8,18,36,0.88);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.03);
+
+    padding:30px;
+
+    position:relative;
+}
+
+.close-modal{
+    position:absolute;
+
+    right:25px;
+    top:20px;
+
+    font-size:42px;
+    font-weight:300;
+
+    color:#94a3b8;
+
+    opacity:0.65;
+
+    cursor:pointer;
+
+    transition:0.25s;
+
+    line-height:1;
+}
+
+.close-modal:hover{
+    opacity:1;
+}
+
+#modalTitle{
+    margin:0;
+    padding-bottom:25px;
+
+    font-size:34px;
+    font-weight:690;
+    letter-spacing:-1px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.04);
+}
+
+#modalSubtitle{
+    color:#94a3b8;
+    font-size:14px;
+    letter-spacing:0.8px;
+
+    margin-top:10px;
+    margin-bottom:30px;
+
+    border:none;
+    padding:0;
+}
+
+.popup-metrics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.popup-card{
+    padding:28px;
+
+    background:rgba(255,255,255,0.03);
+
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+}
+
+.popup-card span{
+    color:#94a3b8;
+
+    font-size:12px;
+    letter-spacing:1.5px;
+}
+
+.popup-card h3{
+    font-size:42px;
+    margin-top:18px;
+}
+
+.popup-section{
+    margin-bottom:30px;
+
+    padding:28px;
+
+    background:rgba(255,255,255,0.03);
+
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+}
+
+.popup-pill-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+
+    margin-top:25px;
+}
+
+.inspection-pill{
+
+    padding:14px 24px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    color:#dbeafe;
+}
+
+.popup-assessment{
+
+    padding:32px;
+
+    background:#071c42;
+
+    border:1px solid rgba(37,99,235,0.35);
+
+    border-radius:20px;
+}
+
+.popup-assessment h3{
+    color:#60a5fa;
+    margin-bottom:25px;
+}
+
+.popup-assessment p{
+    line-height:1.8;
+    color:#dbeafe;
+    font-size:17px;
 }

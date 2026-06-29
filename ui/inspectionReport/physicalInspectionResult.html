@@ -144,35 +144,46 @@
 
             <div class="findings-grid">
 
-                <div class="finding-card">
-                    <div class="finding-icon">🚗</div>
-                    <h4>Exterior Inspection</h4>
-                    <p>Minor cosmetic concerns observed.</p>
-                    <span class="arrow">→</span>
-                </div>
+                <div class="finding-card"
+                data-section="exterior">
 
-                <div class="finding-card">
+                <div class="finding-icon">🚗</div>
+                <h4>Exterior Inspection</h4>
+                <p>Minor cosmetic concerns observed.</p>
+                <span class="arrow">→</span>
+
+            </div>
+
+                <div class="finding-card"
+                    data-section="engine">
+
                     <div class="finding-icon">⚙️</div>
                     <h4>Engine Bay</h4>
                     <p>Engine condition requires further verification.</p>
                     <span class="arrow">→</span>
                 </div>
 
-                <div class="finding-card">
+                <div class="finding-card"
+                    data-section="suspension">
+
                     <div class="finding-icon">🛞</div>
                     <h4>Tyres & Suspension</h4>
                     <p>Wear patterns detected during inspection.</p>
                     <span class="arrow">→</span>
                 </div>
 
-                <div class="finding-card">
+                <div class="finding-card"
+                    data-section="interior">
+
                     <div class="finding-icon">🪑</div>
                     <h4>Interior Inspection</h4>
                     <p>Interior condition appears satisfactory.</p>
                     <span class="arrow">→</span>
                 </div>
 
-                <div class="finding-card">
+                <div class="finding-card"
+                    data-section="testDrive">
+
                     <div class="finding-icon">🛣️</div>
                     <h4>Test Drive</h4>
                     <p>Driving behaviour verification recommended.</p>
@@ -221,6 +232,18 @@
 
     </div>
 
+</div>
+
+<div class="inspection-modal hidden">
+    <div class="inspection-modal-content">
+        <span class="close-modal">×</span>
+        <h2 id="modalTitle">
+        </h2>
+        <p id="modalSubtitle">
+        </p>
+        <div id="modalBody">
+        </div>
+    </div>
 </div>
 
 <script src="./physicalInspectionResult.js"></script>
