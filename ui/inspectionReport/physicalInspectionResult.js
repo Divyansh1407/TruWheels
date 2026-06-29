@@ -432,6 +432,79 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>`;
             }
 
+            let assessmentText = "";
+
+            if(relatedIssues.length === 0){
+
+                assessmentText =
+                `No significant concerns were identified during ${config.title.toLowerCase()}. Current observations do not indicate immediate repair requirements in this area.`;
+
+            }
+
+            else{
+
+                const issueNames =
+                relatedIssues.map(item =>
+                    item.issue.toLowerCase()
+                );
+
+                if(issueNames.some(issue =>
+                    issue.includes("rust") ||
+                    issue.includes("structural")
+                )){
+
+                    assessmentText =
+                    "Signs of corrosion or possible structural repairs were observed. A detailed body inspection is recommended before purchase.";
+                }
+
+                else if(issueNames.some(issue =>
+                    issue.includes("oil") ||
+                    issue.includes("coolant") ||
+                    issue.includes("smoke")
+                )){
+
+                    assessmentText =
+                    "Engine-related observations may indicate underlying mechanical concerns. Service history verification and professional inspection are advised.";
+                }
+
+                else if(issueNames.some(issue =>
+                    issue.includes("tyre") ||
+                    issue.includes("suspension") ||
+                    issue.includes("steering")
+                )){
+
+                    assessmentText =
+                    "Wear or abnormalities affecting ride quality and stability were observed. Future maintenance expenses may be expected.";
+                }
+
+                else if(issueNames.some(issue =>
+                    issue.includes("clutch") ||
+                    issue.includes("gear") ||
+                    issue.includes("brake")
+                )){
+
+                    assessmentText =
+                    "Driving behaviour observations indicate possible drivetrain or braking wear. Further verification is recommended before purchase.";
+                }
+
+                else if(issueNames.some(issue =>
+                    issue.includes("electrical") ||
+                    issue.includes("warning") ||
+                    issue.includes("ac")
+                )){
+
+                    assessmentText =
+                    "Interior or electrical observations suggest potential reliability concerns. Functional verification of all systems is recommended.";
+                }
+
+                else{
+
+                    assessmentText =
+                    "Multiple observations were recorded during inspection. Additional verification is recommended before final purchase.";
+                }
+            }
+
+
             modalBody.innerHTML = `
 
                 <div class="popup-metrics">
@@ -467,21 +540,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <h3>TruWheels Assessment</h3>
 
-                    <p>
-
-                    ${
-                        relatedIssues.length === 0
-
-                        ?
-
-                        "No major concerns were observed during inspection. This area appears satisfactory based on the available observations."
-
-                        :
-
-                        `Multiple observations were recorded during inspection. Additional verification is recommended before final purchase.`
-                    }
-
-                    </p>
+                 <p>${assessmentText}</p>
 
                 </div>
 
