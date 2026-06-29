@@ -290,19 +290,17 @@ document.addEventListener("DOMContentLoaded", () => {
     findingsHTML;
 
     const modal =
-    document.querySelector(".inspection-modal");
+    document.querySelector(".modal");
 
     const closeModalBtn =
     document.querySelector(".close-modal");
 
     const modalTitle =
-    document.getElementById("modalTitle");
-
-    const modalSubtitle =
-    document.getElementById("modalSubtitle");
+    document.getElementById("modal-title");
 
     const modalBody =
-    document.getElementById("modalBody");
+    document.getElementById("modal-body");
+
 
     const popupConfig = {
 
@@ -377,9 +375,6 @@ document.addEventListener("DOMContentLoaded", () => {
             modalTitle.textContent =
             config.title;
 
-            modalSubtitle.textContent =
-            "Detailed Physical Inspection Assessment";
-
             const relatedIssues =
             reportData.selectedIssues.filter(issue =>
 
@@ -397,6 +392,20 @@ document.addEventListener("DOMContentLoaded", () => {
             : relatedIssues.length <= 2
             ? "Medium"
             : "Low";
+
+            let confidenceClass = "";
+
+            if(confidence === "High"){
+                confidenceClass = "confidence-high";
+            }
+
+            else if(confidence === "Medium"){
+                confidenceClass = "confidence-medium";
+            }
+
+            else{
+                confidenceClass = "confidence-low";
+            }
 
             let issueHTML = "";
 
@@ -437,7 +446,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h3>${relatedIssues.length}</h3>
                     </div>
 
-                    <div class="popup-card">
+                    <div class="popup-card ${confidenceClass}">
                         <span>CONFIDENCE LEVEL</span>
                         <h3>${confidence}</h3>
                     </div>

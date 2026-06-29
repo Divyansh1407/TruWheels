@@ -290,7 +290,8 @@ body{
 
 .findings-grid{
     display:grid;
-    grid-template-columns:repeat(5,minmax(0,1fr));
+     grid-template-columns:repeat(5,1fr);
+   
     gap:18px;
 }
 
@@ -382,7 +383,154 @@ body{
     color:#ef4444;
 }
 
-.inspection-modal{
+
+
+.popup-metrics{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(190px,1fr));
+
+    gap:14px;
+
+    margin-bottom:22px;
+}
+
+.popup-card{
+    background:rgba(255,255,255,0.035);
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+    border-radius:14px;
+
+    padding:16px;
+
+    
+}
+
+.popup-card span{
+    color:#94a3b8;
+
+    font-size:11px;
+    letter-spacing:1px;
+    margin-bottom: 10px
+}
+
+.popup-card h3{
+
+    font-size:24px;
+
+    line-height:1.25;
+
+    margin-top:14px;
+
+    margin-bottom:0;
+
+    font-weight:650;
+
+    color:#ffffff;
+}
+
+.popup-section{
+    padding:20px;
+
+    background:rgba(255,255,255,0.03);
+
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:16px;
+    margin-bottom: 26px;
+}
+
+
+.popup-section h3{
+
+    margin-top:0;
+    margin-bottom:20px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#ffffff;
+}
+
+.popup-pill-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+
+    margin-top:25px;
+}
+
+.inspection-pill{
+
+    padding:8px 14px;
+    font-size: 13px;
+    border-radius:999px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+    color: #e5e7eb;
+    margin-top: -10px;
+}
+
+.popup-assessment{
+
+    padding:20px;
+    background: rgba(37, 99, 235, 0.08);
+    border:1px solid rgba(37,99,235,0.35);
+
+    border-radius:16px;
+    
+}
+
+.popup-assessment h3{
+
+    color:#60a5fa;
+    font-size:19px;
+    font-weight:700;
+    margin-top: -2px;
+
+
+}
+
+.popup-assessment p{
+
+    line-height:1.8;
+
+    color:#dbeafe;
+
+    font-size:15px;
+    margin-top: -10px;
+}
+
+.modal-content{
+    animation:popupFade 0.35s ease;
+}
+
+@keyframes popupFade{
+
+    from{
+        opacity:0;
+        transform:translateY(18px) scale(0.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+.popup-subtitle{
+    color:#94a3b8;
+    font-size:15px;
+    margin-top:12px;
+    margin-bottom:30px;
+}
+
+.modal{
     position:fixed;
     inset:0;
 
@@ -399,159 +547,117 @@ body{
     display:none;
 }
 
-.inspection-modal-content{
-
-    width:760px;
-    max-width:90%;
-
-    max-height:85vh;
-    overflow-y:auto;
-
-    margin:40px auto;
-
-    background:rgba(8,18,36,0.88);
-
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:20px;
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,0.45),
-        0 0 0 1px rgba(255,255,255,0.03);
-
-    padding:30px;
-
-    position:relative;
+.confidence-high{
+    background:rgba(34,197,94,0.08);
+    border:1px solid rgba(34,197,94,0.25);
 }
 
-.close-modal{
-    position:absolute;
-
-    right:25px;
-    top:20px;
-
-    font-size:42px;
-    font-weight:300;
-
-    color:#94a3b8;
-
-    opacity:0.65;
-
-    cursor:pointer;
-
-    transition:0.25s;
-
-    line-height:1;
+.confidence-medium{
+    background:rgba(250,204,21,0.08);
+    border:1px solid rgba(250,204,21,0.25);
 }
 
-.close-modal:hover{
-    opacity:1;
+.confidence-low{
+    background:rgba(239,68,68,0.08);
+    border:1px solid rgba(239,68,68,0.25);
 }
 
-#modalTitle{
-    margin:0;
-    padding-bottom:25px;
+/* ================= TABLET ================= */
 
-    font-size:34px;
-    font-weight:690;
-    letter-spacing:-1px;
+@media(max-width:1100px){
 
-    border-bottom:
-        1px solid rgba(255,255,255,0.04);
+    .inspection-hero{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .hero-left{
+        margin:0;
+    }
+
+    .hero-right{
+        width:100%;
+        max-width:600px;
+    }
+
+    .findings-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
 }
 
-#modalSubtitle{
-    color:#94a3b8;
-    font-size:14px;
-    letter-spacing:0.8px;
+/* ================= MOBILE ================= */
 
-    margin-top:10px;
-    margin-bottom:30px;
+@media(max-width:768px){
 
-    border:none;
-    padding:0;
+    .page-content{
+        padding:20px;
+    }
+
+    .inspection-title{
+        font-size:2.4rem;
+    }
+
+    .inspection-subtitle{
+        font-size:18px;
+    }
+
+    .inspection-meta{
+        flex-direction:column;
+        max-width:100%;
+    }
+
+    .meta-card{
+        min-width:unset;
+    }
+
+    .findings-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .questions-grid{
+        grid-template-columns:1fr;
+    }
+
+    .verdict-card{
+        flex-direction:column;
+        gap:30px;
+    }
+
+    .verdict-right{
+        width:100%;
+        border-left:none;
+        border-top:1px solid rgba(255,255,255,0.08);
+        padding-left:0;
+        padding-top:25px;
+    }
+
+    .gauge{
+        width:100%;
+    }
 }
 
-.popup-metrics{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    margin-bottom:30px;
-}
+/* ================= SMALL PHONES ================= */
 
-.popup-card{
-    padding:28px;
+@media(max-width:520px){
 
-    background:rgba(255,255,255,0.03);
+    .inspection-title{
+        font-size:1.8rem;
+    }
 
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:18px;
-}
+    .findings-grid{
+        grid-template-columns:1fr;
+    }
 
-.popup-card span{
-    color:#94a3b8;
+    .finding-card{
+        min-height:260px;
+    }
 
-    font-size:12px;
-    letter-spacing:1.5px;
-}
+    .popup-metrics{
+        grid-template-columns:1fr;
+    }
 
-.popup-card h3{
-    font-size:42px;
-    margin-top:18px;
-}
-
-.popup-section{
-    margin-bottom:30px;
-
-    padding:28px;
-
-    background:rgba(255,255,255,0.03);
-
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:20px;
-}
-
-.popup-pill-container{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-
-    margin-top:25px;
-}
-
-.inspection-pill{
-
-    padding:14px 24px;
-
-    border-radius:999px;
-
-    background:rgba(255,255,255,0.05);
-
-    border:1px solid rgba(255,255,255,0.08);
-
-    color:#dbeafe;
-}
-
-.popup-assessment{
-
-    padding:32px;
-
-    background:#071c42;
-
-    border:1px solid rgba(37,99,235,0.35);
-
-    border-radius:20px;
-}
-
-.popup-assessment h3{
-    color:#60a5fa;
-    margin-bottom:25px;
-}
-
-.popup-assessment p{
-    line-height:1.8;
-    color:#dbeafe;
-    font-size:17px;
+    .hero-right{
+        min-height:auto;
+        padding:20px 0;
+    }
 }
