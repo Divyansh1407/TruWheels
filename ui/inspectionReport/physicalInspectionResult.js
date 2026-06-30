@@ -117,8 +117,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.getElementById("finalRecommendation").textContent =
-        reportData.recommendation;
+    reportData.recommendation;
 
+    const priorityQuestions = [];
+
+    const genericQuestions = [
+        "Do both original keys exist?",
+        "Can maintenance records or invoices be verified?",
+        "Is the RC currently in your name?",
+        "Has the vehicle ever undergone major repairs?",
+        "Are all electrical features functioning properly?",
+        "Has the vehicle remained unused for long periods?",
+        "Are there any pending insurance claims?"
+    ];
     
     const gaugeContainer =
     document.getElementById("inspectionGauge");
@@ -207,6 +218,82 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedIssues =
     reportData.selectedIssues || [];
 
+    selectedIssues.forEach(item => {
+
+        const issue =
+        item.issue.toLowerCase();
+
+        if(issue.includes("oil")){
+
+            priorityQuestions.push(
+                "Has the engine oil leakage issue been previously repaired?"
+            );
+        }
+
+        if(issue.includes("paint") ||
+        issue.includes("dent") ||
+        issue.includes("rust")){
+
+            priorityQuestions.push(
+                "Has the vehicle undergone body repair or repainting?"
+            );
+        }
+
+        if(issue.includes("tyre")){
+
+            priorityQuestions.push(
+                "When were the tyres last replaced or rotated?"
+            );
+        }
+
+        if(issue.includes("suspension")){
+
+            priorityQuestions.push(
+                "Have suspension components been replaced recently?"
+            );
+        }
+
+        if(issue.includes("clutch") ||
+        issue.includes("gear")){
+
+            priorityQuestions.push(
+                "Have clutch or gearbox repairs ever been performed?"
+            );
+        }
+
+        if(issue.includes("brake")){
+
+            priorityQuestions.push(
+                "Have brake pads or discs been recently replaced?"
+            );
+        }
+
+    });
+
+    const uniquePriorityQuestions =
+    [...new Set(priorityQuestions)];
+
+    const fallbackQuestions = [
+
+        "Can complete maintenance records be shared?",
+
+        "Has the vehicle ever undergone major repairs?",
+
+        "Can previous service invoices be provided?",
+
+        "Are all electrical features functioning properly?",
+
+        "Has the vehicle remained unused for long periods?"
+    ];
+
+    fallbackQuestions.forEach(question => {
+
+        if(uniquePriorityQuestions.length < 3){
+            uniquePriorityQuestions.push(question);
+        }
+
+    });
+    
     const cardSummaries = {
 
         exterior:
@@ -262,6 +349,33 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "Driving behaviour verification recommended."
         : "Test drive observations appear satisfactory."
     };
+
+        const recommendedQuestions = [
+
+        "Can you share service invoices for the last few years?",
+
+        "When were the tyres last replaced?",
+
+        "Do both original keys exist?",
+
+        "Has the vehicle ever undergone major mechanical repairs?",
+
+        "Can maintenance records be independently verified?"
+
+    ];
+
+    document.getElementById("priorityQuestionsList").innerHTML =
+    uniquePriorityQuestions
+    .slice(0,3)
+    .map(question => `<li>${question}</li>`)
+    .join("");
+
+    document.getElementById("recommendedQuestionsList").innerHTML =
+    recommendedQuestions
+    .sort(() => 0.5 - Math.random())
+    .slice(0,3)
+    .map(question => `<li>${question}</li>`)
+    .join("");
 
     document.getElementById("exteriorSummary").textContent =
     cardSummaries.exterior;
