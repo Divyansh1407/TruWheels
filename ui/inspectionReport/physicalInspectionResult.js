@@ -207,6 +207,77 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedIssues =
     reportData.selectedIssues || [];
 
+    const cardSummaries = {
+
+        exterior:
+        selectedIssues.some(item =>
+            item.issue.toLowerCase().includes("paint") ||
+            item.issue.toLowerCase().includes("body") ||
+            item.issue.toLowerCase().includes("rust") ||
+            item.issue.toLowerCase().includes("dent")
+        )
+        ? "Exterior concerns detected during inspection."
+        : "Exterior condition appears satisfactory.",
+
+
+        engine:
+        selectedIssues.some(item =>
+            item.issue.toLowerCase().includes("oil") ||
+            item.issue.toLowerCase().includes("coolant") ||
+            item.issue.toLowerCase().includes("vibration") ||
+            item.issue.toLowerCase().includes("smoke")
+        )
+        ? "Engine observations require further verification."
+        : "Engine bay appears mechanically healthy.",
+
+
+        suspension:
+        selectedIssues.some(item =>
+            item.issue.toLowerCase().includes("tyre") ||
+            item.issue.toLowerCase().includes("suspension") ||
+            item.issue.toLowerCase().includes("steering")
+        )
+        ? "Wear patterns detected during inspection."
+        : "Tyres and suspension appear healthy.",
+
+
+        interior:
+        selectedIssues.some(item =>
+            item.issue.toLowerCase().includes("dashboard") ||
+            item.issue.toLowerCase().includes("warning") ||
+            item.issue.toLowerCase().includes("ac") ||
+            item.issue.toLowerCase().includes("electrical")
+        )
+        ? "Interior observations require attention."
+        : "Interior condition appears satisfactory.",
+
+
+        testDrive:
+        selectedIssues.some(item =>
+            item.issue.toLowerCase().includes("clutch") ||
+            item.issue.toLowerCase().includes("gear") ||
+            item.issue.toLowerCase().includes("brake") ||
+            item.issue.toLowerCase().includes("noise")
+        )
+        ? "Driving behaviour verification recommended."
+        : "Test drive observations appear satisfactory."
+    };
+
+    document.getElementById("exteriorSummary").textContent =
+    cardSummaries.exterior;
+
+    document.getElementById("engineSummary").textContent =
+    cardSummaries.engine;
+
+    document.getElementById("suspensionSummary").textContent =
+    cardSummaries.suspension;
+
+    document.getElementById("interiorSummary").textContent =
+    cardSummaries.interior;
+
+    document.getElementById("testDriveSummary").textContent =
+    cardSummaries.testDrive;
+
 
     // Exterior
 
