@@ -123,39 +123,70 @@ document
 .getElementById("generateInspectionBtn")
 .addEventListener("click", () => {
 
-    const totalIssues =
-        document.querySelectorAll(
-            ".checkpoint-checkbox:checked"
-        ).length;
-
     const totalCheckpoints =
         document.querySelectorAll(
             ".checkpoint-checkbox"
         ).length;
 
     const selectedIssues = [];
+    let totalIssues = 0;
+    let incompleteSelection = false;
 
     document
-    .querySelectorAll(".checkpoint-checkbox:checked")
-    .forEach(checkbox => {
+    .querySelectorAll(".checkpoint-card")
+    .forEach(card => {
 
-        const card = checkbox.closest(".checkpoint-card");
+        const checkbox =
+        card.querySelector(".checkpoint-checkbox");
 
-        const issueTitle = card
-            .querySelector(".checkpoint-text")
-            .textContent
-            .trim();
+        const severity =
+        card.querySelector(".severity-select").value;
 
-        const severity = card
-            .querySelector(".severity-select")
-            .value;
+        // User checked issue but forgot severity
 
-        selectedIssues.push({
-            issue: issueTitle,
-            severity: severity
-        });
+        if(checkbox.checked && severity === ""){
+
+            incompleteSelection = true;
+
+            card.style.border =
+            "1px solid #ef4444";
+
+        }
+
+        if(severity !== ""){
+            card.style.border =
+            "1px solid rgba(255,255,255,0.08)";
+        }
+
+        // User selected severity properly
+
+        if(checkbox.checked && severity !== ""){
+
+            const issueTitle = card
+                .querySelector(".checkpoint-text")
+                .textContent
+                .trim();
+
+            selectedIssues.push({
+
+                issue: issueTitle,
+                severity: severity
+
+            });
+            totalIssues++;
+
+        }
 
     });
+
+    if(incompleteSelection){
+
+        alert(
+            "Please select severity for all checked issues before generating the report."
+        );
+
+        return;
+    }
    
 
     const inspectionResult =
