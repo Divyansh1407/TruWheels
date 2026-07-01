@@ -14,7 +14,7 @@ section{
     width:90%;
     max-width:1400px;
     margin:auto;
-    padding:100px 0;
+    padding:40px 0;
 }
 
 /* NAVBAR */
@@ -44,6 +44,7 @@ section{
     margin-top:-10px;
     margin-bottom:-15px;
     margin-right:-47px;
+    margin-left:-55px;
 }
 
 .brand-text h2{
@@ -187,7 +188,7 @@ section{
     cursor:pointer;
 
     transition:.3s;
-    margin-bottom:20px;
+    margin-bottom:12px;
 }
 
 .hero-btn:hover{
@@ -259,16 +260,6 @@ section{
     z-index:1;
 }
 
-.shield-glow{
-    position:absolute;
-    width:420px;
-    height:420px;
-    border:3px solid #2563eb;
-    border-radius:50% 50% 40% 40%;
-    left:50%;
-    transform:translateX(-50%);
-    filter:drop-shadow(0 0 20px #2563eb);
-}
 
 .hero-car{
     width:643.48px;
@@ -286,17 +277,60 @@ section{
 .trust-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:40px;
+    gap:60px;
     text-align:center;
+}
+.trust-section{
+    margin-top:-20px;
+}
+.metric{
+    padding:0 25px;
+    position:relative;
+}
+
+.metric:not(:last-child)::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-30px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:1px;
+    height:120px;
+
+    background:linear-gradient(
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+    );
 }
 
 .metric h2{
-    font-size:4rem;
+    font-size:4.5rem;
+    margin-bottom:20px;
+
+    text-shadow:
+        0 0 30px rgba(255,255,255,.15);
+}
+
+.metric:last-child h2{
+    font-size:3.5rem;
 }
 
 .metric h4{
     color:#2563eb;
     margin:15px 0;
+}
+
+.metric i{
+    font-size:50px;
+    color:#2563eb;
+    margin-bottom:20px;
+    display:block;
 }
 
 .metric p,
