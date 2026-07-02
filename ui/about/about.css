@@ -1,0 +1,227 @@
+.about-wrapper{
+    max-width:1250px;
+    margin:25px auto;
+}
+
+.about-container{
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:25px;
+}
+
+.about-header{
+    text-align:center;
+    padding:35px 0 30px;
+    margin-bottom:30px;
+}
+
+.about-title{
+    font-size:3rem;
+    font-weight:710;
+    line-height:1;
+    margin:0 0 15px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #e2e8f0 45%,
+        #93c5fd 100%
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.about-subtitle{
+    max-width:760px;
+    margin:0 auto;
+
+    color:#94a3b8;
+    font-size:18px;
+    line-height:1.5;
+}
+
+.about-card{
+    background:rgba(255,255,255,0.02);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    margin-bottom:22px;
+
+    transition:0.3s;
+}
+
+.about-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:rgba(59,130,246,0.18);
+
+    box-shadow:
+        0 10px 30px rgba(37,99,235,0.08);
+}
+
+.about-card h2{
+
+    font-size:1.7rem;
+    font-weight:700;
+    margin-bottom:22px;
+    letter-spacing:-0.5px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #e2e8f0 50%,
+        #93c5fd 100%
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 0 18px rgba(59,130,246,0.08);
+}
+
+.about-card::before{
+
+    content:"TRUWHEELS STORY";
+
+    display:block;
+
+    color:#60a5fa;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:12px;
+}
+
+.about-card p{
+
+    color:#d1d5db;
+
+    line-height:1.9;
+
+    font-size:1.06rem;
+
+    margin-bottom:18px;
+}
+
+.about-card strong{
+    color:#60a5fa;
+}
+
+.values-section{
+
+    margin-top:45px;
+}
+
+.values-section h2{
+
+    text-align:center;
+
+    color:#dbeafe;
+
+    font-size:2rem;
+
+    margin-bottom:35px;
+}
+
+.values-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+}
+
+.value-card{
+
+    background:rgba(255,255,255,0.02);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-radius:18px;
+
+    padding:28px;
+
+    transition:0.3s;
+}
+
+.value-card:hover{
+
+    border-color:rgba(59,130,246,0.18);
+
+    transform:translateY(-3px);
+}
+
+.value-card h3{
+
+    color:white;
+
+    margin-bottom:16px;
+
+    font-size:1.2rem;
+}
+
+.value-card p{
+
+    color:#94a3b8;
+
+    line-height:1.8;
+}
+
+.quote-section{
+
+    margin-top:55px;
+
+    padding:55px 35px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.quote-section blockquote{
+
+    max-width:900px;
+
+    margin:auto;
+
+    font-size:2rem;
+
+    font-weight:650;
+
+    line-height:1.5;
+
+    color:white;
+
+    letter-spacing:-0.5px;
+}
+
+@media(max-width:992px){
+
+    .values-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-title{
+        font-size:2.3rem;
+    }
+
+    .quote-section blockquote{
+        font-size:1.5rem;
+    }
+
+    .about-card{
+        padding:25px;
+    }
+}
