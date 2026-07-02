@@ -1,3 +1,7 @@
+html{
+    scroll-behavior:smooth;
+}
+
 *{
     margin:0;
     padding:0;
@@ -29,6 +33,15 @@ section{
     background:rgba(5,8,22,.8);
     backdrop-filter:blur(20px);
     z-index:1000;
+    transition:all 0s ease-in-out; 
+}
+
+.navbar-scrolled{
+    padding:18px 80px;
+    background:rgba(5,8,22,.95);
+    backdrop-filter:blur(25px);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
 }
 
 .logo-section{
@@ -189,6 +202,9 @@ section{
 
     transition:.3s;
     margin-bottom:12px;
+
+    display:inline-block;
+    text-decoration:none;
 }
 
 .hero-btn:hover{
@@ -323,7 +339,7 @@ section{
 
 .metric h4{
 
-    color:#2563eb;
+    color:rgba(255,255,255,.9);
 
     margin:20px 0;
 
@@ -332,6 +348,9 @@ section{
     letter-spacing:1px;
 
     font-weight:600;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,.12);
 }
 
 .metric i{
@@ -350,6 +369,24 @@ section{
     color:#94a3b8;
     line-height:1.8;
     font-size:1rem;
+}
+
+.fall-number{
+
+    opacity:0;
+
+    transform:translateY(-20px);
+
+    transition:
+        transform 1s cubic-bezier(.17,.89,.32,1.28),
+        opacity .3s ease;
+}
+
+.fall-number.show{
+
+    opacity:1;
+
+    transform:translateY(0);
 }
 
 /* PRODUCT CARDS */
@@ -596,7 +633,7 @@ section{
 }
 
 .workflow-item:nth-child(3) .workflow-top{
-    padding-left:5px;
+    padding-right:120px;
 }
 
 .step-number{
@@ -604,7 +641,7 @@ section{
     top:-40px;
     left:5px;
 
-    font-size:7rem;
+    font-size:6rem;
     font-weight:700;
 
     color:rgba(255,255,255,.06);
@@ -624,8 +661,9 @@ section{
 }
 
 .workflow-icon{
-    width:75px;
-    height:75px;
+    width:60px;
+    height:60px;
+    margin-left:65px;
 
     border-radius:50%;
 
@@ -643,10 +681,10 @@ section{
 }
 
 .connector{
-    width:70px;
+    width:100px;
     height:2px;
 
-    margin-left:20px;
+    margin-left:30px;
 
     background:repeating-linear-gradient(
         to right,
@@ -678,8 +716,9 @@ section{
 }
 
 .workflow-item h3{
-    font-size:1.8rem;
-    margin-bottom:20px;
+    font-size:1.5rem;
+    margin-top:-10px;
+    margin-bottom:0px;
     position:relative;
     z-index:2;
     min-height: 40px;
@@ -688,7 +727,7 @@ section{
 
 .workflow-item p{
     color:#94a3b8;
-    line-height:1.8;
+    line-height:1.5;
     max-width:280px;
     margin:auto;
     position:relative;
@@ -747,11 +786,19 @@ section{
 }
 
 .trust-item h3{
-    color:#2563eb;
+
+    color:rgba(255,255,255,.9);
+
     font-size:1.05rem;
+
     letter-spacing:1.5px;
-    margin-bottom:25px;
-    font-weight:700;
+
+    margin-bottom:15px;
+
+    font-weight:600;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,.12);
 }
 
 .trust-item p{
