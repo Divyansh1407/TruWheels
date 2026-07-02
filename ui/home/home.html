@@ -51,8 +51,27 @@
 
         </nav>
 
-        <div class="profile-btn">
-            👤
+        <div class="auth-section">
+
+            <div class="profile-wrapper">
+
+                <div class="profile-btn" id="profileBtn">
+                    👤
+                </div>
+                <div class="profile-dropdown" id="profileDropdown">
+
+                    <p id="userName">Guest</p>
+                    <button>📄 My Reports</button>
+                    <button>⚙️ Account Settings</button>
+                    <button id="logoutBtn">🚪 Logout</button>
+
+                </div>
+            </div>
+
+            <button id="googleLoginBtn" class="signin-btn">
+                Sign In
+            </button>
+
         </div>
 
     </header>
@@ -526,6 +545,7 @@
 
 
     <script src="home.js"></script>
+    <script type="module" src="../../firebase/auth.js"></script>
 
 </body>
 </html>

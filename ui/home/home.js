@@ -2,7 +2,7 @@ window.addEventListener("scroll", () => {
 
     const navbar = document.querySelector(".navbar");
 
-    if(window.scrollY > 50){
+    if(window.scrollY > 0.23){
         navbar.classList.add("navbar-scrolled");
     }
     else{
