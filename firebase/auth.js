@@ -22,10 +22,6 @@ loginBtn.addEventListener("click", async () => {
 
         const user = result.user;
 
-        console.log("Logged In Successfully");
-        console.log(user.displayName);
-        console.log(user.email);
-        console.log(user.photoURL);
 
     }
 
@@ -45,7 +41,11 @@ const profileDropdown =
 
   profileBtn.addEventListener("click", () => {
 
-    profileDropdown.classList.toggle("active");
+    if(auth.currentUser){
+
+        profileDropdown.classList.toggle("active");
+
+    }
 
 });
 
@@ -99,6 +99,19 @@ onAuthStateChanged(auth, (user) => {
         profileBtn.innerHTML = "👤";
 
         console.log("No user logged in");
+
+    }
+
+});
+
+document.addEventListener("click", (event) => {
+
+    if(
+        !profileBtn.contains(event.target) &&
+        !profileDropdown.contains(event.target)
+    ){
+
+        profileDropdown.classList.remove("active");
 
     }
 

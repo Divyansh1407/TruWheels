@@ -1031,6 +1031,18 @@ section{
 
 .profile-dropdown button:hover{
     background: rgba(255,255,255,.08);
+    cursor: pointer;
+}
+
+.profile-btn{
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.profile-btn:hover{
+
+    transform:scale(1.05);
 }
 
 /* MOBILE */
