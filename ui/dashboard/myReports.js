@@ -16,6 +16,12 @@ document.getElementById("recentReport");
 const searchInput =
 document.getElementById("searchInput");
 
+const sortReports =
+document.getElementById("sortReports");
+
+const riskFilter =
+document.getElementById("riskFilter");
+
 let allReports = [];
 
 async function loadReports() {
@@ -230,15 +236,17 @@ function displayReports(reports){
     });
 }
 
-loadReports();
+function applyFilters(){
 
-searchInput.addEventListener("input", () => {
+    let filteredReports = [...allReports];
+
+    // SEARCH
 
     const searchText =
     searchInput.value.toLowerCase();
 
-    const filteredReports =
-    allReports.filter(report =>
+    filteredReports =
+    filteredReports.filter(report =>
 
         report.brand
         .toLowerCase()
@@ -251,6 +259,74 @@ searchInput.addEventListener("input", () => {
         .includes(searchText)
     );
 
-    displayReports(filteredReports);
+    // RISK FILTER
 
-});
+    if(riskFilter.value !== "all"){
+
+        filteredReports =
+        filteredReports.filter(report =>
+
+            report.risk ===
+            riskFilter.value
+        );
+    }
+
+    // SORTING
+
+    if(sortReports.value === "highest"){
+
+        filteredReports.sort(
+            (a,b) =>
+            b.health_score -
+            a.health_score
+        );
+    }
+
+    else if(sortReports.value === "lowest"){
+
+        filteredReports.sort(
+            (a,b) =>
+            a.health_score -
+            b.health_score
+        );
+    }
+
+    else if(sortReports.value === "oldest"){
+
+        filteredReports.sort(
+            (a,b) =>
+
+            new Date(a.created_at) -
+            new Date(b.created_at)
+        );
+    }
+
+    else{
+
+        filteredReports.sort(
+            (a,b) =>
+
+            new Date(b.created_at) -
+            new Date(a.created_at)
+        );
+    }
+
+    displayReports(filteredReports);
+}
+
+loadReports();
+
+searchInput.addEventListener(
+    "input",
+    applyFilters
+);
+
+sortReports.addEventListener(
+    "change",
+    applyFilters
+);
+
+riskFilter.addEventListener(
+    "change",
+    applyFilters
+);
