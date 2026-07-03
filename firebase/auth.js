@@ -123,7 +123,20 @@ supabase.auth.onAuthStateChange((event, session) => {
         `;
 
         console.log("Logged in successfully");
+    }
 
+    else {
+
+        document.getElementById("userName").textContent =
+            "Guest User";
+
+        loginBtn.style.display = "block";
+
+        profileBtn.innerHTML = "👤";
+
+        profileDropdown.classList.remove("active");
+
+        console.log("Logged out successfully");
     }
 
 });
