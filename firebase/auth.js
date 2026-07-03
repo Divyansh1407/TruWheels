@@ -1,64 +1,63 @@
-import { auth } from "./firebaseConfig.js";
-
-import {
-    GoogleAuthProvider,
-    signInWithPopup,
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-const provider = new GoogleAuthProvider();
+import { supabase } from "../supabase/supabaseClient.js";
 
 const loginBtn = document.getElementById("googleLoginBtn");
+const profileBtn = document.getElementById("profileBtn");
+const profileDropdown = document.getElementById("profileDropdown");
+const logoutBtn = document.getElementById("logoutBtn");
+const myReportsBtn = document.getElementById("myReportsBtn");
 
 
 // ================= GOOGLE LOGIN =================
 
 loginBtn.addEventListener("click", async () => {
 
-    try {
+    const { error } = await supabase.auth.signInWithOAuth({
 
-        const result = await signInWithPopup(auth, provider);
+        provider: "google",
 
-        const user = result.user;
+        options: {
+            redirectTo: "http://127.0.0.1:5500/ui/home/home.html"
+        }
 
+    });
 
-    }
-
-    catch (error) {
-
+    if (error) {
         console.log("Login Failed");
         console.log(error);
-
     }
 
 });
 
-const profileBtn = document.getElementById("profileBtn");
 
-const profileDropdown =
-    document.getElementById("profileDropdown");
+// ================= PROFILE DROPDOWN =================
 
-  profileBtn.addEventListener("click", () => {
+profileBtn.addEventListener("click", () => {
 
-    if(auth.currentUser){
+    supabase.auth.getUser().then(({ data }) => {
 
-        profileDropdown.classList.toggle("active");
+        if (data.user) {
 
-    }
+            profileDropdown.classList.toggle("active");
+
+        }
+
+    });
 
 });
 
 
 // ================= LOGOUT =================
 
-const logoutBtn = document.getElementById("logoutBtn");
-
 logoutBtn.addEventListener("click", async () => {
 
-    try {
+    const { error } = await supabase.auth.signOut();
 
-        await signOut(auth);
+    if (error) {
+
+        console.log("Logout Failed");
+        console.log(error);
+
+    } else {
 
         profileDropdown.classList.remove("active");
 
@@ -66,30 +65,35 @@ logoutBtn.addEventListener("click", async () => {
 
     }
 
-    catch (error) {
-
-        console.log("Logout Failed");
-        console.log(error);
-
-    }
-
 });
 
-onAuthStateChanged(auth, (user) => {
+
+// ================= CHECK USER =================
+
+async function checkUser() {
+
+    const { data, error } = await supabase.auth.getSession();
+
+    if (error) {
+        console.log(error);
+        return;
+    }
+
+    const user = data.session?.user;
 
     if (user) {
+
         document.getElementById("userName").textContent =
-        user.displayName;
+            user.user_metadata.full_name;
 
         loginBtn.style.display = "none";
 
         profileBtn.innerHTML = `
-            <img src="${user.photoURL}" class="user-photo">
+            <img src="${user.user_metadata.avatar_url}"
+            class="user-photo">
         `;
 
         console.log("User already logged in");
-        console.log(user.displayName);
-
     }
 
     else {
@@ -99,20 +103,60 @@ onAuthStateChanged(auth, (user) => {
         profileBtn.innerHTML = "👤";
 
         console.log("No user logged in");
+    }
+}
+
+checkUser();
+
+supabase.auth.onAuthStateChange((event, session) => {
+
+    if (session?.user) {
+
+        document.getElementById("userName").textContent =
+            session.user.user_metadata.full_name;
+
+        loginBtn.style.display = "none";
+
+        profileBtn.innerHTML = `
+            <img src="${session.user.user_metadata.avatar_url}"
+            class="user-photo">
+        `;
+
+        console.log("Logged in successfully");
 
     }
 
 });
 
+
+// ================= CLOSE DROPDOWN =================
+
 document.addEventListener("click", (event) => {
 
-    if(
+    if (
         !profileBtn.contains(event.target) &&
         !profileDropdown.contains(event.target)
-    ){
+    ) {
 
         profileDropdown.classList.remove("active");
 
     }
+
+});
+
+myReportsBtn.addEventListener("click", async () => {
+
+    const {
+        data: { user }
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+
+        alert("Please sign in first.");
+        return;
+    }
+
+    window.location.href =
+        "../dashboard/myReports.html";
 
 });

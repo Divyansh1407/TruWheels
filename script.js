@@ -1,3 +1,6 @@
+import { supabase }
+from "./supabase/supabaseClient.js";
+
 import { analyzeServiceIntelligence }
 from "./intelligence/serviceIntelligence.js";
 
@@ -43,8 +46,53 @@ brandDropdown.addEventListener("change", function () {
 
 });
 
+async function saveReport(reportData){
 
- window.analyzeCar = function() {
+    try{
+
+        const {
+            data: { user }
+        } = await supabase.auth.getUser();
+
+        if(!user){
+
+            console.log("User not logged in");
+            return;
+        }
+
+        const { error } = await supabase
+            .from("reports")
+            .insert([{
+
+                ...reportData,
+
+                userId: user.id,
+                userEmail: user.email,
+                createdAt: new Date()
+
+            }]);
+
+        if(error){
+
+            console.log(error);
+
+        } else {
+
+            console.log("Report Saved Successfully");
+
+        }
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+ window.analyzeCar = async function() {
 
   let brand =
     document.getElementById("carBrand").value;
@@ -627,6 +675,22 @@ brandDropdown.addEventListener("change", function () {
     maintenanceIssues
     )
     );
+
+await saveReport({
+
+    brand,
+    model,
+    year,
+    km,
+    owners,
+    transmission,
+    engineType,
+
+    healthScore: score.toFixed(1),
+
+    risk
+
+});
     
    window.location.href = "ui/report.html";
 
