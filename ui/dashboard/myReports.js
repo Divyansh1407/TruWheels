@@ -13,6 +13,11 @@ document.getElementById("bestScore");
 const recentReport =
 document.getElementById("recentReport");
 
+const searchInput =
+document.getElementById("searchInput");
+
+let allReports = [];
+
 async function loadReports() {
 
     const { data, error } = await supabase
@@ -27,6 +32,7 @@ async function loadReports() {
         console.log(error);
         return;
     }
+    allReports = data;
 
     // ================= STATS =================
 
@@ -53,25 +59,27 @@ async function loadReports() {
 
         recentReport.textContent = "--";
     }
+    displayReports(data);
 
-    // ================= REPORT CARDS =================
+
+}
+
+function displayReports(reports){
 
     reportsContainer.innerHTML = "";
 
-    if (data.length === 0) {
+    if(reports.length === 0){
 
         reportsContainer.innerHTML = `
 
             <div class="report-card">
 
                 <h2>
-                    No Reports Yet
+                    No Reports Found
                 </h2>
 
                 <p>
-                    Analyze your first vehicle
-                    to start building your
-                    TruWheels garage.
+                    No matching reports were found.
                 </p>
 
             </div>
@@ -81,7 +89,7 @@ async function loadReports() {
         return;
     }
 
-    data.forEach(report => {
+    reports.forEach(report => {
 
         reportsContainer.innerHTML += `
 
@@ -100,7 +108,6 @@ async function loadReports() {
 
                 </div>
 
-
                 <div class="report-details">
 
                     <div class="detail-box">
@@ -115,7 +122,6 @@ async function loadReports() {
 
                     </div>
 
-
                     <div class="detail-box">
 
                         <div class="detail-label">
@@ -127,7 +133,6 @@ async function loadReports() {
                         </div>
 
                     </div>
-
 
                     <div class="detail-box">
 
@@ -171,7 +176,6 @@ async function loadReports() {
 
                 </div>
 
-
                 <div class="report-actions">
 
                     <button
@@ -189,10 +193,8 @@ async function loadReports() {
         `;
     });
 
-    // ================= DELETE REPORT =================
-
     const deleteButtons =
-        document.querySelectorAll(".delete-btn");
+    document.querySelectorAll(".delete-btn");
 
     deleteButtons.forEach(button => {
 
@@ -202,40 +204,53 @@ async function loadReports() {
             async () => {
 
                 const confirmDelete =
-                    confirm(
-                        "Delete this report?"
-                    );
+                confirm("Delete this report?");
 
-                if (!confirmDelete)
-                    return;
+                if(!confirmDelete) return;
 
                 const reportId =
-                    button.dataset.id;
+                button.dataset.id;
 
                 const { error } =
-                    await supabase
-                        .from("Reports")
-                        .delete()
-                        .eq("id", reportId);
+                await supabase
+                    .from("Reports")
+                    .delete()
+                    .eq("id", reportId);
 
-                if (error) {
-
-                    alert(
-                        "Failed to delete report"
-                    );
+                if(error){
 
                     console.log(error);
-                }
 
-                else {
+                } else {
 
                     loadReports();
                 }
             }
         );
     });
-
-
 }
 
 loadReports();
+
+searchInput.addEventListener("input", () => {
+
+    const searchText =
+    searchInput.value.toLowerCase();
+
+    const filteredReports =
+    allReports.filter(report =>
+
+        report.brand
+        .toLowerCase()
+        .includes(searchText)
+
+        ||
+
+        report.model
+        .toLowerCase()
+        .includes(searchText)
+    );
+
+    displayReports(filteredReports);
+
+});
