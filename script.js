@@ -48,6 +48,9 @@ brandDropdown.addEventListener("change", function () {
 
 async function saveReport(reportData){
 
+    console.log("saveReport called");
+    console.log(reportData);
+
     try{
 
         const {
@@ -56,25 +59,48 @@ async function saveReport(reportData){
 
         if(!user){
 
-            console.log("User not logged in");
+            console.error("USER IS NULL");
             return;
         }
 
+        console.log("Logged in user:", user);
+
         const { error } = await supabase
-            .from("reports")
-            .insert([{
+          .from("Reports")
+          .insert([{
 
-                ...reportData,
+              user_id: user.id,
+              user_email: user.email,
 
-                userId: user.id,
-                userEmail: user.email,
-                createdAt: new Date()
+              brand: reportData.brand,
+              model: reportData.model,
+              year: reportData.year,
+              km: reportData.km,
+              owners: reportData.owners,
 
-            }]);
+              transmission: reportData.transmission,
+              engine_type: reportData.engineType,
+
+              health_score: reportData.healthScore,
+              risk: reportData.risk,
+
+              asking_price: Number(
+                  document.getElementById("price").value
+              ),
+
+              market_position:
+                  localStorage.getItem("marketPosition"),
+
+              price_gap_percent:
+                  Number(
+                      localStorage.getItem("priceGapPercent")
+                  )
+
+          }]);
 
         if(error){
 
-            console.log(error);
+            console.error("SUPABASE ERROR:", error);
 
         } else {
 
@@ -86,7 +112,7 @@ async function saveReport(reportData){
 
     catch(error){
 
-        console.log(error);
+        console.error("SAVE REPORT ERROR:", error);
 
     }
 
@@ -692,6 +718,6 @@ await saveReport({
 
 });
     
-   window.location.href = "ui/report.html";
+  window.location.href = "ui/report.html"; 
 
 }
