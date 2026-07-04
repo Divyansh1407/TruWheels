@@ -1045,6 +1045,156 @@ section{
     transform:scale(1.05);
 }
 
+/* ================= LOGIN MODAL ================= */
+
+.login-modal{
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.65);
+
+    backdrop-filter: blur(8px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.3s ease;
+
+    z-index: 9999;
+
+}
+
+.login-modal.show{
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+.login-box{
+
+    width: 420px;
+
+    background: #0B1020;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+
+}
+
+.login-icon{
+
+    width: 72px;
+
+    height: 72px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 30px;
+
+    background: rgba(37,99,235,0.15);
+
+    margin-bottom: 22px;
+
+}
+
+.login-box h2{
+
+    color: white;
+
+    font-size: 30px;
+
+    margin-bottom: 15px;
+
+}
+
+.login-box p{
+
+    color: #B8C0D4;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+
+}
+
+#continueGoogleBtn{
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2563EB;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+}
+
+#continueGoogleBtn:hover{
+
+    background: #1D4ED8;
+
+}
+
+#cancelLoginBtn{
+
+    margin-top: 18px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #A0AEC0;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+}
+
+#cancelLoginBtn:hover{
+
+    color: white;
+
+}
+
 /* MOBILE */
 
 @media(max-width:992px){
@@ -1079,4 +1229,67 @@ section{
     .trust-item:not(:last-child)::after{
         display:none;
     }
+}
+
+/* ================= LOGIN MODAL - MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .login-modal-content {
+
+        width: 90%;
+        max-width: 380px;
+
+        padding: 32px 24px;
+
+        border-radius: 22px;
+
+    }
+
+    .login-modal-icon {
+
+        width: 80px;
+        height: 80px;
+
+        font-size: 36px;
+
+        margin-bottom: 24px;
+
+    }
+
+    .login-modal-content h2 {
+
+        font-size: 2rem;
+        line-height: 1.2;
+
+        margin-bottom: 16px;
+
+    }
+
+    .login-modal-content p {
+
+        font-size: 1rem;
+        line-height: 1.6;
+
+        margin-bottom: 30px;
+
+    }
+
+    #continueGoogleBtn {
+
+        width: 100%;
+        height: 56px;
+
+        font-size: 1rem;
+
+    }
+
+    #cancelLoginBtn {
+
+        margin-top: 18px;
+
+        font-size: 1rem;
+
+    }
+
 }
