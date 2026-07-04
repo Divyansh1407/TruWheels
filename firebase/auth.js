@@ -67,6 +67,107 @@ logoutBtn.addEventListener("click", async () => {
 
 });
 
+// ================= CREATE / UPDATE PROFILE =================
+
+async function syncUserProfile(user) {
+
+    // Check whether the user already exists
+    const { data: profile, error } = await supabase
+        .from("profiles")
+        .select("user_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+    if (error) {
+        console.log("Profile check failed");
+        console.log(error);
+        return;
+    }
+
+    // ================= FIRST LOGIN =================
+
+    if (!profile) {
+
+        const { error: insertError } = await supabase
+            .from("profiles")
+            .insert({
+
+                user_id: user.id,
+
+                name: user.user_metadata.full_name,
+
+                email: user.email,
+
+                avatar_url: user.user_metadata.avatar_url,
+
+                last_login: new Date().toISOString()
+
+            });
+
+        if (insertError) {
+
+            console.log("Profile creation failed");
+            console.log(insertError);
+
+        } else {
+
+            console.log("New profile created");
+
+            const { data, error: emailError } = await supabase.functions.invoke(
+                "send-welcome-email",
+                {
+                    body: {
+                        name: user.user_metadata.full_name,
+                        email: user.email
+                    }
+                }
+            );
+ console.log("Function response:", data);
+console.log("Function error:", emailError);
+
+            if (emailError) {
+
+                console.log("Welcome email failed");
+                console.log(emailError);
+
+            } else {
+
+                console.log("Welcome email sent");
+
+            }
+
+        }
+
+    }
+
+    // ================= EXISTING USER =================
+
+    else {
+
+        const { error: updateError } = await supabase
+            .from("profiles")
+            .update({
+
+                last_login: new Date().toISOString()
+
+            })
+
+            .eq("user_id", user.id);
+
+        if (updateError) {
+
+            console.log("Last login update failed");
+            console.log(updateError);
+
+        } else {
+
+            console.log("Last login updated");
+
+        }
+
+    }
+
+}
 
 // ================= CHECK USER =================
 
@@ -108,9 +209,11 @@ async function checkUser() {
 
 checkUser();
 
-supabase.auth.onAuthStateChange((event, session) => {
+supabase.auth.onAuthStateChange(async (event, session) => {
 
     if (session?.user) {
+
+        await syncUserProfile(session.user);
 
         document.getElementById("userName").textContent =
             session.user.user_metadata.full_name;
