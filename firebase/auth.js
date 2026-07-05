@@ -16,7 +16,7 @@ loginBtn.addEventListener("click", async () => {
         provider: "google",
 
         options: {
-            redirectTo: "http://127.0.0.1:5500/ui/home/home.html"
+            redirectTo: `${window.location.origin}/ui/home/home.html`
         }
 
     });
@@ -122,9 +122,7 @@ async function syncUserProfile(user) {
                     }
                 }
             );
- console.log("Function response:", data);
-console.log("Function error:", emailError);
-
+ 
             if (emailError) {
 
                 console.log("Welcome email failed");
