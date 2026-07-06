@@ -2100,3 +2100,135 @@ margin-bottom:10px;
 margin-bottom:0;
 }
 }
+
+@media(max-width:768px){
+
+.guide-wrapper{
+width:95%;
+margin:15px auto;
+}
+
+.guide-container{
+padding:20px 16px;
+border-radius:18px;
+}
+
+.guide-header{
+padding:10px 0;
+margin-bottom:30px;
+}
+
+.guide-title{
+font-size:2.1rem;
+line-height:1.15;
+margin-bottom:12px;
+}
+
+.guide-subtitle{
+font-size:15px;
+line-height:1.6;
+margin:0 auto 18px;
+}
+
+.guide-features{
+justify-content:center;
+gap:10px;
+}
+
+.feature-pill{
+width:100%;
+padding:12px 16px;
+font-size:13px;
+text-align:center;
+border-radius:14px;
+}
+
+.inspection-section{
+padding:12px 16px;
+border-radius:18px;
+margin-bottom:16px;
+}
+
+.section-header{
+padding:2px 0;
+align-items:flex-start;
+gap:12px;
+}
+
+.section-header h2{
+font-size:15px;
+line-height:1.4;
+}
+
+.section-toggle{
+font-size:28px;
+flex-shrink:0;
+}
+
+.section-content.active{
+margin-top:8px;
+padding-top:8px;
+}
+
+.inspection-card{
+border-radius:14px;
+margin-bottom:12px;
+}
+
+.point-header{
+padding:14px 18px;
+gap:14px;
+}
+
+.point-header h3{
+font-size:15px;
+line-height:1.5;
+}
+
+.toggle-icon{
+font-size:24px;
+flex-shrink:0;
+}
+
+.point-content{
+padding:0 18px 18px;
+margin-top:10px;
+}
+
+.content-heading{
+font-size:13px;
+margin:22px 0 12px;
+}
+
+.content-text{
+font-size:14px;
+line-height:1.7;
+padding-left:0;
+margin-bottom:22px;
+}
+
+.inspect-point,
+.importance-point,
+.normal-point,
+.redflag-point{
+padding:14px 16px;
+font-size:14px;
+line-height:1.7;
+margin-bottom:12px;
+border-radius:12px;
+}
+
+.normal-point strong,
+.redflag-point strong{
+font-size:15px;
+margin-bottom:6px;
+display:block;
+}
+
+.risk-heading{
+font-size:12px;
+margin:18px 0 12px;
+letter-spacing:1px;
+}
+
+}
