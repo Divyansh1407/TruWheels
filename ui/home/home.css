@@ -1125,41 +1125,6 @@ section{
 
 }
 
-/* MOBILE */
-
-@media(max-width:992px){
-
-    .hero-content{
-        flex-direction:column;
-    }
-
-    .products-grid,
-    .workflow-grid,
-    .trust-grid,
-    .trust-section{
-        grid-template-columns:1fr;
-    }
-
-    .nav-links{
-        display:none;
-    }
-
-    .hero-title{
-        font-size:3rem;
-    }
-
-    .navbar{
-        padding:20px;
-    }
-
-    .trust-grid{
-        grid-template-columns:1fr;
-    }
-
-    .trust-item:not(:last-child)::after{
-        display:none;
-    }
-}
 
 .hamburger{
 display:none;
@@ -1196,8 +1161,8 @@ display:none;
     height:55px;
     margin-top:-8px;
     margin-bottom:-10px;
-    margin-left:-36px;
-    margin-right:-30px;
+    margin-left:-30px;
+    margin-right:-28px;
 }
 
 .brand-text h2{
@@ -1647,6 +1612,70 @@ border-bottom:none;
 
 .mobile-menu a:hover{
 background:rgba(255,255,255,.05);
+}
+
+
+.login-modal{
+    padding:18px;
+}
+
+.login-box{
+    width:100%;
+    max-width:none;
+    padding:26px 20px;
+    border-radius:18px;
+}
+
+.login-icon{
+    width:56px;
+    height:56px;
+    font-size:24px;
+    margin-bottom:16px;
+}
+
+.login-box h2{
+    font-size:24px;
+    margin-bottom:10px;
+    line-height:1.2;
+}
+
+.login-box p{
+    font-size:14px;
+    line-height:1.45;
+    margin-bottom:20px;
+}
+
+#continueGoogleBtn{
+    padding:14px;
+    font-size:15px;
+}
+
+#cancelLoginBtn{
+    margin-top:14px;
+    font-size:14px;
+}
+
+.profile-dropdown{
+    width:250px;
+    padding:22px;
+    top:58px;
+    right:0;
+    gap:14px;
+    border-radius:18px;
+}
+
+.profile-dropdown p{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.profile-dropdown button{
+    padding:12px 14px;
+    font-size:15px;
+    border-radius:12px;
+}
+.profile-dropdown{
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
 }
 
 }

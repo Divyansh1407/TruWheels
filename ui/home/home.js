@@ -51,8 +51,10 @@ protectedButtons.forEach((button) => {
     button.addEventListener("click", async (event) => {
 
         const {
-            data: { user }
-        } = await supabase.auth.getUser();
+            data: { session }
+        } = await supabase.auth.getSession();
+
+        const user = session?.user;
 
         if (!user) {
             event.preventDefault();
@@ -72,7 +74,7 @@ continueGoogleBtn.addEventListener("click", async () => {
         provider: "google",
 
         options: {
-            redirectTo: "http://127.0.0.1:5500/ui/home/home.html"
+            redirectTo: `${window.location.origin}/ui/home/home.html`
         }
 
     });
@@ -107,4 +109,17 @@ const mobileMenu = document.getElementById("mobileMenu");
 
 hamburgerBtn.addEventListener("click", () => {
     mobileMenu.classList.toggle("active");
+});
+
+document.addEventListener("click", (event) => {
+
+    if (
+        !hamburgerBtn.contains(event.target) &&
+        !mobileMenu.contains(event.target)
+    ) {
+
+        mobileMenu.classList.remove("active");
+
+    }
+
 });
