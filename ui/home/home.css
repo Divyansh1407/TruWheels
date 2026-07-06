@@ -1161,6 +1161,29 @@ section{
     }
 }
 
+.hamburger{
+display:none;
+
+width:38px;
+height:33px;
+
+align-items:center;
+justify-content:center;
+
+border:1px solid rgba(255,255,255,.1);
+border-radius:12px;
+
+font-size:22px;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+.mobile-menu{
+display:none;
+}
+
 
 @media (max-width:768px){
 
@@ -1186,8 +1209,10 @@ section{
 }
 
 .auth-section{
-    margin-left:auto;
-    gap:10px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:0;
 }
 
 .profile-btn{
@@ -1207,6 +1232,10 @@ section{
     font-size:13px;
     border-radius:12px;
     margin:0;
+}
+
+.hamburger{
+display:flex;
 }
 
 section{
@@ -1573,6 +1602,51 @@ section{
     padding:18px 20px;
     font-size:13px;
     line-height:1.5;
+}
+
+.mobile-menu{
+
+display:none;
+flex-direction:column;
+
+position:fixed;
+
+top:78px;
+left:18px;
+right:18px;
+
+background:#0b1220;
+
+border:1px solid rgba(255,255,255,.08);
+border-radius:18px;
+
+overflow:hidden;
+
+z-index:999;
+}
+
+.mobile-menu.active{
+display:flex;
+}
+
+.mobile-menu a{
+
+padding:18px 20px;
+
+color:white;
+text-decoration:none;
+
+font-size:16px;
+
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.mobile-menu a:last-child{
+border-bottom:none;
+}
+
+.mobile-menu a:hover{
+background:rgba(255,255,255,.05);
 }
 
 }

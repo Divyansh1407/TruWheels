@@ -225,3 +225,12 @@
         padding:25px;
     }
 }
+
+@media(max-width:768px){
+
+.main-container{
+width:95%;
+margin:12px auto;
+border-radius:18px;
+} 
+}  
