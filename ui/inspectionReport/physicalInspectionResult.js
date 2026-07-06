@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gaugeChart =
     echarts.init(gaugeContainer);
+    const isMobile = window.innerWidth <= 768;
 
     gaugeChart.setOption({
 
@@ -149,11 +150,11 @@ document.addEventListener("DOMContentLoaded", () => {
             startAngle:210,
             endAngle:-30,
 
-            radius:"95%",
+            radius:isMobile ? "88%" : "95%",
 
             axisLine:{
                 lineStyle:{
-                    width:20,
+                    width:isMobile ? 8 : 25,
                     color:[
                         [0.50,"#ef4444"],
                         [0.72,"#facc15"],
@@ -163,18 +164,18 @@ document.addEventListener("DOMContentLoaded", () => {
             },
 
             pointer:{
-                length:"65%",
-                width:6
+                length:isMobile ? "55%" : "65%",
+                width:isMobile ? 3 : 6
             },
 
             anchor:{
                 show:true,
-                size:18
+                size:isMobile ? 0.5 : 18
             },
 
             splitLine:{
                 distance:1,
-                length:7,
+                length:isMobile ? 7 : 7,
                 lineStyle:{
                     color:"#ffffff"
                 }
