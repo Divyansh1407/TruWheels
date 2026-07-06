@@ -706,6 +706,57 @@ margin-top:6px;
 text-align:center;
 }
 
+.verdict-card{
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+padding:20px 18px;
+gap:18px;
+margin:28px 0 24px;
+border-radius:18px;
+}
+
+.verdict-left{
+width:100%;
+display:flex;
+align-items:flex-start;
+gap:16px;
+}
+
+.shield-icon{
+font-size:52px;
+}
+
+.verdict-content h4{
+font-size:12px;
+margin-bottom:6px;
+}
+
+.verdict-content h2{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.verdict-content p{
+font-size:14px;
+line-height:1.6;
+max-width:100%;
+}
+
+.verdict-right{
+width:100%;
+padding-left:0;
+padding-top:18px;
+border-left:none;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.verdict-right p{
+font-size:14px;
+line-height:1.6;
+margin-bottom:10px;
+}
+
 .findings-section{
 margin-top:28px;
 }

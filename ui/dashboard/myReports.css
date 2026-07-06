@@ -591,9 +591,22 @@ font-size:14px;
 }
 
 .report-details{
-grid-template-columns:1fr;
+display:grid;
+grid-template-columns:repeat(2,1fr);
 gap:12px;
 margin-bottom:18px;
+}
+
+.detail-box:nth-child(3){
+grid-column:1/-1;
+}
+
+.detail-box:nth-child(4){
+grid-column:1;
+}
+
+.detail-box:nth-child(5){
+grid-column:2;
 }
 
 .detail-box{
