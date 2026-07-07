@@ -97,6 +97,16 @@ let score = 100;
     score -= 8.5;
   }
 
+  let ownershipConfidence = "High";
+
+    if (owners === expectedOwners + 1) {
+    ownershipConfidence = "Medium";
+    }
+
+    else if (owners > expectedOwners + 1) {
+    ownershipConfidence = "Low";
+    }
+
   // AUTOMATIC TRANSMISSION LOGIC
 
   if (transmission === "Automatic") {
@@ -277,9 +287,11 @@ let score = 100;
     score,
     risk,
     age,
+    actualOwners: owners,
     expectedOwners,
+    ownershipConfidence,
     maintenanceIssues
-  };
+ };
 };
 
 module.exports = {

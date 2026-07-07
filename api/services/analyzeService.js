@@ -80,15 +80,6 @@ const analyzeVehicle = (vehicleData) => {
     vehicleData.accidentHistory ||
     vehicleData.maintenanceDiscipline;
 
-    let ownershipConfidence = "High";
-
-    if (owners === health.expectedOwners + 1) {
-    ownershipConfidence = "Medium";
-    }
-
-    else if (owners > health.expectedOwners + 1) {
-    ownershipConfidence = "Low";
-    }
 
     let maintenanceStage = "";
 
@@ -118,7 +109,7 @@ const analyzeVehicle = (vehicleData) => {
         serviceDataProvided:
         serviceDataProvided ? "true" : "false",
 
-        ownershipConfidence,
+        ownershipConfidence: health.ownershipConfidence,
 
         maintenanceStage,
 
