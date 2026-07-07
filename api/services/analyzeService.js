@@ -1,6 +1,7 @@
 const carService = require("./carService");
 const healthScoreService = require("./healthScoreService");
 const priceService = require("./priceService");
+const serviceIntelligenceService = require("./serviceIntelligenceService");
 
 const carDatabase = require("../../data/carDatabase");
 const maintenanceGuide = require("../../data/maintenanceGuide");
@@ -62,9 +63,20 @@ const analyzeVehicle = (vehicleData) => {
 
     }
 
+    const service =
+    serviceIntelligenceService.analyzeServiceIntelligence({
+
+        serviceHistory: vehicleData.serviceHistory,
+        serviceType: vehicleData.serviceType,
+        accidentHistory: vehicleData.accidentHistory,
+        maintenanceDiscipline: vehicleData.maintenanceDiscipline
+
+    });
+
   return {
     health,
-    price
+    price,
+    service
   };
 };
 
