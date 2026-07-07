@@ -1,5 +1,6 @@
 const carService = require("./carService");
 const healthScoreService = require("./healthScoreService");
+const priceService = require("./priceService");
 
 const carDatabase = require("../../data/carDatabase");
 const maintenanceGuide = require("../../data/maintenanceGuide");
@@ -40,8 +41,31 @@ const analyzeVehicle = (vehicleData) => {
       engineType,
       maintenanceGuide
     });
+  
+    
+    const yearPriceData =
+    carData.priceData[String(year)];
 
-  return health;
+    let price = null;
+
+    if (yearPriceData) {
+
+        price =
+            priceService.calculatePriceIntelligence({
+            askingPrice: vehicleData.askingPrice,
+            marketAvg: yearPriceData.avg,
+            marketMin: yearPriceData.min,
+            marketMax: yearPriceData.max,
+            healthScore: health.score
+
+        });
+
+    }
+
+  return {
+    health,
+    price
+  };
 };
 
 
