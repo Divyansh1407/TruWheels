@@ -1,16 +1,6 @@
 import { supabase }
 from "./supabase/supabaseClient.js";
 
-import { analyzeServiceIntelligence }
-from "./intelligence/serviceIntelligence.js";
-
-import { analyzePriceIntelligence }
-from "./intelligence/priceIntelligence.js";
-
-import { generateQuestions }
-from "./intelligence/questionIntelligence.js";
-
-
 const brandDropdown =
 document.getElementById("carBrand");
 
@@ -162,33 +152,64 @@ async function saveReport(reportData){
     return;
   }
 
-  // GET DATABASE DATA
-  let brandData =
-    carDatabase[brand];
+  
+  const response = await fetch("http://localhost:3000/analyze", {
 
-  let carData =
-    carDatabase[brand].cars[model];
+    method: "POST",
 
-  // PRICE INTELLIGENCE
+    headers: {
+      "Content-Type": "application/json"
+    },
 
-  let priceResult = null;
-  let yearPriceData = null;
+    body: JSON.stringify({
 
-  if(carData.priceData){
-    yearPriceData =
-    carData.priceData[String(year)];
-  }
-
-  if(yearPriceData){
-
-    priceResult =
-    analyzePriceIntelligence({
+      brand,
+      model,
+      year,
+      km,
+      owners,
+      transmission,
+      engineType,
       askingPrice: price,
-      marketAvg: yearPriceData.avg,
-      marketMin: yearPriceData.min,
-      marketMax: yearPriceData.max,
-      healthScore: score
-    });
+
+      serviceHistory:
+        document.getElementById("serviceHistory").value,
+
+      serviceType:
+        document.getElementById("serviceType").value,
+
+      accidentHistory:
+        document.getElementById("accidentHistory").value,
+
+      maintenanceDiscipline:
+        document.getElementById("maintenanceDiscipline").value
+
+    })
+
+  });
+
+    if (!response.ok) {
+      alert("Failed to analyze vehicle.");
+      return;
+    }
+
+  const result = await response.json();
+
+    if(result.error){
+
+      alert(result.error);
+      return;
+
+    }
+
+  console.log(result);
+  
+  const health = result.health;
+  const priceResult = result.price;
+  const serviceResult = result.service;
+  const questionResult = result.questions;
+
+  if (priceResult) {
 
     localStorage.setItem(
       "marketPosition",
@@ -211,8 +232,7 @@ async function saveReport(reportData){
     );
 
   }
-
-  else{
+  else {
 
     localStorage.setItem(
       "marketPosition",
@@ -226,83 +246,15 @@ async function saveReport(reportData){
 
     localStorage.setItem(
       "priceObservation",
-      "Pricing data is currently unavailable for this vehicle."
+      "Pricing data is currently unavailable."
     );
 
     localStorage.setItem(
       "priceRecommendation",
-      "TruWheels will support market analysis for this vehicle in a future database update."
+      "Market intelligence unavailable."
     );
 
   }
-
-   const serviceResult=analyzeServiceIntelligence({
-
-    serviceHistory:
-    document.getElementById("serviceHistory").value,
-
-    serviceType:
-    document.getElementById("serviceType").value,
-
-    accidentHistory:
-    document.getElementById("accidentHistory").value,
-
-    maintenanceDiscipline:
-    document.getElementById("maintenanceDiscipline").value
-    });
-
-    const serviceDataProvided =
-    document.getElementById("serviceHistory").value ||
-    document.getElementById("serviceType").value ||
-    document.getElementById("accidentHistory").value ||
-    document.getElementById("maintenanceDiscipline").value;
-
-    let ownershipConfidence = "High";
-
-    if(owners === expectedOwners + 1){
-      ownershipConfidence = "Medium";
-    }
-    else if(owners > expectedOwners + 1){
-      ownershipConfidence = "Low";
-    }
-
-    let maintenanceStage = "";
-
-    if(km <= 30000){
-      maintenanceStage = "Early Ownership Zone";
-    }
-    else if(km <= 60000){
-      maintenanceStage = "Active Wear Zone";
-    }
-    else if(km <= 90000){
-      maintenanceStage = "Mid-Life Ownership Zone";
-    }
-    else if(km <= 120000){
-      maintenanceStage = "Advanced Wear Zone";
-    }
-    else{
-      maintenanceStage = "Major Maintenance Zone";
-    }
-
-    const questionResult =
-    generateQuestions({
-
-      serviceDataProvided:
-      serviceDataProvided ? "true" : "false",
-
-      ownershipConfidence,
-
-      maintenanceStage,
-
-      marketPosition:
-      priceResult
-      ? priceResult.marketPosition
-      : "Market Intelligence Coming Soon",
-
-      accidentHistory:
-      document.getElementById("accidentHistory").value
-
-    });
 
     localStorage.setItem(
       "highPriorityQuestions",
@@ -318,31 +270,6 @@ async function saveReport(reportData){
       )
     );
 
-    let advisoryHTML="";
-
-    if(serviceResult.advisories.length===0){
-
-        advisoryHTML=
-        `
-        <p>
-        No optional ownership history was provided for deeper service analysis.
-        </p>
-
-        <p>
-        Core vehicle evaluation remains unaffected and continues using standard reliability and market intelligence.
-        </p>
-        `;
-    }
-
-    else{
-
-        for(let advisory of serviceResult.advisories){
-
-            advisoryHTML +=
-            "<p>⚠ " + advisory + "</p>";
-        }
-    }
-
     localStorage.setItem(
       "carName",
       model
@@ -355,7 +282,7 @@ async function saveReport(reportData){
 
     localStorage.setItem(
       "healthScore",
-      score.toFixed(1)
+      health.score.toFixed(1)
     );
 
     localStorage.setItem(
@@ -385,17 +312,19 @@ async function saveReport(reportData){
 
     localStorage.setItem(
       "expectedOwners",
-      expectedOwners
+      health.expectedOwners
     );
 
     localStorage.setItem(
       "vehicleAge",
-      age
+      health.age
     );
 
     localStorage.setItem(
       "serviceAdvisories",
-      JSON.stringify(serviceResult.advisories)
+      JSON.stringify(
+        serviceResult ? serviceResult.advisories : []
+      )
     );
 
     localStorage.setItem(
@@ -419,25 +348,20 @@ async function saveReport(reportData){
     );
 
     localStorage.setItem(
-    "serviceDataProvided",
-    serviceDataProvided ? "true" : "false"
+      "serviceDataProvided",
+      document.getElementById("serviceHistory").value ||
+      document.getElementById("serviceType").value ||
+      document.getElementById("accidentHistory").value ||
+      document.getElementById("maintenanceDiscipline").value
+        ? "true"
+        : "false"
     );
 
     localStorage.setItem(
-    "expectedOwners",
-    expectedOwners
-    );
-
-    localStorage.setItem(
-    "vehicleAge",
-    age
-    );
-
-    localStorage.setItem(
-    "maintenanceIssues",
-    JSON.stringify(
-    maintenanceIssues
-    )
+      "maintenanceIssues",
+      JSON.stringify(
+        health.maintenanceIssues
+      )
     );
 
 await saveReport({
@@ -450,9 +374,9 @@ await saveReport({
     transmission,
     engineType,
 
-    healthScore: score.toFixed(1),
+    healthScore: health.score,
 
-    risk
+    risk: health.risk
 
 });
     

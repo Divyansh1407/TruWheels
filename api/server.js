@@ -1,9 +1,12 @@
+
 const express = require("express");
+const cors = require("cors");
 const carDatabase = require("../data/carDatabase");
 const carRoutes = require("./routes/carRoutes");
 const analyzeRoutes = require("./routes/analyzeRoutes");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 const PORT = 3000;
 
