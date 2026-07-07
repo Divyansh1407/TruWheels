@@ -56,3 +56,5 @@ const maintenanceGuide = [
   }
 
 ];
+
+module.exports = maintenanceGuide;

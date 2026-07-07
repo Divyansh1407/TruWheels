@@ -1,10 +1,14 @@
 const express = require("express");
 const carDatabase = require("../data/carDatabase");
 const carRoutes = require("./routes/carRoutes");
+const analyzeRoutes = require("./routes/analyzeRoutes");
 
 const app = express();
+app.use(express.json());
 const PORT = 3000;
+
 app.use("/", carRoutes);
+app.use("/", analyzeRoutes);
 
 app.get("/", (req, res) => {
   res.send("TruWheels API is running!");
