@@ -14,9 +14,6 @@ app.get("/cars", (req, res) => {
   res.json(carDatabase);
 });
 
-app.get("/brands", (req, res) => {
-  res.json(Object.keys(carDatabase));
-});
 
 app.get("/cars/:brand", (req, res) => {
   const brand = req.params.brand;

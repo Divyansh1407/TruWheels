@@ -1673,3 +1673,5 @@ const carDatabase = {
   }
 
 };
+
+module.exports = carDatabase;
