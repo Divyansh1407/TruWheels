@@ -7,32 +7,33 @@ document.getElementById("carBrand");
 const modelDropdown =
 document.getElementById("carModel");
 
-brandDropdown.addEventListener("change", function () {
+brandDropdown.addEventListener("change", async function () {
 
-  let selectedBrand =
-    brandDropdown.value;
+    const selectedBrand = brandDropdown.value;
 
-  // CLEAR OLD MODELS
-  modelDropdown.innerHTML =
+    modelDropdown.innerHTML =
     '<option value="">Select Model</option>';
 
-  // GET CARS OF SELECTED BRAND
-  let cars =
-    carDatabase[selectedBrand].cars;
+    if(!selectedBrand) return;
 
-  // LOOP THROUGH CARS
-  for (let car in cars) {
+    const response =
+    await fetch(`http://172.20.10.2:3000/brands/${selectedBrand}/models`);
 
-    let option =
-      document.createElement("option");
+    const models =
+    await response.json();
 
-    option.value = car;
+    models.forEach(model => {
 
-    option.textContent = car;
+        const option =
+        document.createElement("option");
 
-    modelDropdown.appendChild(option);
+        option.value = model;
 
-  }
+        option.textContent = model;
+
+        modelDropdown.appendChild(option);
+
+    });
 
 });
 
@@ -136,24 +137,7 @@ async function saveReport(reportData){
   let price =
     Number(document.getElementById("price").value);
 
-  // BRAND CHECK
-  if (!carDatabase[brand]) {
-
-    alert("Brand not found in database");
-
-    return;
-  }
-
-  // MODEL CHECK
-  if (!carDatabase[brand].cars[model]) {
-
-    alert("Model not found for this brand");
-
-    return;
-  }
-
-  
-  const response = await fetch("http://localhost:3000/analyze", {
+  const response = await fetch("http://172.20.10.2:3000/analyze", {
 
     method: "POST",
 

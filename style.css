@@ -1748,7 +1748,10 @@ flex-shrink:0;
 .report-container{
 width:95%;
 margin:12px auto;
+padding:15px;
 border-radius:18px;
+overflow:hidden;
+box-sizing:border-box;
 }
 
 .hero-wrapper{
@@ -2241,7 +2244,10 @@ letter-spacing:1px;
 .main-container{
 width:95%;
 margin:12px auto;
+padding:10px;
 border-radius:18px;
+overflow:hidden;
+box-sizing:border-box;
 }
 
 .inspection-container{
