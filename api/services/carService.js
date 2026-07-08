@@ -1,4 +1,4 @@
-const carDatabase = require("../../data/carDatabase");
+const carDatabase = require("../data/carDatabase");
 
 const getBrands = () => {
   return Object.keys(carDatabase);

@@ -4,8 +4,8 @@ const priceService = require("./priceService");
 const serviceIntelligenceService = require("./serviceIntelligenceService");
 const questionService = require("./questionService");
 
-const carDatabase = require("../../data/carDatabase");
-const maintenanceGuide = require("../../data/maintenanceGuide");
+const carDatabase = require("../data/carDatabase");
+const maintenanceGuide = require("../data/maintenanceGuide");
 
 const analyzeVehicle = (vehicleData) => {
 

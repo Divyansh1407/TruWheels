@@ -1,7 +1,7 @@
 
 const express = require("express");
 const cors = require("cors");
-const carDatabase = require("../data/carDatabase");
+
 const carRoutes = require("./routes/carRoutes");
 const analyzeRoutes = require("./routes/analyzeRoutes");
 const inspectionRoutes = require("./routes/inspectionRoutes");
