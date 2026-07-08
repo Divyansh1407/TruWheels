@@ -1,14 +1,14 @@
 const carService = require("../services/carService");
 
-const getBrands = (req, res) => {
-  const brands = carService.getBrands();
+const getBrands = async (req, res) => {
+  const brands = await carService.getBrands();
   res.json(brands);
 };
 
-const getModels = (req, res) => {
+const getModels = async (req, res) => {
   const { brand } = req.params;
 
-  const models = carService.getModels(brand);
+  const models = await carService.getModels(brand);
 
   if (!models) {
     return res.status(404).json({

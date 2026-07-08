@@ -1,12 +1,49 @@
+const supabase = require("../config/supabase");
 const carDatabase = require("../data/carDatabase");
 
-const getBrands = () => {
-  return Object.keys(carDatabase);
+const getBrands = async () => {
+
+    const { data, error } = await supabase
+        .from("brands")
+        .select("name")
+        .order("name");
+
+    if (error) {
+        console.error(error);
+        return [];
+    }
+
+    return data.map(brand => brand.name);
+
 };
 
-const getModels = (brand) => {
-  if (!carDatabase[brand]) return null;
-  return Object.keys(carDatabase[brand].cars);
+const getModels = async (brand) => {
+
+    // Find brand
+    const { data: brandData, error: brandError } = await supabase
+        .from("brands")
+        .select("id")
+        .eq("name", brand)
+        .single();
+
+    if (brandError || !brandData) {
+        return null;
+    }
+
+    // Fetch models
+    const { data: models, error } = await supabase
+        .from("cars")
+        .select("model")
+        .eq("brand_id", brandData.id)
+        .order("model");
+
+    if (error) {
+        console.error(error);
+        return null;
+    }
+
+    return models.map(car => car.model);
+
 };
 
 const getCar = (brand, model) => {
