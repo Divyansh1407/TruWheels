@@ -1,11 +1,13 @@
 const analyzeService = require("../services/analyzeService");
 
-const analyzeVehicle = (req, res) => {
+const analyzeVehicle = async (req, res) => {
+
   const vehicleData = req.body;
 
-  const result = analyzeService.analyzeVehicle(vehicleData);
+  const result = await analyzeService.analyzeVehicle(vehicleData);
 
   res.json(result);
+
 };
 
 module.exports = {

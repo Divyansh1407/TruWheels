@@ -1,6 +1,4 @@
 const supabase = require("../config/supabase");
-const carDatabase = require("../data/carDatabase");
-
 const getBrands = async () => {
 
     const { data, error } = await supabase
@@ -46,13 +44,115 @@ const getModels = async (brand) => {
 
 };
 
-const getCar = (brand, model) => {
-  if(!carDatabase[brand] || !carDatabase[brand].cars[model]) return null;
-  return carDatabase[brand].cars[model];
-}
+const getVehicle = async (brand, model) => {
+
+    // Get Brand
+    const { data: brandData, error: brandError } = await supabase
+        .from("brands")
+        .select("*")
+        .eq("name", brand)
+        .single();
+
+    if (brandError || !brandData) {
+        return null;
+    }
+
+    // Get Car
+    const { data: car, error: carError } = await supabase
+        .from("cars")
+        .select("*")
+        .eq("brand_id", brandData.id)
+        .eq("model", model)
+        .single();
+
+    if (carError || !car) {
+        return null;
+    }
+
+    // Get Intelligence
+    const { data: intelligence, error: intelligenceError } = await supabase
+        .from("car_intelligence")
+        .select("*")
+        .eq("car_id", car.id)
+        .single();
+
+    if (intelligenceError || !intelligence) {
+        return null;
+    }
+
+    // Get Price Records
+    const { data: prices, error: priceError } = await supabase
+        .from("car_prices")
+        .select("*")
+        .eq("car_id", car.id);
+
+    if (priceError) {
+        return null;
+    }
+
+    // Convert yearly prices into old JS format
+    const priceData = {};
+
+    prices.forEach(price => {
+
+        priceData[String(price.year)] = {
+
+            min: price.market_min,
+            avg: price.market_avg,
+            max: price.market_max
+
+        };
+
+    });
+
+    return {
+
+        brandData: {
+
+            brandReliability: Number(brandData.brand_reliability)
+
+        },
+
+        carData: {
+
+            reliability: Number(intelligence.reliability),
+
+            maintenance: intelligence.maintenance,
+
+            kmTolerance: Number(intelligence.km_tolerance),
+
+            automaticType: intelligence.automatic_type,
+
+            petrolCharacter: intelligence.petrol_character,
+
+            dieselCharacter: intelligence.diesel_character,
+
+            cngCharacter: intelligence.cng_character,
+
+            turboCharacter: intelligence.turbo_character,
+
+            engineCharacter: intelligence.engine_character,
+
+            engineConfidence: Number(intelligence.engine_confidence),
+
+            highwayConfidence: Number(intelligence.highway_confidence),
+
+            cityConfidence: Number(intelligence.city_confidence),
+
+            turboRisk: Number(intelligence.turbo_risk),
+
+            agingBehavior: intelligence.aging_behavior,
+
+            priceData
+
+        }
+
+    };
+
+};
 
 module.exports = {
   getBrands,
   getModels,
-  getCar
+  getVehicle
 };

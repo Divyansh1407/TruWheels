@@ -4,11 +4,9 @@ const priceService = require("./priceService");
 const serviceIntelligenceService = require("./serviceIntelligenceService");
 const questionService = require("./questionService");
 
-const carDatabase = require("../data/carDatabase");
 const maintenanceGuide = require("../data/maintenanceGuide");
 
-const analyzeVehicle = (vehicleData) => {
-
+const analyzeVehicle = async (vehicleData) => {
   const {
     brand,
     model,
@@ -19,18 +17,18 @@ const analyzeVehicle = (vehicleData) => {
     engineType
   } = vehicleData;
 
-  const carData = carService.getCar(
-    brand,
-    model
- );
+  const vehicle = await carService.getVehicle(
+      brand,
+      model
+  );
 
-  if (!carData) {
-    return {
-      error: "Car not found"
-    };
+  if (!vehicle) {
+      return {
+          error: "Car not found"
+      };
   }
 
-  const brandData = carDatabase[brand];
+  const { brandData, carData } = vehicle;
 
   const health =
     healthScoreService.calculateHealthScore({
