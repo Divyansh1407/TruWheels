@@ -1,4 +1,4 @@
-function calculateInspectionScore(selectedIssues){
+const calculateInspectionScore = (selectedIssues) => {
 
     const severityDeductions = {
 
@@ -279,4 +279,9 @@ function calculateInspectionScore(selectedIssues){
         verdict,
         recommendation
     };
-}
+
+};
+
+module.exports = {
+    calculateInspectionScore
+};

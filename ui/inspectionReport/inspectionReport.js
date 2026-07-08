@@ -121,7 +121,7 @@ document
 
 document
 .getElementById("generateInspectionBtn")
-.addEventListener("click", () => {
+.addEventListener("click", async () => {
 
     const totalCheckpoints =
         document.querySelectorAll(
@@ -189,8 +189,22 @@ document
     }
    
 
+    const response = await fetch("http://172.20.10.2:3000/inspection", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            selectedIssues
+        })
+
+    });
+
     const inspectionResult =
-    calculateInspectionScore(selectedIssues);
+    await response.json();
 
     
     const inspectionReportData = {
