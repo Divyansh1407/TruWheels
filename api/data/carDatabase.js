@@ -331,6 +331,20 @@ const carDatabase = {
         turboRisk:1,
         agingBehavior:"Simple",
 
+        priceData: {
+    2012: {
+        min: 98000,
+        avg: 108000,
+        max: 119000
+    },
+
+    2013: {
+        min: 115000,
+        avg: 135000,
+        max: 155000
+    }
+},
+
       },
 
       "Grand i10": {
@@ -346,6 +360,50 @@ const carDatabase = {
         cityConfidence:9,
         turboRisk:2,
         agingBehavior:"Reliable",
+
+        priceData: {
+    2013: {
+        min: 170000,
+        avg: 190000,
+        max: 210000
+    },
+
+    2014: {
+        min: 200000,
+        avg: 225000,
+        max: 250000
+    },
+
+    2015: {
+        min: 220000,
+        avg: 245000,
+        max: 270000
+    },
+
+    2016: {
+        min: 240000,
+        avg: 270000,
+        max: 300000
+    },
+
+    2017: {
+        min: 265000,
+        avg: 295000,
+        max: 325000
+    },
+
+    2018: {
+        min: 288000,
+        avg: 320000,
+        max: 352000
+    },
+
+    2019: {
+        min: 315000,
+        avg: 350000,
+        max: 393000
+    }
+},
 
       },
 
@@ -927,6 +985,44 @@ const carDatabase = {
         cityConfidence:8,
         turboRisk:5,
         agingBehavior:"Moderate",
+
+        priceData: {
+    2019: {
+        min: 496000,
+        avg: 550000,
+        max: 610000
+    },
+
+    2020: {
+        min: 532000,
+        avg: 590000,
+        max: 650000
+    },
+
+    2021: {
+        min: 596000,
+        avg: 670000,
+        max: 715000
+    },
+
+    2022: {
+        min: 631000,
+        avg: 710000,
+        max: 790000
+    },
+
+    2023: {
+        min: 700000,
+        avg: 770000,
+        max: 870000
+    },
+
+    2024: {
+        min: 810000,
+        avg: 900000,
+        max: 1020000
+    }
+},
       },
 
       XUV500: {
@@ -1496,6 +1592,54 @@ const carDatabase = {
         cityConfidence:7,
         turboRisk:4,
         agingBehavior:"Tough",
+
+        priceData: {
+            2013: {
+                min: 225000,
+                avg: 250000,
+                max: 275000
+            },
+            2014: {
+                min: 248000,
+                avg: 275000,
+                max: 303000
+            },
+            2015: {
+                min: 270000,
+                avg: 300000,
+                max: 330000
+            },
+            2016: {
+                min: 285000,
+                avg: 330000,
+                max: 363000
+            },
+            2017: {
+                min: 335000,
+                avg: 372000,
+                max: 409000
+            },
+            2018: {
+                min: 392000,
+                avg: 435000,
+                max: 479000
+            },
+            2019: {
+                min: 423000,
+                avg: 470000,
+                max: 517000
+            },
+            2020: {
+                min: 459000,
+                avg: 510000,
+                max: 561000
+            },
+            2021: {
+                min: 522000,
+                avg: 580000,
+                max: 638000
+            }
+        },
       },
 
       Endeavour: {

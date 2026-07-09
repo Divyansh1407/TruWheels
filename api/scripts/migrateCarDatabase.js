@@ -240,20 +240,19 @@ async function migrateCars() {
                     const price = vehicle.priceData[year];
 
                     const { error } = await supabase
-                        .from("car_prices")
-                        .insert({
-
+                    .from("car_prices")
+                    .upsert(
+                        {
                             car_id: carId,
-
                             year: Number(year),
-
                             market_min: price.min,
-
                             market_avg: price.avg,
-
                             market_max: price.max
-
-                        });
+                        },
+                        {
+                            onConflict: "car_id,year"
+                        }
+                    );
 
                     if (error && !error.message.includes("duplicate")) {
 
