@@ -407,6 +407,95 @@ const carDatabase = {
 
       },
 
+      "Grand i10 Nios": {
+        reliability: 8,
+        maintenance: "Low",
+        kmTolerance: 1.0,
+        automaticType: "AMT",
+        petrolCharacter:"Smooth City Car",
+        dieselCharacter:"Efficient Compact Cruiser",
+        engineCharacter:"Smooth City Car",
+        engineConfidence:8,
+        highwayConfidence:7,
+        cityConfidence:9,
+        turboRisk:2,
+        agingBehavior:"Reliable",
+
+        priceData: {
+  2013: {
+    min: 140000,
+    avg: 155000,
+    max: 170000
+  },
+
+  2014: {
+    min: 200000,
+    avg: 220000,
+    max: 240000
+  },
+
+  2015: {
+    min: 230000,
+    avg: 255000,
+    max: 280000
+  },
+
+  2016: {
+    min: 250000,
+    avg: 275000,
+    max: 300000
+  },
+
+  2017: {
+    min: 265000,
+    avg: 295000,
+    max: 325000
+  },
+
+  2018: {
+    min: 290000,
+    avg: 320000,
+    max: 350000
+  },
+
+  2019: {
+    min: 325000,
+    avg: 360000,
+    max: 385000
+  },
+
+  2020: {
+    min: 370000,
+    avg: 410000,
+    max: 450000
+  },
+
+  2021: {
+    min: 400000,
+    avg: 445000,
+    max: 490000
+  },
+
+  2022: {
+    min: 455000,
+    avg: 505000,
+    max: 555000
+  },
+
+  2023: {
+    min: 480000,
+    avg: 535000,
+    max: 590000
+  },
+
+  2024: {
+    min: 520000,
+    avg: 580000,
+    max: 640000
+  }
+},
+      },
+
       i20: {
         reliability: 8,
         maintenance: "Medium",

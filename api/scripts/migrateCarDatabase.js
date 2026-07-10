@@ -15,10 +15,15 @@ async function migrateBrands() {
 
         const { error } = await supabase
             .from("brands")
-            .insert({
-                name: brandName,
-                brand_reliability: brand.brandReliability
-            });
+            .upsert(
+                {
+                    name: brandName,
+                    brand_reliability: brand.brandReliability
+                },
+                {
+                    onConflict: "name"
+                }
+            );
 
         if (error && !error.message.includes("duplicate")) {
             console.error(`❌ ${brandName}: ${error.message}`);
@@ -65,11 +70,16 @@ async function migrateCars() {
         for (const modelName of Object.keys(cars)) {
 
             const { error } = await supabase
-                .from("cars")
-                .insert({
+            .from("cars")
+            .upsert(
+                {
                     brand_id: brandMap[brandName],
                     model: modelName
-                });
+                },
+                {
+                    onConflict: "brand_id,model"
+                }
+            );
 
             if (error && !error.message.includes("duplicate")) {
                 console.error(`❌ ${brandName} ${modelName}: ${error.message}`);
@@ -133,8 +143,9 @@ async function migrateCars() {
                 }
 
                 const { error } = await supabase
-                    .from("car_intelligence")
-                    .insert({
+                .from("car_intelligence")
+                .upsert(
+                    {
 
                         car_id: carId,
 
@@ -166,8 +177,13 @@ async function migrateCars() {
 
                         aging_behavior: vehicle.agingBehavior
 
-                    });
+                    },
+                    {
+                        onConflict: "car_id"
+                    }
+                );
 
+               
                 if (error && !error.message.includes("duplicate")) {
 
                     console.log(`❌ ${brandName} ${modelName}`);
