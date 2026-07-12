@@ -2143,6 +2143,44 @@ const carDatabase = {
         cityConfidence:9,
         turboRisk:1,
         agingBehavior:"Reliable",
+
+        priceData: {
+          2019: {
+        min: 378000,
+        avg: 420000,
+        max: 462000
+    },
+
+    2020: {
+        min: 410000,
+        avg: 455000,
+        max: 500000
+    },
+
+    2021: {
+        min: 445000,
+        avg: 495000,
+        max: 545000
+    },
+
+    2022: {
+        min: 500000,
+        avg: 555000,
+        max: 625000
+    },
+
+    2023: {
+        min: 490000,
+        avg: 580000,
+        max: 638000
+    },
+
+    2024: {
+        min: 537000,
+        avg: 630000,
+        max: 720000
+    }
+},
       },
 
       "Urban Cruiser Hyryder": {
