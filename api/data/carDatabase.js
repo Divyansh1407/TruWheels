@@ -982,18 +982,61 @@ const carDatabase = {
       },
 
       Tigor: {
-        reliability: 6,
+        reliability: 6.5,
         maintenance: "Low",
         kmTolerance: 1.0,
         automaticType: "AMT",
         petrolCharacter:"Practical Compact",
         cngCharacter:"Economical Sedan",
         engineCharacter:"Practical Compact",
-        engineConfidence:6,
-        highwayConfidence:6,
+        engineConfidence:6.9,
+        highwayConfidence:7,
         cityConfidence:8,
-        turboRisk:1,
+        turboRisk:2,
         agingBehavior:"Moderate",
+
+        priceData: {
+    2017: {
+        min: 234000,
+        avg: 260000,
+        max: 286000
+    },
+    2018: {
+        min: 268000,
+        avg: 290000,
+        max: 340000
+    },
+    2019: {
+        min: 290000,
+        avg: 321000,
+        max: 360000
+    },
+    2020: {
+        min: 325000,
+        avg: 365000,
+        max: 405000
+    },
+    2021: {
+        min: 342000,
+        avg: 385000,
+        max: 425000
+    },
+    2022: {
+        min: 375000,
+        avg: 415000,
+        max: 455000
+    },
+    2023: {
+        min: 405000,
+        avg: 435000,
+        max: 485000
+    },
+    2024: {
+        min: 465000,
+        avg: 515000,
+        max: 580000
+    }
+}
 
       },
 
