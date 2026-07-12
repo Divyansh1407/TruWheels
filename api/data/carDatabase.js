@@ -256,10 +256,53 @@ const carDatabase = {
         dieselCharacter:"Highway Sedan",
         engineCharacter: "Comfortable Cruiser",
         engineConfidence: 8,
-        highwayConfidence: 8,
+        highwayConfidence: 8.5,
         cityConfidence: 7,
         turboRisk: 2,
         agingBehavior: "Graceful",
+
+        priceData: {
+    2015: {
+        min: 280000,
+        avg: 340000,
+        max: 395000
+    },
+    2016: {
+        min: 300000,
+        avg: 365000,
+        max: 395000
+    },
+    2017: {
+        min: 350000,
+        avg: 400000,
+        max: 460000
+    },
+    2018: {
+        min: 390000,
+        avg: 430000,
+        max: 475000
+    },
+    2019: {
+        min: 432000,
+        avg: 480000,
+        max: 550000
+    },
+    2020: {
+        min: 460000,
+        avg: 510000,
+        max: 565000
+    },
+    2021: {
+        min: 490000,
+        avg: 565000,
+        max: 630000
+    },
+    2022: {
+        min: 560000,
+        avg: 635000,
+        max: 715000
+    }
+}
 
       },
 
