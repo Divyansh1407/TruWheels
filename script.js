@@ -17,7 +17,7 @@ brandDropdown.addEventListener("change", async function () {
     if(!selectedBrand) return;
 
     const response =
-    await fetch(`http://172.20.10.2:3000/brands/${selectedBrand}/models`);
+    await fetch(`https://truwheels-api.onrender.com/brands/${selectedBrand}/models`);
 
     const models =
     await response.json();
@@ -137,7 +137,7 @@ async function saveReport(reportData){
   let price =
     Number(document.getElementById("price").value);
 
-  const response = await fetch("http://172.20.10.2:3000/analyze", {
+  const response = await fetch("https://truwheels-api.onrender.com/analyze", {
 
     method: "POST",
 
