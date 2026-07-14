@@ -16,7 +16,7 @@ loginBtn.addEventListener("click", async () => {
         provider: "google",
 
         options: {
-            redirectTo: `${window.location.origin}/ui/home/home.html`
+            redirectTo: `${window.location.origin}/frontend/ui/home/home.html`
         }
 
     });
