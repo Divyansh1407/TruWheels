@@ -1,4 +1,12 @@
 const carService = require("../services/carService");
+const getAllCars = async (req, res) => {
+
+    const cars =
+    await carService.getAllCars();
+
+    res.json(cars);
+
+};
 
 const getBrands = async (req, res) => {
   const brands = await carService.getBrands();
@@ -36,5 +44,6 @@ const getCar = (req, res) => {
 module.exports = {
   getBrands,
   getModels,
-  getCar
+  getCar,
+  getAllCars
 };

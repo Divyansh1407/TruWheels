@@ -151,8 +151,29 @@ const getVehicle = async (brand, model) => {
 
 };
 
+const getAllCars = async () => {
+
+    const { data, error } = await supabase
+        .from("cars")
+        .select(`
+            model,
+            brands(name)
+        `);
+
+    if(error){
+        console.error(error);
+        return [];
+    }
+
+    return data.map(car => ({
+        brand: car.brands.name,
+        model: car.model
+    }));
+};
+
 module.exports = {
   getBrands,
   getModels,
-  getVehicle
+  getVehicle,
+  getAllCars
 };

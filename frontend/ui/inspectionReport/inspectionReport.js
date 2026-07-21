@@ -189,7 +189,9 @@ document
     }
    
 
-    const response = await fetch("http://172.20.10.2:3000/inspection", {
+    const response = await fetch(
+    "https://truwheels-api.onrender.com/inspection",
+    {
 
         method: "POST",
 

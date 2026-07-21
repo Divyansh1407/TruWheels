@@ -7,20 +7,56 @@ document.getElementById("carBrand");
 const modelDropdown =
 document.getElementById("carModel");
 
-brandDropdown.addEventListener("change", async function () {
+let allCars = [];
 
-    const selectedBrand = brandDropdown.value;
+async function loadCars(){
+
+    try{
+
+        const response =
+        await fetch(
+            "https://truwheels-api.onrender.com/cars"
+        );
+
+        allCars =
+        await response.json();
+
+        console.log(
+            "Cars Loaded:",
+            allCars.length
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Failed to load cars:",
+            error
+        );
+
+    }
+
+}
+
+brandDropdown.addEventListener("change", function () {
+
+    const selectedBrand =
+    brandDropdown.value;
 
     modelDropdown.innerHTML =
     '<option value="">Select Model</option>';
 
     if(!selectedBrand) return;
 
-    const response =
-    await fetch(`https://truwheels-api.onrender.com/brands/${selectedBrand}/models`);
-
     const models =
-    await response.json();
+    allCars
+        .filter(car =>
+            car.brand === selectedBrand
+        )
+        .map(car =>
+            car.model
+        );
 
     models.forEach(model => {
 
@@ -36,6 +72,8 @@ brandDropdown.addEventListener("change", async function () {
     });
 
 });
+
+loadCars();
 
 async function saveReport(reportData){
 
