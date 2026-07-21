@@ -119,9 +119,18 @@ document
 
 });
 
-document
-.getElementById("generateInspectionBtn")
-.addEventListener("click", async () => {
+const generateBtn =
+document.getElementById(
+    "generateInspectionBtn"
+);
+
+generateBtn.addEventListener(
+    "click",
+    async () => {
+        generateBtn.disabled = true;
+
+        generateBtn.innerHTML =
+        "⏳ Generating Report...";
 
     const totalCheckpoints =
         document.querySelectorAll(
@@ -181,63 +190,85 @@ document
 
     if(incompleteSelection){
 
-        alert(
-            "Please select severity for all checked issues before generating the report."
+            generateBtn.disabled = false;
+
+            generateBtn.innerHTML =
+            "Generate Inspection Report";
+
+            alert(
+                "Please select severity for all checked issues before generating the report."
+            );
+
+            return;
+    }
+        
+    try{
+
+        const response = await fetch(
+        "https://truwheels-api.onrender.com/inspection",
+        {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                selectedIssues
+            })
+
+        });
+
+        const inspectionResult =
+        await response.json();
+
+        
+        const inspectionReportData = {
+
+            inspectionDate:
+            new Date().toLocaleDateString(
+                "en-GB",
+                {
+                    day:"2-digit",
+                    month:"short",
+                    year:"numeric"
+                }
+            ),
+
+            totalIssues,
+            totalCheckpoints,
+
+            score: inspectionResult.score,
+            verdict: inspectionResult.verdict,
+            recommendation:
+            inspectionResult.recommendation,
+
+            selectedIssues
+            
+        };
+
+        localStorage.setItem(
+            "inspectionReportData",
+            JSON.stringify(inspectionReportData)
         );
 
-        return;
+        window.location.href =
+        "physicalInspectionResult.html";
+
+
     }
-   
+    catch(error){
 
-    const response = await fetch(
-    "https://truwheels-api.onrender.com/inspection",
-    {
+        console.error(error);
 
-        method: "POST",
+        generateBtn.disabled = false;
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+        generateBtn.innerHTML =
+        "Generate Inspection Report";
 
-        body: JSON.stringify({
-            selectedIssues
-        })
-
-    });
-
-    const inspectionResult =
-    await response.json();
-
-    
-    const inspectionReportData = {
-
-        inspectionDate:
-        new Date().toLocaleDateString(
-            "en-GB",
-            {
-                day:"2-digit",
-                month:"short",
-                year:"numeric"
-            }
-        ),
-
-        totalIssues,
-        totalCheckpoints,
-
-        score: inspectionResult.score,
-        verdict: inspectionResult.verdict,
-        recommendation:
-        inspectionResult.recommendation,
-
-        selectedIssues
-        
-    };
-
-    localStorage.setItem(
-        "inspectionReportData",
-        JSON.stringify(inspectionReportData)
-    );
-
-    window.location.href =
-    "physicalInspectionResult.html";
+        alert(
+            "Failed to generate report."
+        );
+    }
 });

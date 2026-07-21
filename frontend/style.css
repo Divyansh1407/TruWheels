@@ -2329,4 +2329,14 @@ font-size:13px;
 margin-top:16px;
 }
 
+#generateInspectionBtn:disabled{
+    opacity:0.8;
+    cursor:not-allowed;
+}
+
+}
+
+#generateInspectionBtn:disabled{
+    opacity:0.8;
+    cursor:not-allowed;
 }
