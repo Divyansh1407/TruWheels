@@ -233,10 +233,19 @@
         document.getElementById("car-image");
 
         const imageName =
-        carName.toLowerCase().replace(/\s+/g, "-");
+        carName.toLowerCase();
 
         carImage.src =
         `../images/cars/${brand}/${imageName}.png`;
+
+        carImage.onerror = () => {
+
+    console.log(
+        "Image failed:",
+        carImage.src
+    );
+
+};
 
         const healthScore =
         localStorage.getItem("healthScore");
