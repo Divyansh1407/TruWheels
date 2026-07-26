@@ -1,0 +1,16 @@
+name: Keep Render Awake
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wake Render
+        run: |
+          curl -L https://truwheels-api.onrender.com/
