@@ -9,6 +9,31 @@ document.getElementById("carModel");
 
 let allCars = [];
 
+async function wakeBackend(){
+
+    try{
+
+        await fetch(
+            "https://truwheels-api.onrender.com/"
+        );
+
+        console.log(
+            "Backend Awake"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Backend Wake Failed:",
+            error
+        );
+
+    }
+
+}
+
 async function loadCars(){
 
     try{
@@ -73,7 +98,13 @@ brandDropdown.addEventListener("change", function () {
 
 });
 
-loadCars();
+Promise.all([
+
+    wakeBackend(),
+
+    loadCars()
+
+]);
 
 async function saveReport(reportData){
 
